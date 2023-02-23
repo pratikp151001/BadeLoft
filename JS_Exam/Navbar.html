@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="Navbar.css" />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+  <body>
+    <!--------------- NAVBAR -------------->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand ms-3 ps-2" href="#"
+          ><img src="./assets/02@2x.png" alt="Company logo" id="navlogo"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarTogglerDemo02"
+          aria-controls="navbarTogglerDemo02"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <div class="tabs ms-auto pe-5" id="links">
+            <ul class="navbar-nav me-auto nav-ul">
+              <li class="nav-item">
+                <a class="nav-link  ms-3" href="Dashboard.html">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ms-3" href="stock.html">Stock</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ms-3" href="#">Status</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ms-3" href="#">Assigment</a>
+              </li>
+            </ul>
+          </div>
+          <div class="navbarProfile d-flex ms-3 me-5">
+            <div me-3>
+              <img src="./assets/02.png" alt="Profile Image" id="PrifleImage" />
+            </div>
+            <div class="ms-2">
+              <small id="welcome">Welcome</small><br />
+              <span id="loginUseName">Hello</span>
+            </div>
+          </div>
+          <button class="btn" id="logout">
+            <img src="./assets/Log-Out.svg" alt="Exit logo" />
+          </button>
+        </div>
+      </div>
+    </nav>
+    <script src="Navbar.js"></script>
+    <script src="jquery/jquery.js"></script>
+    <!-- <script src="Dashboard.js"></script> -->
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>
+
+

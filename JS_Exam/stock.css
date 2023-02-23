@@ -1,0 +1,56 @@
+
+.mainbody {
+  background-color: rgb(236, 235, 235);
+}
+#stock {
+  font-size: 2rem;
+  color: black;
+}
+
+/* Modal */
+#addStock {
+  background-color: #326c96;
+  color: white;
+  margin-left: 70%;
+  height: 50px;
+}
+@media only screen and (max-width: 1000px) {
+  #addStock {
+    margin-left: 1%;
+  }
+}
+label{
+    color: #8F8A8C;
+}
+.btn-group{
+    width: 150%;
+    border-radius: 6px;
+    background-color :#ffffff;
+}
+.btn-grp{
+    background-color :#ffffff;
+    color: rgb(43, 43, 43);
+}
+#table_div1  thead {
+  color: #ffffff;
+  background-color: #212529;
+  border-color: #32383e;
+  border-radius: 6px;
+}
+.displayTable{
+  padding: 0% 3.6%;
+}
+
+  /* Table */
+
+ 
+/* popover */
+
+
+
+/* Dropdown */
+
+#AddParts{
+  text-decoration: none;
+  font-size: small;
+}

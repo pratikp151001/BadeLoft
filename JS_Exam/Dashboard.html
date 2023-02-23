@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="Dashboard.css" />
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://jsuites.net/v4/jsuites.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css"
+    />
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+  <body>
+   <div id="navigation"></div>
+    <!------------------ MAIN BODY ------------------>
+    <div class="mainbody">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 p-3">
+            <b><span id="Dashboard" class="m-lg-5"> Dashboard</span></b>
+          </div>
+          <div class="col-lg-3 offset-lg-6 p-3">
+            <div class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" placeholder="Search" />
+            </div>
+          </div>
+        </div>
+
+        <!-- <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+          Popover on right
+        </button> -->
+        <!-- Table -->
+        <div class="displayTable">
+          <table
+            id="table_div"
+            class="table table-display table-hover table-sm"
+            style="width: 100%; border-radius: 10px;"
+          >
+            <!-- <table id="table_div" class="table  .table-responsive-lg"> -->
+            <thead class="thead-dark"></thead>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <script src="jquery/jquery.js"></script>
+    <!-- <script src="Dashboard.js"></script> -->
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./Dashboard.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      type="text/javascript"
+      charset="utf8"
+      src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
+  </body>
+</html>
+
+

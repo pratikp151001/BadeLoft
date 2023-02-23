@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+.image {
+  padding-top: 10%;
+}
+body {
+  overflow: hidden;
+}
+#imagediv {
+  background: url(./assets/Background.png) no-repeat;
+  background-size: 100% 100%;
+  background-position: center center;
+  height: 790px;
+  overflow: hidden;
+}
+
+#LOGO {
+  padding-top: 50%;
+}
+.loginContents {
+  padding: 25% 10%;
+}
+@media only screen and (max-width: 1000px) {
+  #imagediv {
+    display: none;
+  }
+}
+hr{
+  height: 3px;
+  width: 10%;
+}
+hr:not([size]) {
+  height: 3px;
+  color: #326c96;
+}
+#welcomeText {
+  font-size: 1.3rem;
+  /* font-family: "Roboto", sans-serif; */
+  color: rgb(73, 73, 73);
+  padding-left: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 800;
+  /* padding-top: 10%; */
+}
+img {
+  width: 300px;
+}
+input {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 4px 10px #acacac33;
+  border: 1px solid #326c96;
+  opacity: 1;
+}
+.error {
+  color: red;
+}

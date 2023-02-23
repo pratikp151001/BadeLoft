@@ -1,0 +1,27 @@
+#Dashboard {
+    font-size: 2rem;
+    color: black;
+  }
+#table_div{
+    border: 2px;
+}
+#table_div  thead {
+    color: #ffffff;
+    background-color: #212529;
+    border-color: #32383e;
+    border-radius: 6px;
+  }
+.displayTable{
+    padding: 0% 3.5%;
+}
+#table_div_length,#table_div_filter{
+    display: none;
+}
+#table_div_info{
+  margin-left: 69%;
+}
+@media only screen and (max-width: 800px) {
+  #table_div_info {
+    margin-left: 30%;
+  }
+}

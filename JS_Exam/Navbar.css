@@ -1,0 +1,31 @@
+#navlogo {
+    width: 200px;
+  }
+  #welcome {
+    color: gray;
+  }
+  ul{
+    font-weight: bold;
+  }
+  #loginUseName {
+    color: black;
+    font-weight: bold;
+  }
+  #companylogoAtag {
+    font-weight: bold;
+  }
+  #PrifleImage {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  #links {
+    margin-right: 10%;
+  }
+  #logout {
+    margin-right: 5%;
+  }
+  .nav-link:active{
+    color: brown;
+  }
+  

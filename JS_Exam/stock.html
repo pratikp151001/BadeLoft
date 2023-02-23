@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock</title>
+    <link rel="stylesheet" href="stock.css" />
+    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://jsuites.net/v4/jsuites.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+  <body>
+    <!--------------- NAVBAR -------------->
+    <div id="navigation"></div>
+
+    <!------------------ MAIN BODY ------------------>
+    <div class="mainbody">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 p-3">
+            <b><span id="stock" class="m-lg-5"> Stock</span></b>
+          </div>
+          <div class="col-lg-2 offset-lg-4 p-3">
+            <button type="button" class="btn" id="addStock"><b>+New</b></button>
+          </div>
+          <div class="col-lg-3 p-3">
+            <div class="form-group has-search">
+              <span class="fa fa-search form-control-feedback"></span>
+              <input type="text" class="form-control" placeholder="Search" />
+            </div>
+          </div>
+        </div>
+
+        <!------------------ Modal ---------------->
+        <div
+          class="modal fade"
+          id="addStockModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  <b> Add New Stock</b>
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row mb-3">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="StockName" class="mb-2">Stock Name</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="stockName"
+                        placeholder="Enter Stock Name"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="ETADate" class="mb-2">ETA Date</label>
+                      <input type="text" class="form-control" id="birthday" value="10/24/1984" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                <div class="col-lg-8">
+                    <div class="form-group">
+                      <label for="Status" class="mb-2">Status</label>
+                      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="btnradio1">On Production</label>
+                      
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">On Water</label>
+                      
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">In Warehouse</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                        <div class="btn-group dropend">
+                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropright
+                          </button>
+                          <ul class="dropdown-menu">
+                            <!-- Dropdown menu links -->
+                          </ul>
+                        </div>
+                        
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closemodal">
+                  Close
+                </button>
+                <button type="button" class="btn btn-primary" id="savestock">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class=" displayTable">
+          <table id="table_div1" class="table table-display table-hover  table-sm " style="width:100%">
+
+        <!-- <table id="table_div" class="table  .table-responsive-lg"> -->
+          <thead class="thead-dark"> 
+            
+        </table>
+      </div>
+      </div>
+
+    <script src="jquery/jquery.js"></script>
+    <script src="stock.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
+  </body>
+</html>
