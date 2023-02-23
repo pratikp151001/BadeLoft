@@ -1,0 +1,16 @@
+#status{
+    font-size: 2rem;
+    color: black;
+}
+#table_status  thead {
+    color: #ffffff;
+    background-color: #212529;
+    border-color: #32383e;
+    font-weight: normal !important;
+  }
+.displayTable{
+    padding: 0% 3.6%;
+}
+td{
+   background-color: #ffffff !important;
+}

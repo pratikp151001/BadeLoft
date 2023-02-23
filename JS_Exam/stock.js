@@ -1,40 +1,13 @@
 $(document).ready(function () {
 
   if (localStorage.getItem('LogedinUser') !== null) {
+    var StockDetails=new Array;
+
     $("#navigation").load("Navbar.html");
      //Display name in Navbar
   var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
- 
-  // Table Data
-  // var data = [
-  //   {
-  //     name: "Tiger Nixon",
-  //     position: "System Architect",
-  //     salary: "$3,120",
-  //     start_date: "2011/04/25",
-  //     office: "Edinburgh",
-  //     extn: "5421",
-  //   },
-  //   {
-  //     name: "Garrett Winters",
-  //     position: "Director",
-  //     salary: "$5,300",
-  //     start_date: "2011/07/25",
-  //     office: "Edinburgh",
-  //     extn: "8422",
-  //   },
-  // ];
-
-  // $("#table_div1").DataTable({
-  //   data: data,
-  //   columns: [
-  //     { data: "name" },
-  //     { data: "position" },
-  //     { data: "salary" },
-  //     { data: "office" },
-  //   ],
-  // });
-
+  
+    //Main Stock Table
   function format(d) {
     // `d` is the original data object for the row
     return (
@@ -64,10 +37,9 @@ datasets=[
   ['scajb','cjbsaj']
 ]
 
-
-$(document).ready(function () {
   var table = $('#table_div1').DataTable({
       data:datasets,
+      "ordering": false,
       columns: [
           {
               className: 'dt-control',
@@ -75,11 +47,13 @@ $(document).ready(function () {
               data: null,
               defaultContent: '',
           },
-          { title: '' },
-          { title: 'name' },
-          { title: 'position' },
-          { title: 'office' },
-          { title: 'salary' },
+          { title: 'Stock Name' },
+          { title: 'ETA Date' },
+          { title: 'Stock Location' },
+          { title: 'Created By' },
+          { title: 'Created Date' },
+          { title: 'Notes' },
+          { title: 'Actions' },
       ],
       order: [[1, 'asc']],
   });
@@ -99,10 +73,9 @@ $(document).ready(function () {
           tr.addClass('shown');
       }
   });
-});
 
   //DateRange Picker
-  $("#birthday").daterangepicker(
+  $("#etaDate").daterangepicker(
     {
       singleDatePicker: true,
       showDropdowns: true,
@@ -111,7 +84,7 @@ $(document).ready(function () {
     },
     function (start, end, label) {
       var years = moment().diff(start, "years");
-      alert("You are " + years + " years old!");
+      // alert("You are " + years + " years old!");
     }
   );
   //Logout
@@ -120,13 +93,88 @@ $(document).ready(function () {
     debugger;
     $("#addStockModal").modal("show");
   });
-  $("#closemodal").click(function () {
+  $(".closemodalStock").click(function () {
     debugger;
     $("#addStockModal").modal("hide");
   });
 
-  $('.sorting').removeClass('sorting')
-  // $('.sorting_asc').removeClass('sorting_asc')
+  //Open AddParts Modal
+  $(document).on('click',"#addParts",function(){
+    
+   
+    // console.log(StockDetails)
+
+    // localStorage.setItem("stocks",JSON.stringify(StockDetails))
+    $("#addPartsModal").modal("show");
+  })
+  var PARTS=new Array;
+  $(document).on('click',"#saveparts",function(){
+    alert("Add Parts Called")
+    let PartNumber=$("#PartNumber").val()
+    let Ordered=$("#Ordered").val()
+    let Notes=$("#Notes").val()
+
+    console.log(PartNumber)
+     
+    var obj={
+      partsnumber : PartNumber,
+      Order:Ordered,
+      notes:Notes
+    }
+    
+    PARTS.push(obj)
+    console.log(PARTS)
+    $("#addPartsModal").modal("hide");
+    
+  })
+
+  $(document).on('click',"#savestock",function(){
+    let StockName=$("#stockName").val()
+    let ETADate=$("#etaDate").val()
+    let ele=document.getElementsByName("status");
+    let Status="";
+    // alert(StockName)
+    // alert(ETADate)
+
+    for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked)
+      
+            {
+              Status=ele[i].value
+            }
+    }
+    var Stocks=JSON.parse(localStorage.getItem("stocks"))
+    if(Stocks==null){
+      StockDetails=[]
+      StockDetails.push({
+        stockname : StockName,
+        Etadate : ETADate,
+        status:Status,
+        parts:PARTS
+      })
+
+    }
+    else{
+      StockDetails.push({
+        stockname : StockName,
+        Etadate : ETADate,
+        status:Status,
+        parts:PARTS
+      
+      })
+    }
+    console.log(StockDetails)
+
+    localStorage.setItem("stock",JSON.stringify(StockDetails))
+    $("#addStockModal").modal("hide");
+    
+  }
+  )
+
+  $(document).on('click',".closemodalParts",function(){
+    
+    $("#addPartsModal").modal("hide");
+  })
 
 } else {
 window.location.href="index.html"

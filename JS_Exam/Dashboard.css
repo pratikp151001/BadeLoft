@@ -1,3 +1,6 @@
+body{
+  overflow-x: hidden;
+}
 #Dashboard {
     font-size: 2rem;
     color: black;
@@ -10,11 +13,12 @@
     background-color: #212529;
     border-color: #32383e;
     border-radius: 6px;
+    font-weight: 100;
   }
 .displayTable{
     padding: 0% 3.5%;
 }
-#table_div_length,#table_div_filter{
+#table_div_length{
     display: none;
 }
 #table_div_info{
@@ -25,3 +29,10 @@
     margin-left: 30%;
   }
 }
+#table_div_filter{
+  margin-bottom: 2%;
+  margin-top: 3%;
+}
+/* input[type=search]{
+  width: 120%;
+} */

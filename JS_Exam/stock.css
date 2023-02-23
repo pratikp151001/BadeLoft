@@ -12,7 +12,6 @@
   background-color: #326c96;
   color: white;
   margin-left: 70%;
-  height: 50px;
 }
 @media only screen and (max-width: 1000px) {
   #addStock {
@@ -31,26 +30,43 @@ label{
     background-color :#ffffff;
     color: rgb(43, 43, 43);
 }
+/* 
+#PartsTable thead */
 #table_div1  thead {
   color: #ffffff;
   background-color: #212529;
   border-color: #32383e;
-  border-radius: 6px;
+  /* font-weight: normal !important; */
 }
 .displayTable{
   padding: 0% 3.6%;
 }
-
-  /* Table */
-
- 
-/* popover */
-
-
-
-/* Dropdown */
-
 #AddParts{
   text-decoration: none;
   font-size: small;
 }
+.dataTables_length,#table_div1_filter{
+  display: none;
+}
+.dataTables_info{
+    margin-left: 69%;
+}
+
+table.dataTable td.dt-control:before {
+  background-color: white !important;
+  color: #212529 !important;
+}
+td{
+  background-color: #ffffff !important;
+}
+
+
+/* Add Parts */
+
+#Ordered,#PartNumber{
+  height: 50px;
+}
+#Notes{
+  height: 150px;
+}
+

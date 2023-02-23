@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stock</title>
     <link rel="stylesheet" href="stock.css" />
-    <script src="https://jsuites.net/v4/jsuites.js"></script>
+    <!-- <script src="https://jsuites.net/v4/jsuites.js"></script> -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link
-      rel="stylesheet"
-      href="https://jsuites.net/v4/jsuites.css"
-      type="text/css"
-    />
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+  />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
   </head>
   <body>
     <!--------------- NAVBAR -------------->
@@ -49,7 +49,7 @@
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
@@ -57,7 +57,7 @@
                 </h5>
                 <button
                   type="button"
-                  class="close"
+                  class="closemodalStock"
                   data-dismiss="modal"
                   aria-label="Close"
                 >
@@ -65,12 +65,13 @@
                 </button>
               </div>
               <div class="modal-body">
+                <form id="addStockModal">
                 <div class="row mb-3">
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="StockName" class="mb-2">Stock Name</label>
                       <input
-                        type="email"
+                        type="text"
                         class="form-control"
                         id="stockName"
                         placeholder="Enter Stock Name"
@@ -80,73 +81,157 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="ETADate" class="mb-2">ETA Date</label>
-                      <input type="text" class="form-control" id="birthday" value="10/24/1984" />
+                      <input type="text" class="form-control" id="etaDate" value="10/24/1984" />
                     </div>
                   </div>
                 </div>
                 <div class="row mb-3">
                 <div class="col-lg-8">
-                    <div class="form-group">
-                      <label for="Status" class="mb-2">Status</label>
-                      <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="btnradio1">On Production</label>
-                      
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio2">On Water</label>
-                      
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btnradio3">In Warehouse</label>
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="status" id="btnradio1" autocomplete="off" value="On_Production" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">On_Production</label>
+                  
+                    <input type="radio" class="btn-check" name="status" id="btnradio2" value="On_Water" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio2">On_Water</label>
+                  
+                    <input type="radio" class="btn-check" name="status" id="btnradio3" value="On_Warehouse" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio3">On_Warehouse</label>
+                  </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-lg-5">
+                    <button type="button" class="btn" id="addParts"><img src="./assets/stock/Plus.svg" alt="Plus"> <label>Add Part Number</label></button>
                       </div>
+                    </div>
+                    <div class="container-fluid">
+                      <div class="displayTable table-responsive">
+                        <table id="PartsTable" class="table table-hover">
+                          
+                        </table>
+                    </div>
+                   
+               </div>
+                    <div class="row mb-3">
+                      <div class="col-lg-2">
+                        <button type="button" class="btn btn-secondary closemodalStock">
+                          Close
+                        </button>
+                          </div>
+                          <div class="col-lg-4">
+                            <button type="button" class="btn btn-primary" id="savestock">
+                              Save changes
+                            </button>
+                          </div>
+                              </div>
+                            </form>
+                        </div>
+                  </div>
+              </div>
+          </div>
+
+          <div
+          class="modal fade"
+          id="addPartsModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  <b> Add New Stock</b>
+                </h5>
+                <button
+                  type="button"
+                  class="closemodalParts"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="AddParts">
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="PartNumber"
+                        placeholder="Enter Part Number"
+                      />
                     </div>
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <div class="col-lg-6">
-                      <div class="form-group">
-                        <div class="btn-group dropend">
-                          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropright
-                          </button>
-                          <ul class="dropdown-menu">
-                            <!-- Dropdown menu links -->
-                          </ul>
-                        </div>
-                        
-                        </div>
-                      </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="Ordered"
+                        placeholder="Ordered"
+                      />
                     </div>
                   </div>
-
-
+                </div>
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="Notes"
+                        placeholder="Notes"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-lg-2">
+                    <div class="form-group">
+                      <button type="button" class="btn btn-secondary closemodalParts">
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary" id="saveparts">
+                        Save changes
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="closemodal">
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary" id="savestock">
-                  Save changes
-                </button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Table -->
-        <div class=" displayTable">
-          <table id="table_div1" class="table table-display table-hover  table-sm " style="width:100%">
-
-        <!-- <table id="table_div" class="table  .table-responsive-lg"> -->
-          <thead class="thead-dark"> 
-            
-        </table>
-      </div>
+        <div class="container-fluid">
+          <div class="displayTable table-responsive">
+           <table id="table_div1" class="table table-responsive table-display table-hover  table-sm border border-dark rounded " style="width:100%">
+   
+         <!-- <table id="table_div" class="table  .table-responsive-lg"> -->
+           <thead class="thead-dark rounded"> 
+             
+         </table>
+        </div>
+       
+   </div>
       </div>
 
     <script src="jquery/jquery.js"></script>
     <script src="stock.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="./js/bootstrap.min.js"></script> -->
+      <script src="./js/bootstrap.bundle.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script
@@ -157,10 +242,8 @@
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
     ></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
-    />
+   
   </body>
 </html>
+
+
