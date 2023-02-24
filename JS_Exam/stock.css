@@ -35,7 +35,6 @@ label{
 #table_div1  thead {
   color: #ffffff;
   background-color: #212529;
-  border-color: #32383e;
   /* font-weight: normal !important; */
 }
 .displayTable{
@@ -61,12 +60,8 @@ td{
 }
 
 
-/* Add Parts */
+/* error */
 
-#Ordered,#PartNumber{
-  height: 50px;
+.error{
+  color: red;
 }
-#Notes{
-  height: 150px;
-}
-

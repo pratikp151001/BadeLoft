@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment</title>
+    <link rel="stylesheet" href="assignment.css" />
+    <!-- <script src="https://jsuites.net/v4/jsuites.js"></script> -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+
+  </head>
+  <body>
+    <!--------------- NAVBAR -------------->
+    <div id="navigation"></div>
+
+    <!------------------ MAIN BODY ------------------>
+    <div class="mainbody">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 p-3">
+            <b><span id="Assignment" class="m-lg-5"> Assignment</span></b>
+          </div>
+          <div class="col-lg-2 offset-lg-4 p-3">
+            <button type="button" class="btn" id="newAssignment"><b>+New</b></button>
+          </div>
+          <div class="col-lg-3 p-3">
+            <div class="form-group has-search">
+              <input type="text" class="form-control" placeholder="Search" />
+            </div>
+          </div>
+        </div>
+<div class="modal" id="assignmentModal" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" id="CloseModal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="assignmentform">
+                <div class="row mb-3">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="Choose Cutomer" class="mb-2">Choose Customer</label>
+                      <select name="customer" id="customer" class="form-select">
+                      <option value="0" selected disabled>Choose Customer</option>
+                    </select>
+                    </div>
+                  </div>
+            
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="Choose Invoice" class="mb-2">Choose Invoice</label>
+                        <select class="form-select" id="QuickBooksInvoice" name="customer">
+                            <option value="0" selected disabled>Choose Customer</option>
+                          </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                <span><b> Add Stock</b></span>
+            </div>
+                <div class="row mb-3">
+                    <div class="col-lg-5">
+                      <div class="form-group">
+                        <label for="Choose Stock" class="mb-2">Choose Stock</label>
+                        <select name="atock" id="stock" class="form-select">
+                        <option value="0" selected disabled>Choose Stock</option>
+                      </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                          <label for="Choose Parts" class="mb-2">Choose Parts</label>
+                          <select name="QuickBooksInvoice" id="QuickBooksInvoice" class="form-select">
+                          <option value="0" selected disabled>Choose Invoice</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group pt-4 mt-2">
+                            <button type="button" class="btn" id="addbtn">Primary</button>
+                        </div>
+                      </div>
+                  </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+        <!-- Table -->
+        <div class="container-fluid">
+            <div class="displayTable table-responsive">
+             <table id="table_assignment" class="table table-responsive table-display table-hover  table-sm border border-dark rounded " style="width:100%">
+             <thead class="thead-dark rounded"> 
+
+               
+           </table>
+          </div>
+         
+     </div>
+        </div>
+      </div>
+
+    <script src="jquery/jquery.js"></script>
+    <script src="assignment.js"></script>
+    <!-- <script src="./js/bootstrap.min.js"></script> -->
+      <script src="./js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    <!-- <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script> -->
+   
+  </body>
+</html>
+
+

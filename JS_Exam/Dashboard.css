@@ -1,18 +1,19 @@
 body{
   overflow-x: hidden;
+  background-color: rgb(232, 234, 237);
 }
 #Dashboard {
     font-size: 2rem;
     color: black;
   }
-#table_div{
+/* #table_div{
     border: 2px;
-}
+} */
 #table_div  thead {
     color: #ffffff;
     background-color: #212529;
-    border-color: #32383e;
-    border-radius: 6px;
+    /* border-color: #32383e;
+    border-radius: 6px; */
     font-weight: 100;
   }
 .displayTable{
@@ -32,6 +33,10 @@ body{
 #table_div_filter{
   margin-bottom: 2%;
   margin-top: 3%;
+}
+#table_div_wrapper,.dataTables_wrapper{
+  padding-top: 0%;
+  margin-top: 0%;
 }
 /* input[type=search]{
   width: 120%;

@@ -1,0 +1,19 @@
+#Assignment{
+    font-size: 2rem;
+  color: black;
+}
+#newAssignment{
+    background-color: #326c96;
+  color: white;
+  margin-left: 70%;
+}
+
+#addbtn{
+    background-color: #326c96;
+}
+label{
+    color: #8F8A8C;
+}
+#CloseModal{
+    border: none;
+}

@@ -74,7 +74,7 @@ $(document).ready(function () {
               Picture: users[i][4],
             });
             document.getElementById("form").reset();
-            window.location.replace("stock.html");
+            window.location.replace("Dashboard.html");
           }
         }
         document.getElementById("form").reset();

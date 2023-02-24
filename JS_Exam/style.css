@@ -13,12 +13,20 @@ body {
   height: 790px;
   overflow: hidden;
 }
+#CompanyLogo{
+  margin-left: 2%;
+}
+#submit{
+  background-color: #326c96;
+  color: #ffffff;
+}
 
 #LOGO {
   padding-top: 50%;
 }
 .loginContents {
-  padding: 25% 10%;
+  padding: 20% 10%;
+  margin-right: 20%;
 }
 @media only screen and (max-width: 1000px) {
   #imagediv {
@@ -37,6 +45,7 @@ hr:not([size]) {
   font-size: 1.3rem;
   /* font-family: "Roboto", sans-serif; */
   color: rgb(73, 73, 73);
+  margin-left: 1%;
   padding-left: 10px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 800;
@@ -53,4 +62,8 @@ input {
 }
 .error {
   color: red;
+}
+
+#PartsTable thead{
+  background-color: rgb(43, 42, 42)!important;
 }
