@@ -25,36 +25,61 @@ $(document).ready(function () {
     //   );
     // }
 
-    datasets = [
-      ["hello", "hcsj", "sdcds", "acsas", "ascas", "scjsnjc", "ndj","wdef"],
-      ["scajb", "cjbsaj","wdwad","Fsefcs","edfsd","sdfcsdf","dscds","Sca"],
-    ];
-     
-    console.log(StockDetails[1].stockname)
-    var table = $("#table_div1").DataTable({
-      data: localStorage.getItem("stock"),
-      ordering: false,
-      columnDefs: [
-        { orderable: true, className: 'reorder', targets: 0 },
-        { orderable: false, targets: '_all' }
-    ],
-      columns: [
-        {
-          className: "dt-control",
-          data: null,
-          defaultContent: "",
-        },
-        
-        { data: "stockname",title:"Stock Name" },
-        { data: "Etadate",title:"Eta Date" },
-        { data: "status",title:"Status" },
-        
-      ],
-      order: [[1, "asc"]],
-    });
+    // datasets = [
+    //   ["hello", "hcsj", "sdcds", "acsas", "ascas", "scjsnjc", "ndj","wdef"],
+    //   ["scajb", "cjbsaj","wdwad","Fsefcs","edfsd","sdfcsdf","dscds","Sca"],
+    // ];
 
+
+    function format(d) {
+ console.log(d.parts)
+      let list = '';
+      if (d.parts && d.parts.length > 0) {
+        list += '<table cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
+        list += '<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th></tr></thead>';
+        list += '<tbody>';
+        d.parts.forEach((partdetail,index) => {
+          list += '<tr><td>' + [index+1] + '</td><td>' + partdetail.partsnumber + '</td><td>' + partdetail.Order+ '</td><td>' + partdetail.notes + '</td></tr>';
+        });
+        list += '</tbody></table>';
+      }
+      return list;
+    }
+    var STOCKS = JSON.parse(localStorage.getItem("stock"));
+     
+    // console.log(StockDetails[1].stockname)
+    var table = $("#table_stocks").DataTable({
+
+      "order": [],
+      // "dom": 'rtip',
+      columnDefs: [{
+          "defaultContent": "-",
+          "targets": "_all"},{
+             targets: "_all", className: 'dt-left' 
+          }
+        ],
+      data:STOCKS ,
+      bInfo: true,
+      columns:
+
+          [
+
+              { data: "stockname", title: "Stock Name" ,className: "dt-control", 
+              orderable: false},
+              { data: "Etadate", title: "ETA Date",orderable: false },
+              { data: "status", title: "Stock Location",orderable: false  },
+              { data: "createdBy", title: "Created By",orderable: false  },
+              { data:"createdDate", title: "Created Date",orderable: false },
+              { data:"Notes", title: "Notes",orderable: false },
+              
+              { data: "Action", title: "Action",orderable: false  },
+
+          ],
+
+
+  });
     // Add event listener for opening and closing details
-    $("#table_div1 tbody").on("click", "td", function () {
+    $("#table_stocks tbody").on("click", "td", function () {
       var tr = $(this).closest("tr");
       var row = table.row(tr);
 
@@ -219,7 +244,12 @@ $(document).ready(function () {
         // var CreatedDate=new Date()
         // //alert(CreatedDate)
         // console.log(CreatedDate)
-
+       const d = new Date();
+       date=d.getDate()
+       month=d.getMonth()+1
+        year=d.getFullYear()
+       var  created_date=date+"/"+month+"/"+year;
+       console.log(created_date)
         var StockDetails = JSON.parse(localStorage.getItem("stock"));
 
         if (StockDetails == null) {
@@ -228,6 +258,8 @@ $(document).ready(function () {
             stockname: StockName,
             Etadate: ETADate,
             status: Status,
+            createdBy:logedinUser[0].Name,
+            createdDate:created_date,
             parts: PARTS,
           });
         } else {
@@ -243,6 +275,8 @@ $(document).ready(function () {
               stockname: StockName,
               Etadate: ETADate,
               status: Status,
+              createdBy:logedinUser[0].Name,
+            createdDate:created_date,
               parts: PARTS,
             });
           }
