@@ -8,4 +8,11 @@ $(document).ready(function () {
         localStorage.removeItem("LogedinUser");
         window.location.replace("index.html");
       });
+      var pathname = (window.location.pathname.match(/[^\/]+$/)[0]);
+      alert(pathname)
+      $('.nav-item a').each(function(){
+        if ($(this).attr('href') == pathname){
+        $(this).addClass('active');
+        }
+    });
 })

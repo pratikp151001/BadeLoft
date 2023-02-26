@@ -6,35 +6,33 @@ $(document).ready(function () {
     //Display name in Navbar
     var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
 
-    //Main Stock Table
-    function format(d) {
-      // `d` is the original data object for the row
-      return (
-        '<table class ="border" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width:100%">' +
-        "<tr>" +
-        "<th>Full name:</th>" +
-        "<th>" +
-        d.name +
-        "</th>" +
-        "<th>Extension number:</th>" +
-        "<th>" +
-        d.extn +
-        "</th>" +
-        "</tr>" +
-        "</table>"
-      );
-    }
+    // //Main Stock Table
+    // function format(d) {
+    //   // `d` is the original data object for the row
+    //   return (
+    //     '<table class ="border" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width:100%">' +
+    //     "<tr>" +
+    //     "<th>Full name:</th>" +
+    //     "<th>" +
+    //     d.name +
+    //     "</th>" +
+    //     "<th>Extension number:</th>" +
+    //     "<th>" +
+    //     d.extn +
+    //     "</th>" +
+    //     "</tr>" +
+    //     "</table>"
+    //   );
+    // }
 
     datasets = [
       ["hello", "hcsj", "sdcds", "acsas", "ascas", "scjsnjc", "ndj","wdef"],
       ["scajb", "cjbsaj","wdwad","Fsefcs","edfsd","sdfcsdf","dscds","Sca"],
     ];
      
-    StockDetails=localStorage.getItem("stock")
-
-    console.log(StockDetails)
+    console.log(StockDetails[1].stockname)
     var table = $("#table_div1").DataTable({
-      data: datasets,
+      data: localStorage.getItem("stock"),
       ordering: false,
       columnDefs: [
         { orderable: true, className: 'reorder', targets: 0 },
@@ -46,13 +44,11 @@ $(document).ready(function () {
           data: null,
           defaultContent: "",
         },
-        { title: "Stock Name" },
-        { title: "ETA Date" },
-        { title: "Stock Location" },
-        { title: "Created By" },
-        { title: "Created Date" },
-        { title: "Notes" },
-        { title: "Actions" },
+        
+        { data: "stockname",title:"Stock Name" },
+        { data: "Etadate",title:"Eta Date" },
+        { data: "status",title:"Status" },
+        
       ],
       order: [[1, "asc"]],
     });
@@ -295,7 +291,9 @@ $(document).ready(function () {
       PARTS.splice(index-1,1)
 PartsTableDIsplay()
     })
-  } else {
+}
+
+  else {
     window.location.href = "index.html";
   }
 });
