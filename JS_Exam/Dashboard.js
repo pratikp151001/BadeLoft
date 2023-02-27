@@ -9,7 +9,7 @@ $(document).ready(function () {
         "ZK-08-X2P",
         "1",
         "0",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:black'>1</a>",
+        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>1</a>",
         "0",
         "0",
       ],
@@ -17,7 +17,7 @@ $(document).ready(function () {
         "BW-01-Q-M",
         "2",
         "0",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:black'>3</a>",
+        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>3</a>",
         "0",
         "1",
       ],
@@ -25,7 +25,7 @@ $(document).ready(function () {
         "BW-01-XL-G",
         "1",
         "1",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:black'>2</a>",
+        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>2</a>",
         "2",
         "1",
       ],
@@ -33,7 +33,7 @@ $(document).ready(function () {
         "BW-01-S-M",
         "1",
         "0",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:black'>0</a>",
+        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>0</a>",
         "0",
         "0",
       ],
@@ -41,6 +41,13 @@ $(document).ready(function () {
     //PopOver
     $("#table_div").DataTable({
       data: dataSet,
+      language: {
+        paginate: {
+          next: '<i class="bi bi-chevron-right"></i>',
+          previous: '<i class="bi bi-chevron-left"></i>' 
+        }
+      },
+      topSplit:2,
       // "ordering": false,
       columnDefs: [
         { orderable: true, className: "reorder", targets: 0 },
@@ -80,46 +87,7 @@ $(document).ready(function () {
         return $("#popover-content").html();
       },
     });
-
-    // $('.sorting').removeClass('sorting')
-    // document.getElementsByClassName("dataTables_length").innerHTML="Dashboard"
-
-    // function options(){
-    //   var options = {
-    //     html: true,
-    //     title: "Optional: HELLO(Will overide the default-the inline title)",
-    //     //html element
-    //     //content: $("#popover-content")
-    //     content: $('[data-name="popover-content"]')
-    //     //Doing below won't work. Shows title only
-    //     //content: $("#popover-content").html()
-
-    // }
-
-    // }
-
-    // var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-    // var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    //   return new bootstrap.Popover(popoverTriggerEl,options)
-    // })
   } else {
     window.location.href = "index.html";
   }
 });
-
-// console.log(PartNumber);
-// var check=true
-// for(let i=0;i<PARTS.length;i++){
-//   if(PARTS.partsnumber==PartNumber){
-//     check=false
-//     Swal.fire("Part Number Alredy Present")
-//   }
-// }
-// if(check==false){
-//   var obj = {
-//     partsnumber: PartNumber,
-//     Order: Ordered,
-//     notes: Notes,
-//   };
-
-// }

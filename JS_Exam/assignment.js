@@ -4,36 +4,10 @@ $(document).ready(function () {
 
     function format(d) {
       // `d` is the original data object for the row
-      return (
-        '<table class ="border" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width:100%">' +
-        "<tr>" +
-        "<th>Full name:</th>" +
-        "<th>" +
-        d.name +
-        "</th>" +
-        "<th>Extension number:</th>" +
-        "<th>" +
-        d.extn +
-        "</th>" +
-        "</tr>" +
-        "</table>"
-      );
+      
     }
-
-    datasets = [
-      ["hello", "hcsj", "sdcds", "acsas", "ascas", "scjsnjc", "ndj", "wdef"],
-      [
-        "scajb",
-        "cjbsaj",
-        "wdwad",
-        "Fsefcs",
-        "edfsd",
-        "sdfcsdf",
-        "dscds",
-        "Sca",
-      ],
-    ];
-
+    datasets=[['scas','scasc','scsac','scasc','scsdc','dcdsc']]
+   
     StockDetails = localStorage.getItem("stock");
 
     console.log(StockDetails);
@@ -76,24 +50,11 @@ $(document).ready(function () {
       }
     });
 
-    //DateRange Picker
-    $("#etaDate").daterangepicker(
-      {
-        singleDatePicker: true,
-        showDropdowns: true,
-        minYear: 1901,
-        maxYear: parseInt(moment().format("YYYY"), 10),
-      },
-      function (start, end, label) {
-        var years = moment().diff(start, "years");
-        // //alert("You are " + years + " years old!");
-      }
-    );
-
-    $("#navigation").load("Navbar.html");
-    //Display name in Navbar
+  
 
     $("#newAssignment").click(function () {
+      debugger
+      alert("xh")
       $("#assignmentModal").modal("show");
     });
 

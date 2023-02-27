@@ -74,18 +74,23 @@ $(document).ready(function () {
       // "dom": 'rtip',
       columnDefs: [
         { className: "dt-left", targets: [0] },
-        { className: "dt-center", targets: [1, 2, 3, 4, 5, 6] },
-        { width:"15%", targets: [0]},
-        { width:"25%", targets: [5]},
+        { className: "dt-center", targets: [2, 3, 4, 5, 6,7] },
+        { width:"10px", targets: [0]},
+        { width:"15%", targets: [1]},
+        { width:"25%", targets: [6]},
       ],
       data: STOCKS,
       bInfo: true,
       columns: [
         {
+          className: "dt-control",
+          data: null,
+          defaultContent: "",
+          orderable: false
+        },
+        {
           data: "stockname",
           title: "Stock Name",
-          className: "dt-control",
-          orderable: false,
         },
         { data: "Etadate", title: "ETA Date", orderable: false },
         { data: "status", title: "Stock Location", orderable: false },
@@ -116,6 +121,8 @@ $(document).ready(function () {
       debugger
       console.log("A")
       console.log(table.row(this).data())
+      let a=table.row(this).data()
+      console.log(a.stockname)
   } );
 
     //DateRange Picker
@@ -257,7 +264,8 @@ $(document).ready(function () {
       console.log(PARTS.length);
 
       debugger;
-      if (AddStockResult == true && PARTS.length != 0) {
+      if (AddStockResult == true) {
+        if(PARTS.length != 0){
         var StockName = $("#stockName").val();
         var ETADate = $("#etaDate").val();
         let ele = document.getElementsByName("status");
@@ -328,9 +336,11 @@ $(document).ready(function () {
         $("#addStockModal").modal("hide");
         debugger
       
-      } else {
+      }
+      else {
         Swal.fire("Please Enter At Least 1 Part");
       }
+    }
     });
 
     $(document).on("click", ".closemodalParts", function () {

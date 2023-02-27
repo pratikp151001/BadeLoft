@@ -113,6 +113,12 @@ $(document).ready(function () {
 
     var table = $("#table_status").DataTable({
       data: datasets,
+      language: {
+        paginate: {
+          next: '<i class="bi bi-chevron-right"></i>',
+          previous: '<i class="bi bi-chevron-left"></i>' 
+        }
+      },
       columnDefs: [{
         "defaultContent": "-",
         "targets": "_all"},
