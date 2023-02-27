@@ -34,9 +34,9 @@
             <button type="button" class="btn" id="addStock"><b>+New</b></button>
           </div>
           <div class="col-lg-3 p-3">
-            <div class="form-group has-search">
+            <div class="form-group has-search me-5 pe-1">
               <!-- <span class="fa fa-search form-control-feedback"></span> -->
-              <input type="text" class="form-control" placeholder="Search" />
+              <input type="text" class="form-control" placeholder="Search" id="search" />
             </div>
           </div>
         </div>
@@ -90,14 +90,14 @@
                 <div class="row mb-3">
                 <div class="col-lg-4">
                   <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="status" id="btnradio1" autocomplete="off" value="On_Production" checked>
-                    <label class="btn btn-outline-primary" for="btnradio1">On_Production</label>
+                    <input type="radio" class="btn-check" name="status" id="btnradio1" autocomplete="off" value="On Production" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">On Production</label>
                   
-                    <input type="radio" class="btn-check" name="status" id="btnradio2" value="On_Water" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btnradio2">On_Water</label>
+                    <input type="radio" class="btn-check" name="status" id="btnradio2" value="On Water" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio2">On Water</label>
                   
-                    <input type="radio" class="btn-check" name="status" id="btnradio3" value="On_Warehouse" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btnradio3">On_Warehouse</label>
+                    <input type="radio" class="btn-check" name="status" id="btnradio3" value="On Warehouse" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio3">On Warehouse</label>
                   </div>
                   </div>
                 </div>
@@ -114,13 +114,14 @@
                </div>
                     <div class="row mb-3">
                       <div class="col-lg-2">
-                        <button type="button" class="btn btn-secondary closemodalStock">
-                          Close
+                        <button type="button" class="btn" id="savestock">
+                          Save 
                         </button>
+                        
                           </div>
                           <div class="col-lg-4">
-                            <button type="button" class="btn btn-primary" id="savestock">
-                              Save 
+                            <button type="button" class="btn btn-outline-secondary closemodalStock">
+                              Close
                             </button>
                           </div>
                               </div>

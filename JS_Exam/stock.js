@@ -30,54 +30,63 @@ $(document).ready(function () {
     //   ["scajb", "cjbsaj","wdwad","Fsefcs","edfsd","sdfcsdf","dscds","Sca"],
     // ];
 
-
     function format(d) {
- console.log(d.parts)
-      let list = '';
+      console.log(d.parts);
+      let list = "";
       if (d.parts && d.parts.length > 0) {
-        list += '<table cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
-        list += '<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th></tr></thead>';
-        list += '<tbody>';
-        d.parts.forEach((partdetail,index) => {
-          list += '<tr><td>' + [index+1] + '</td><td>' + partdetail.partsnumber + '</td><td>' + partdetail.Order+ '</td><td>' + partdetail.notes + '</td></tr>';
+        list +=
+          '<table id="childTable" cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
+        list +=
+          "<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th></tr></thead>";
+        list += "<tbody>";
+        d.parts.forEach((partdetail, index) => {
+          list +=
+            "<tr><td>" +
+            [index + 1] +
+            "</td><td>" +
+            partdetail.partsnumber +
+            "</td><td>" +
+            partdetail.Order +
+            "</td><td>" +
+            partdetail.notes +
+            "</td></tr>";
         });
-        list += '</tbody></table>';
+        list += "</tbody></table>";
       }
       return list;
     }
     var STOCKS = JSON.parse(localStorage.getItem("stock"));
-     
+
     // console.log(StockDetails[1].stockname)
     var table = $("#table_stocks").DataTable({
-
-      "order": [],
+      order: [],
       // "dom": 'rtip',
-      columnDefs: [{
-          "defaultContent": "-",
-          "targets": "_all"},{
-             targets: "_all", className: 'dt-left' 
-          }
-        ],
-      data:STOCKS ,
+      columnDefs: [
+        {
+          defaultContent: "-",
+          targets: "_all",
+        },
+        { className: "dt-left", targets: [0] },
+        { className: "dt-center", targets: [1, 2, 3, 4, 5, 6] },
+      ],
+      data: STOCKS,
       bInfo: true,
-      columns:
+      columns: [
+        {
+          data: "stockname",
+          title: "Stock Name",
+          className: "dt-control",
+          orderable: false,
+        },
+        { data: "Etadate", title: "ETA Date", orderable: false },
+        { data: "status", title: "Stock Location", orderable: false },
+        { data: "createdBy", title: "Created By", orderable: false },
+        { data: "createdDate", title: "Created Date", orderable: false },
+        { data: "Notes", title: "Notes", orderable: false },
 
-          [
-
-              { data: "stockname", title: "Stock Name" ,className: "dt-control", 
-              orderable: false},
-              { data: "Etadate", title: "ETA Date",orderable: false },
-              { data: "status", title: "Stock Location",orderable: false  },
-              { data: "createdBy", title: "Created By",orderable: false  },
-              { data:"createdDate", title: "Created Date",orderable: false },
-              { data:"Notes", title: "Notes",orderable: false },
-              
-              { data: "Action", title: "Action",orderable: false  },
-
-          ],
-
-
-  });
+        { data: "Action", title: "Action", orderable: false },
+      ],
+    });
     // Add event listener for opening and closing details
     $("#table_stocks tbody").on("click", "td", function () {
       var tr = $(this).closest("tr");
@@ -169,27 +178,32 @@ $(document).ready(function () {
         let PartNumber = $("#PartNumber").val();
         let Ordered = $("#Ordered").val();
         let Notes = $("#Notes").val();
-        let  d=new Date()
-        let Invoice=""+d.getDate()+d.getHours()+d.getMinutes()+d.getMilliseconds()
-       
+        let d = new Date();
+        let Invoice =
+          "" +
+          d.getDate() +
+          d.getHours() +
+          d.getMinutes() +
+          d.getMilliseconds();
+
         // // //alert("all"+Invoice)
         // console.log(PARTS);
-        var check=true
-        for(let i=0;i<PARTS.length;i++){
-          if(PARTS[i].partsnumber==PartNumber){
-            check=false
-            Swal.fire("PArt is Already present")
+        var check = true;
+        for (let i = 0; i < PARTS.length; i++) {
+          if (PARTS[i].partsnumber == PartNumber) {
+            check = false;
+            Swal.fire("PArt is Already present");
           }
         }
-        if(check==true){
+        if (check == true) {
           var obj = {
             partsnumber: PartNumber,
             Order: Ordered,
             notes: Notes,
-            Invoice:Invoice,
+            Invoice: Invoice,
           };
         }
-      
+
         PARTS.push(obj);
         console.log(PARTS);
         $("#addPartsModal").modal("hide");
@@ -244,12 +258,12 @@ $(document).ready(function () {
         // var CreatedDate=new Date()
         // //alert(CreatedDate)
         // console.log(CreatedDate)
-       const d = new Date();
-       date=d.getDate()
-       month=d.getMonth()+1
-        year=d.getFullYear()
-       var  created_date=date+"/"+month+"/"+year;
-       console.log(created_date)
+        const d = new Date();
+        date = d.getDate();
+        month = d.getMonth() + 1;
+        year = d.getFullYear();
+        var created_date = date + "/" + month + "/" + year;
+        console.log(created_date);
         var StockDetails = JSON.parse(localStorage.getItem("stock"));
 
         if (StockDetails == null) {
@@ -258,8 +272,8 @@ $(document).ready(function () {
             stockname: StockName,
             Etadate: ETADate,
             status: Status,
-            createdBy:logedinUser[0].Name,
-            createdDate:created_date,
+            createdBy: logedinUser[0].Name,
+            createdDate: created_date,
             parts: PARTS,
           });
         } else {
@@ -275,8 +289,8 @@ $(document).ready(function () {
               stockname: StockName,
               Etadate: ETADate,
               status: Status,
-              createdBy:logedinUser[0].Name,
-            createdDate:created_date,
+              createdBy: logedinUser[0].Name,
+              createdDate: created_date,
               parts: PARTS,
             });
           }
@@ -312,22 +326,31 @@ $(document).ready(function () {
           PARTS[i].Order +
           "</td><td>" +
           PARTS[i].notes +
-          "</td><td><button type='button' data-val="+[i+1] +" class='cancel  btn'><i class='fa-solid fa-rectangle-xmark'></i></button></td></tr>";
+          "</td><td><button type='button' data-val=" +
+          [i + 1] +
+          " class='cancel  btn'><i class='fa-solid fa-rectangle-xmark'></i></button></td></tr>";
       }
       list += "</tbody>";
       $("#PartsTable").html(list);
     }
     //Delete Parts in AddstockModal
-    $(document).on("click",".cancel",function(){
-      let index=parseInt($(this).data("val"))
+    $(document).on("click", ".cancel", function () {
+      let index = parseInt($(this).data("val"));
       // var index=parseInt( $(this).data('val'))-1
       //alert(index)
-      PARTS.splice(index-1,1)
-PartsTableDIsplay()
-    })
-}
+      PARTS.splice(index - 1, 1);
+      PartsTableDIsplay();
+    });
 
-  else {
+    var table = $("#table_stocks").DataTable();
+
+    // #myInput is a <input type="text"> element
+    $("#search").on("keyup", function () {
+      table.search(this.value).draw();
+    });
+    $("#table_stocks_previous").html("<b><</b>")
+    $("#table_stocks_next").html("<b>></b>")
+  } else {
     window.location.href = "index.html";
   }
 });

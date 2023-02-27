@@ -1,83 +1,163 @@
-$(document).ready(function(){
-
-
-
-if (localStorage.getItem('LogedinUser') !== null) {
-    $("#navigation").load("Navbar.html");
-     //Display name in Navbar
-  var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
-
-  function format(d) {
-    // `d` is the original data object for the row
-    return (
-        '<table class ="border" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-        '<tr>' +
-        '<td>Full name:</td>' +
-        '<td>' +
-        d.name +
-        '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Extension number:</td>' +
-        '<td>' +
-        d.extn +
-        '</td>' +
-        '</tr>' +
-        '<tr>' +
-        '<td>Extra info:</td>' +
-        '<td>And any further details here (images etc)...</td>' +
-        '</tr>' +
-        '</table>'
-    );
-}
-
-datasets=[
-  ['hello','hcsj','sdcds','acsas','ascas','scjsnjc','ndj'],
-  ['scajb','cjbsaj']
-]
-
-
 $(document).ready(function () {
-  var table = $('#table_status').DataTable({
-      data:datasets,
-      "ordering": false,
-      columns: [
-          {
-              className: 'dt-control',
-              orderable: false,
-              data: null,
-              defaultContent: '',
-          },
-          { title: 'Stock Name' },
-          { title: 'ETA Date' },
-          { title: 'Stock Location' },
-          { title: 'Created By' },
-          { title: 'Created Date' },
-          { title: 'Notes' },
-          { title: 'Actions' },
-      ],
-      order: [[1, 'asc']],
-  });
+  if (localStorage.getItem("LogedinUser") !== null) {
+    $("#navigation").load("Navbar.html");
+    //Display name in Navbar
+    var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
 
-  // Add event listener for opening and closing details
-  $('#table_div1 tbody').on('click', 'td.dt-control', function () {
-      var tr = $(this).closest('tr');
+    function format(d) {
+      // `d` is the original data object for the row
+      return (
+        '<table class="table"><thead><tr>' +
+        "<th >#</th>" +
+        " <th>Part Number</th>" +
+        '<th scope="col">Stock Location</th>' +
+        '<th scope="col">Action</th>' +
+        "</tr>" +
+        "</thead>" +
+        '<tbody class="table-group-divider">' +
+        "<tr>" +
+        "<td >1</td>" +
+        "<td>WB-01-S-M</td>" +
+        "<td>warehouse</td>" +
+        '<td><i class="bi bi-x"></i></td>' +
+        "</tr>" +
+        "<tr>" +
+        '<td scope="row">2</td>' +
+        "<td>Jacob</td>" +
+        "<td>Thornton</td>" +
+        '<td><i class="bi bi-x"></i></td>' +
+        "</tr>" +
+        "<tr>" +
+        '<td scope="row">3</td>' +
+        "<td >Larry the Bird</td>" +
+        "<td>Thornton</td>" +
+        '<td><i class="bi bi-x"></i></td>' +
+        "</tr>" +
+        "</tbody>" +
+        "</table>"
+      );
+    }
+
+    datasets = [
+      [
+        "150000",
+        "Kenneth Woodard",
+        "12/08/2021",
+        '<span class="alert alert-primary"><i class="bi bi-check"></i>Paid</span>',
+        "Shipped",
+        "617-235-7627",
+        '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>',
+        "WBC-123",
+      ],
+      [
+        "150001",
+        "James Fenske",
+        "10/08/2021",
+        '<span class="alert alert-success"><i class="bi bi-check"></i>Paid</span>',
+        "STD",
+        "617-235-7627",
+        '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">',
+        "WBC-124",
+      ],
+      [
+        "150002",
+        "Kenneth",
+        "05/08/2021",
+        '<span class="alert alert-success"><i class="bi bi-check"></i>Paid</span>',
+        "Shipped",
+        "617-235-7627",
+        '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>',
+        "",
+      ],
+      [
+        "150003",
+        "Kenneth",
+        "12/08/2021",
+        '<span class="alert alert-danger"><i class="bi bi-x"></i>unPaid</span>',
+        "STD",
+        "617-235-7627",
+        '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >',
+        "WBC-123",
+      ],
+      [
+        "150004",
+        "Kenneth",
+        "12/08/2021",
+        '<span class="alert alert-success"><i class="bi bi-check"></i>Paid</span>',
+        "Shipped",
+        "617-235-7627",
+        '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>',
+        "WBC-125",
+      ],
+      [
+        "150005",
+        "Kenneth",
+        "12/08/2021",
+        '<span class="alert alert-warning"><i class="bi bi-exclamation-circle"></i>Pending Approval</span>',
+        "STD",
+        "617-235-7627",
+        '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >',
+        "",
+      ],
+      [
+        "150006",
+        "Kenneth",
+        "12/08/2021",
+        '<span class="alert alert-success"><i class="bi bi-check"></i>Paid</span>',
+        "Shipped",
+        "201-905-4664",
+        '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">',
+        "WBC-126",
+      ],
+    ];
+
+    var table = $("#table_status").DataTable({
+      data: datasets,
+      columnDefs: [{
+        "defaultContent": "-",
+        "targets": "_all"},{
+           targets: "_all", className: 'dt-left' 
+        }
+      ],
+      columns: [
+        {
+          className: "dt-control",
+          title: "QB Invoice",
+        },
+        { title: "Name", orderable: false },
+        { title: "QB Ship date", orderable: false },
+        { title: "QB Payment Status", orderable: false },
+        { title: "QB status", orderable: false },
+        { title: "QB Delivery Phone", orderable: false },
+        { title: "Called", orderable: false },
+        { title: "Tracking", orderable: false },
+      ],
+      order: [[1, "asc"]],
+    });
+
+    // Add event listener for opening and closing details
+    $("#table_status tbody").on("click", "td", function () {
+      var tr = $(this).closest("tr");
       var row = table.row(tr);
 
       if (row.child.isShown()) {
-          // This row is already open - close it
-          row.child.hide();
-          tr.removeClass('shown');
+        // This row is already open - close it
+        row.child.hide();
+        tr.removeClass("shown");
       } else {
-          // Open this row
-          row.child(format(row.data())).show();
-          tr.addClass('shown');
+        // Open this row
+        row.child(format(row.data())).show();
+        tr.addClass("shown");
       }
-  });
-});
-}
-else{
-    window.location.href="index.html"
-}
-})
+    });
 
+    var Status_table = $("#table_status").DataTable();
+
+    // #myInput is a <input type="text"> element
+    $("#searchStatusTable").on("keyup", function () {
+      Status_table.search(this.value).draw();
+    });
+  } else {
+    window.location.href = "index.html";
+  }
+});

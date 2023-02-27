@@ -17,9 +17,11 @@ body{
     font-weight: 100;
   }
 .displayTable{
-    padding: 0% 3.5%;
+    /* padding: 0% 2%; */
+    padding-left: 3%;
+    padding-right: 1.7%;
 }
-#table_div_length{
+#table_div_length,#table_div_filter{
     display: none;
 }
 #table_div_info{
@@ -34,10 +36,13 @@ body{
   margin-bottom: 2%;
   margin-top: 3%;
 }
-#table_div_wrapper,.dataTables_wrapper{
+.sorting,.reorder{
+  margin-left: 2%;
+}
+/* #table_div_wrapper,.dataTables_wrapper{
   padding-top: 0%;
   margin-top: 0%;
-}
+} */
 /* input[type=search]{
   width: 120%;
 } */

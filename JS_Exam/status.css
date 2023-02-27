@@ -14,3 +14,9 @@
 td{
    background-color: #ffffff !important;
 }
+#table_status_filter{
+    display: none;
+}
+#table_status td{
+    padding: 20px;
+}

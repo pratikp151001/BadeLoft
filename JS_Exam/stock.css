@@ -30,6 +30,14 @@ label{
     background-color :#ffffff;
     color: rgb(43, 43, 43);
 }
+#savestock{
+  background-color: #326c96;
+  padding: 6% 30%;
+  color: white;
+}
+.btn-outline-secondary{
+  padding: 6% 30%;
+}
 /* 
 #PartsTable thead */
 #table_stocks  thead {
@@ -44,7 +52,7 @@ label{
   text-decoration: none;
   font-size: small;
 }
-.dataTables_length,#table_div1_filter{
+.dataTables_length,#table_div1_filter,#table_stocks_filter{
   display: none;
 }
 .dataTables_info{
@@ -58,8 +66,19 @@ table.dataTable td.dt-control:before {
 td{
   background-color: #ffffff !important;
 }
-
-
+#PartsTable th{
+  background-color: #212529;
+  color: #ffffff;
+}
+#childTable thead{
+  background-color: #CFD3D8;
+  /* padding: 0% 10%; */
+  border-radius: 10px;
+}
+#childTable{
+  border-radius: 6px;
+  
+}
 /* error */
 
 .error{
