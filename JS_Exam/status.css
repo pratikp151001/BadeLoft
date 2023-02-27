@@ -20,3 +20,8 @@ td{
 #table_status td{
     padding: 20px;
 }
+input[type=checkbox]:checked {
+    background-color: #1bab55 ;
+    color: #ffffff ;
+    border: none;
+  }

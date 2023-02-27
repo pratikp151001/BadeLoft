@@ -3,7 +3,7 @@ $(document).ready(function () {
     
     //Display name in Navbar
     $("#navigation").load("Navbar.html");
-    
+
     var dataSet = [
       [
         "ZK-08-X2P",
@@ -51,6 +51,10 @@ $(document).ready(function () {
         },
         {
           className: "dt-left",
+          targets: [0],
+        },
+        {
+          width: "30%",
           targets: [0],
         },
       ],

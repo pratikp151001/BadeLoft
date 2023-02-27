@@ -71,9 +71,9 @@ $(document).ready(function () {
       ],
       [
         "150003",
-        "Kenneth",
-        "12/08/2021",
-        '<span class="alert alert-danger"><i class="bi bi-x"></i>unPaid</span>',
+        "Tasha Tapia",
+        "05/08/2021",
+        '<span class="alert alert-danger"><i class="bi bi-x"></i>UnPaid</span>',
         "STD",
         "617-235-7627",
         '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" >',
@@ -115,17 +115,25 @@ $(document).ready(function () {
       data: datasets,
       columnDefs: [{
         "defaultContent": "-",
-        "targets": "_all"},{
-           targets: "_all", className: 'dt-left' 
-        }
+        "targets": "_all"},
+        {
+            className: "dt-center",
+            targets: [1, 2, 3, 4, 5,6,7],
+          },
+          {
+            className: "dt-left",
+            targets: [0],
+          },
+
+        
       ],
       columns: [
         {
           className: "dt-control",
           title: "QB Invoice",
         },
-        { title: "Name", orderable: false },
-        { title: "QB Ship date", orderable: false },
+        { title: "Name", orderable: true },
+        { title: "QB Ship date", orderable: true },
         { title: "QB Payment Status", orderable: false },
         { title: "QB status", orderable: false },
         { title: "QB Delivery Phone", orderable: false },

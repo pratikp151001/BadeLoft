@@ -1,6 +1,6 @@
 
 .mainbody {
-  background-color: rgb(236, 235, 235);
+  background-color: #F7F8FA;
 }
 #stock {
   font-size: 2rem;
@@ -41,9 +41,12 @@ label{
 /* 
 #PartsTable thead */
 #table_stocks  thead {
-  color: #ffffff;
+  color: white;
   background-color: #212529;
   /* font-weight: normal !important; */
+}
+#childTable thead{
+  color: #8F8A8C;
 }
 .displayTable{
   padding: 0% 3.6%;
@@ -71,7 +74,7 @@ td{
   color: #ffffff;
 }
 #childTable thead{
-  background-color: #CFD3D8;
+  background-color: #F5F6FA;
   /* padding: 0% 10%; */
   border-radius: 10px;
 }

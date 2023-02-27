@@ -35,7 +35,7 @@ $(document).ready(function () {
       let list = "";
       if (d.parts && d.parts.length > 0) {
         list +=
-          '<table id="childTable" cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
+          '<table id="childTable" class="bordered" cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
         list +=
           "<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th></tr></thead>";
         list += "<tbody>";
@@ -68,6 +68,8 @@ $(document).ready(function () {
         },
         { className: "dt-left", targets: [0] },
         { className: "dt-center", targets: [1, 2, 3, 4, 5, 6] },
+        { width:"15%", targets: [0]},
+        { width:"25%", targets: [5]},
       ],
       data: STOCKS,
       bInfo: true,
@@ -82,7 +84,7 @@ $(document).ready(function () {
         { data: "status", title: "Stock Location", orderable: false },
         { data: "createdBy", title: "Created By", orderable: false },
         { data: "createdDate", title: "Created Date", orderable: false },
-        { data: "Notes", title: "Notes", orderable: false },
+        { data: "parts[0].notes", title: "Notes", orderable: false },
 
         { data: "Action", title: "Action", orderable: false },
       ],
