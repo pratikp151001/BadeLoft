@@ -5,7 +5,7 @@ $(document).ready(function () {
     $("#navigation").load("Navbar.html");
     //Display name in Navbar
     var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
-
+ 
     // //Main Stock Table
     // function format(d) {
     //   // `d` is the original data object for the row
@@ -29,7 +29,7 @@ $(document).ready(function () {
     //   ["hello", "hcsj", "sdcds", "acsas", "ascas", "scjsnjc", "ndj","wdef"],
     //   ["scajb", "cjbsaj","wdwad","Fsefcs","edfsd","sdfcsdf","dscds","Sca"],
     // ];
-
+    var table;
     function format(d) {
       console.log(d.parts);
       let list = "";
@@ -37,11 +37,11 @@ $(document).ready(function () {
         list +=
           '<table id="childTable" class="bordered" cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
         list +=
-          "<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th></tr></thead>";
+          "<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th><th>Action</th></tr></thead>";
         list += "<tbody>";
         d.parts.forEach((partdetail, index) => {
           list +=
-            "<tr><td>" +
+            "<tr id="+[index+1]+"><td>" +
             [index + 1] +
             "</td><td>" +
             partdetail.partsnumber +
@@ -49,17 +49,27 @@ $(document).ready(function () {
             partdetail.Order +
             "</td><td>" +
             partdetail.notes +
-            "</td></tr>";
+            "</td><td class='deleteparts'>" +
+            "<i data-val="+[index+1]+" class='bi bi-x-lg'></i> "+
+            "</td>"+
+            "</tr>";
         });
         list += "</tbody></table>";
       }
       return list;
     }
+   
     var STOCKS = JSON.parse(localStorage.getItem("stock"));
 
     // console.log(StockDetails[1].stockname)
-    var table = $("#table_stocks").DataTable({
+    table = $("#table_stocks").DataTable({
       order: [],
+      language: {
+        paginate: {
+          next: '<i class="bi bi-chevron-right"></i>', // or '→'
+          previous: '<i class="bi bi-chevron-left"></i>' // or '←' 
+        }
+      },
       // "dom": 'rtip',
       columnDefs: [
         {
@@ -89,6 +99,7 @@ $(document).ready(function () {
         { data: "Action", title: "Action", orderable: false },
       ],
     });
+  
     // Add event listener for opening and closing details
     $("#table_stocks tbody").on("click", "td", function () {
       var tr = $(this).closest("tr");
@@ -110,8 +121,8 @@ $(document).ready(function () {
       {
         singleDatePicker: true,
         showDropdowns: true,
-        minYear: 1901,
-        maxYear: parseInt(moment().format("YYYY"), 10),
+        minYear: 2023,
+        maxYear: 2030,
       },
       function (start, end, label) {
         var years = moment().diff(start, "years");
@@ -266,18 +277,26 @@ $(document).ready(function () {
         year = d.getFullYear();
         var created_date = date + "/" + month + "/" + year;
         console.log(created_date);
-        var StockDetails = JSON.parse(localStorage.getItem("stock"));
+        StockDetails = JSON.parse(localStorage.getItem("stock"));
 
         if (StockDetails == null) {
           StockDetails = [];
-          StockDetails.push({
-            stockname: StockName,
+          var newObj={stockname: StockName,
             Etadate: ETADate,
             status: Status,
             createdBy: logedinUser[0].Name,
             createdDate: created_date,
             parts: PARTS,
-          });
+
+          }
+          // StockDetails.push({
+          //   stockname: StockName,
+          //   Etadate: ETADate,
+          //   status: Status,
+          //   createdBy: logedinUser[0].Name,
+          //   createdDate: created_date,
+          //   parts: PARTS,
+          // });
         } else {
           var Value = true;
           for (let i = 0; i < StockDetails.length; i++) {
@@ -287,21 +306,26 @@ $(document).ready(function () {
             }
           }
           if (Value == true) {
-            StockDetails.push({
-              stockname: StockName,
+            var newObj={stockname: StockName,
               Etadate: ETADate,
               status: Status,
               createdBy: logedinUser[0].Name,
               createdDate: created_date,
               parts: PARTS,
-            });
+  
+            }
           }
           // console.log(StockDetails)
         }
+        StockDetails.push(newObj)
+        table.row.add(newObj).draw();
         localStorage.setItem("stock", JSON.stringify(StockDetails));
         document.getElementById("addStocks").reset();
+        
         PARTS = [];
         $("#addStockModal").modal("hide");
+        debugger
+      
       } else {
         Swal.fire("Please Enter At Least 1 Part");
       }
@@ -330,11 +354,12 @@ $(document).ready(function () {
           PARTS[i].notes +
           "</td><td><button type='button' data-val=" +
           [i + 1] +
-          " class='cancel  btn'><i class='fa-solid fa-rectangle-xmark'></i></button></td></tr>";
+          " class='cancel  btn'><i class='bi bi-x-lg'></button></td></tr>";
       }
       list += "</tbody>";
       $("#PartsTable").html(list);
     }
+
     //Delete Parts in AddstockModal
     $(document).on("click", ".cancel", function () {
       let index = parseInt($(this).data("val"));
@@ -344,14 +369,17 @@ $(document).ready(function () {
       PartsTableDIsplay();
     });
 
+    //Search Table
     var table = $("#table_stocks").DataTable();
-
-    // #myInput is a <input type="text"> element
     $("#search").on("keyup", function () {
       table.search(this.value).draw();
+
+       // Delete Parts From Stocks Table
+       $(document).on('click','.deleteparts',function(){
+        let index=$(this).data('val')
+        alert(inde)
+       })
     });
-    $("#table_stocks_previous").html("<b><</b>")
-    $("#table_stocks_next").html("<b>></b>")
   } else {
     window.location.href = "index.html";
   }

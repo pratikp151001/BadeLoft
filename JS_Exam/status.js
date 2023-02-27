@@ -7,7 +7,7 @@ $(document).ready(function () {
     function format(d) {
       // `d` is the original data object for the row
       return (
-        '<table class="table"><thead><tr>' +
+        '<table id="StatusChildTable" class="table"><thead><tr>' +
         "<th >#</th>" +
         " <th>Part Number</th>" +
         '<th scope="col">Stock Location</th>' +
@@ -45,7 +45,7 @@ $(document).ready(function () {
         "12/08/2021",
         '<span class="alert alert-primary"><i class="bi bi-check"></i>Paid</span>',
         "Shipped",
-        "617-235-7627",
+        "615-245-4158",
         '<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>',
         "WBC-123",
       ],

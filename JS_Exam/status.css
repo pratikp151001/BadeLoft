@@ -1,3 +1,6 @@
+body{
+    overflow-x: hidden;
+}
 #status{
     font-size: 2rem;
     color: black;
@@ -14,8 +17,12 @@
 td{
    background-color: #ffffff !important;
 }
-#table_status_filter{
+
+#table_status_filter,#table_status_length{
     display: none;
+}
+#table_status_info{
+    margin-left: 69%;
 }
 #table_status td{
     padding: 20px;
@@ -24,4 +31,15 @@ input[type=checkbox]:checked {
     background-color: #1bab55 ;
     color: #ffffff ;
     border: none;
+  }
+#StatusChildTable thead{
+ background-color: #CFD3D8;
+ color: #8F8A8C;
+}
+#StatusChildTable td{
+    padding: 10px;
+}
+table.dataTable td.dt-control:before {
+    background-color: white !important;
+    color: #212529 !important;
   }
