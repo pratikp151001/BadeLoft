@@ -108,8 +108,10 @@ td{
 }
 
 #table_stocks_paginate{
-  border: 1px gray solid;
+  border: 1px rgb(220, 218, 218) solid;
+  border-radius: 3px;
   margin-top: 1%;
+  color: #ffffff;
 }
 .dataTables_wrapper .dataTables_paginate {
   padding-top: 0% !important;

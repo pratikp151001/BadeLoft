@@ -31,6 +31,7 @@ $(document).ready(function () {
     // ];
     var table;
     function format(d) {
+      debugger
       console.log(d.parts);
       let list = "";
       if (d.parts && d.parts.length > 0) {
@@ -66,16 +67,12 @@ $(document).ready(function () {
       order: [],
       language: {
         paginate: {
-          next: '<i class="bi bi-chevron-right"></i>', // or '→'
-          previous: '<i class="bi bi-chevron-left"></i>' // or '←' 
+          next: '<i class="bi bi-chevron-right"></i>',
+          previous: '<i class="bi bi-chevron-left"></i>' 
         }
       },
       // "dom": 'rtip',
       columnDefs: [
-        {
-          defaultContent: "-",
-          targets: "_all",
-        },
         { className: "dt-left", targets: [0] },
         { className: "dt-center", targets: [1, 2, 3, 4, 5, 6] },
         { width:"15%", targets: [0]},
@@ -96,7 +93,7 @@ $(document).ready(function () {
         { data: "createdDate", title: "Created Date", orderable: false },
         { data: "parts[0].notes", title: "Notes", orderable: false },
 
-        { data: "Action", title: "Action", orderable: false },
+        { data: "null", title: "Action", orderable: false,className:"editStock", defaultContent: "<i class='bi bi-pencil-fill '>&nbsp&nbsp</i><i class='bi bi-clock-history .historyStock'></i>" },
       ],
     });
   
@@ -115,6 +112,11 @@ $(document).ready(function () {
         tr.addClass("shown");
       }
     });
+    $('#table_stocks tbody').on('click', 'td.editStock', function () {
+      debugger
+      console.log("A")
+      console.log(table.row(this).data())
+  } );
 
     //DateRange Picker
     $("#etaDate").daterangepicker(
@@ -375,10 +377,13 @@ $(document).ready(function () {
       table.search(this.value).draw();
 
        // Delete Parts From Stocks Table
-       $(document).on('click','.deleteparts',function(){
-        let index=$(this).data('val')
-        alert(inde)
-       })
+
+      //  $(document).on('click','.deleteparts',function(){
+      //   debugger
+      //   let index=$(this).attr('data-val')
+      //   alert(inde)
+      //  })
+      
     });
   } else {
     window.location.href = "index.html";
