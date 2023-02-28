@@ -37,6 +37,22 @@ $(document).ready(function () {
         "0",
         "0",
       ],
+      [
+        "Stock Location",
+        "",
+        "",
+        "On Water",
+        "On Water",
+        "In Production",
+      ],
+      [
+        "ETA Date",
+        "",
+        "",
+        "10/08/2021",
+        "10/08/2021",
+        "10/08/2021",
+      ],
     ];
     //PopOver
     $("#table_div").DataTable({

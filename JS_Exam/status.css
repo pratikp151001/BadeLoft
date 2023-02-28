@@ -8,8 +8,9 @@ body {
 #table_status thead {
   color: #ffffff;
   background-color: #212529;
-  border-color: #32383e;
-  font-weight: normal !important;
+}
+#table_status th {
+  font-weight: normal;
 }
 .displayTable {
   padding: 0% 3.6%;
