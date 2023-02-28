@@ -5,30 +5,6 @@ $(document).ready(function () {
     $("#navigation").load("Navbar.html");
     //Display name in Navbar
     var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
-
-    // //Main Stock Table
-    // function format(d) {
-    //   // `d` is the original data object for the row
-    //   return (
-    //     '<table class ="border" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px; width:100%">' +
-    //     "<tr>" +
-    //     "<th>Full name:</th>" +
-    //     "<th>" +
-    //     d.name +
-    //     "</th>" +
-    //     "<th>Extension number:</th>" +
-    //     "<th>" +
-    //     d.extn +
-    //     "</th>" +
-    //     "</tr>" +
-    //     "</table>"
-    //   );
-    // }
-
-    // datasets = [
-    //   ["hello", "hcsj", "sdcds", "acsas", "ascas", "scjsnjc", "ndj","wdef"],
-    //   ["scajb", "cjbsaj","wdwad","Fsefcs","edfsd","sdfcsdf","dscds","Sca"],
-    // ];
     var table;
     function format(d) {
       debugger;
@@ -69,6 +45,7 @@ $(document).ready(function () {
     // console.log(StockDetails[1].stockname)
     table = $("#table_stocks").DataTable({
       order: [],
+      deferRender: true,
       language: {
         paginate: {
           next: '<i class="bi bi-chevron-right"></i>',
@@ -78,23 +55,24 @@ $(document).ready(function () {
       // "dom": 'rtip',
       columnDefs: [
         { className: "dt-left", targets: [0] },
-        { className: "dt-center", targets: [2, 3, 4, 5, 6, 7] },
-        { width: "10px", targets: [0] },
-        { width: "15%", targets: [1] },
-        { width: "25%", targets: [6] },
+        { className: "dt-center", targets: [1, 2, 3, 4, 5, 6] },
+        // { width: "10px", targets: [0] },
+        { width: "15%", targets: [0] },
+        { width: "25%", targets: [5] },
       ],
       data: STOCKS,
       bInfo: true,
       columns: [
-        {
-          className: "dt-control",
-          data: null,
-          defaultContent: "",
-          orderable: false,
-        },
+        // {
+        //   className: "dt-control",
+        //   data: null,
+        //   defaultContent: "",
+        //   orderable: false,
+        // },
         {
           data: "stockname",
           title: "Stock Name",
+          className: "dt-control",
         },
         { data: "Etadate", title: "ETA Date", orderable: false },
         { data: "status", title: "Stock Location", orderable: false },
@@ -132,7 +110,11 @@ $(document).ready(function () {
       debugger;
       console.log("A");
       // console.log(table.row(this).data())
-      let a = table.row(this).data();
+      let SelectedData = table.row(this).data();
+
+      // // document.getElementsByName("status").values=SelectedData.status;
+      // console.log(table.row(this).data().parts)
+      EditStock(SelectedData);
     });
 
     //DateRange Picker
@@ -156,6 +138,9 @@ $(document).ready(function () {
     $(".closemodalStock").click(function () {
       PARTS = [];
       document.getElementById("addStocks").reset();
+      $(".save").attr("id", "savestock");
+      $("#stockName").removeAttr("disabled");
+
       $("#addStockModal").modal("hide");
     });
 
@@ -358,9 +343,13 @@ $(document).ready(function () {
 
     //Display Parts in Addstack modal
     function PartsTableDIsplay() {
-      list =
-        "<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";
+      list = "";
+      //   "<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";
       for (let i = 0; i < PARTS.length; i++) {
+        if (i == 0) {
+          list =
+            "<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";
+        }
         list +=
           "<tr id=" +
           [i + 1] +
@@ -375,8 +364,11 @@ $(document).ready(function () {
           "</td><td><button type='button' data-val=" +
           [i + 1] +
           " class='cancel  btn'><i class='bi bi-x-lg'></button></td></tr>";
+        if (i == PARTS.length - 1) {
+          list += "</tbody>";
+        }
       }
-      list += "</tbody>";
+
       $("#PartsTable").html(list);
     }
 
@@ -390,7 +382,7 @@ $(document).ready(function () {
     });
 
     //Search Table
-    var table = $("#table_stocks").DataTable();
+    table = $("#table_stocks").DataTable();
     $("#search").on("keyup", function () {
       table.search(this.value).draw();
 
@@ -401,6 +393,59 @@ $(document).ready(function () {
       //   let index=$(this).attr('data-val')
       //   alert(inde)
       //  })
+    });
+    function EditStock(SelectedData) {
+      $("#addStockModal").modal("show");
+      $(".save").attr("id", "editstock");
+      $("#stockName").val(SelectedData.stockname);
+      $("#etaDate").val(SelectedData.Etadate);
+      // $("#hidden").val(SelectedData);
+      PARTS = SelectedData.parts;
+      $("#stockName").attr("disabled", "disabled");
+      PartsTableDIsplay();
+    }
+    $(document).on("click", "#editstock", function () {
+      var StockName = $("#stockName").val();
+      var ETADate = $("#etaDate").val();
+      let ele = document.getElementsByName("status");
+      var Status = "";
+      for (i = 0; i < ele.length; i++) {
+        if (ele[i].checked) {
+          Status = ele[i].value;
+        }
+      }
+      const d = new Date();
+      date = d.getDate();
+      month = d.getMonth() + 1;
+      year = d.getFullYear();
+      var created_date = date + "/" + month + "/" + year;
+      console.log(created_date);
+      StockDetails = JSON.parse(localStorage.getItem("stock"));
+      var newObj = {
+        stockname: StockName,
+        Etadate: ETADate,
+        status: Status,
+        createdBy: logedinUser[0].Name,
+        createdDate: created_date,
+        parts: PARTS,
+      };
+
+      for (let i = 0; i < StockDetails.length; i++) {
+        if (StockDetails[i].stockname == StockName) {
+          StockDetails[i] = newObj;
+
+          // table.row.add(newObj).draw();
+        }
+      }
+      $(".save").attr("id", "savestock");
+      $("#stockName").removeAttr("disabled");
+      // console.log(StockDetails)
+      localStorage.setItem("stock", JSON.stringify(StockDetails));
+      location.reload(true);
+      // $("#table_stocks").dataTable().clear().draw();
+      // $("#table_stocks").dataTable().fnDestroy()
+      // console.log(StockDetails)
+      // table.draw(true)
     });
   } else {
     window.location.href = "index.html";

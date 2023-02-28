@@ -38,9 +38,10 @@ $(document).ready(function () {
         },
       },
       messages: {
-        name: {
+        email: {
           required: "Enter your Email",
-          Emailcheck: "Please Enter Prroper Email",
+          email:"Please Enter valid email",
+          Emailcheck: "Please enter valid email",
         },
         password: {
           required: "Enter your Password",

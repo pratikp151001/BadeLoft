@@ -36,7 +36,7 @@
           <div class="col-lg-3 p-3">
             <div class="form-group has-search me-5 pe-1">
               <!-- <span class="fa fa-search form-control-feedback"></span> -->
-              <input type="search" class="form-control" placeholder="Search" id="search" />
+              <input type="text" class="form-control" placeholder="Search" id="search" />
             </div>
           </div>
         </div>
@@ -47,13 +47,12 @@
           id="addStockModal"
           tabindex="-1"
           role="dialog"
-          aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
+                <h5 class="modal-title" id="addStockModalModalLabel">
                   <b> Add New Stock</b>
                 </h5>
                 <button
@@ -79,12 +78,18 @@
                         name="stockName"
                         placeholder="Enter Stock Name"
                       />
+                      <!-- <input
+                        type="hidden"
+                        class="form-control"
+                        id="hidden"
+                        name="hidden"
+                      /> -->
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="ETADate" class="mb-2">ETA Date</label>
-                      <input type="text" class="form-control" id="etaDate" name="etaDate" value="10/24/1984" />
+                      <input type="text" class="form-control" id="etaDate" name="etaDate" />
                     </div>
                   </div>
                 </div>
@@ -115,14 +120,14 @@
                </div>
                     <div class="row mb-3">
                       <div class="col-lg-2">
-                        <button type="button" class="btn" id="savestock">
+                        <button type="button" class="btn save" id="savestock">
                           Save 
                         </button>
                         
                           </div>
                           <div class="col-lg-4">
                             <button type="button" class="btn btn-outline-secondary closemodalStock">
-                              Close
+                              Cancel
                             </button>
                           </div>
                               </div>
@@ -211,7 +216,7 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <button type="button" class="btn btn-secondary closemodalParts">
-                        Close
+                        Cancel
                       </button>
                     </div>
                   </div>

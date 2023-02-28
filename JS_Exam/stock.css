@@ -30,9 +30,9 @@ label{
     background-color :#ffffff;
     color: rgb(43, 43, 43);
 }
-#savestock{
+#savestock,#editstock, #saveparts{
   background-color: #326c96;
-  padding: 6% 30%;
+  padding: 7% 30%;
   color: white;
 }
 .btn-outline-secondary{
@@ -46,6 +46,7 @@ label{
 .bi-plus-circle{
   color: #8F8A8C;
 }
+
 /* 
 #PartsTable thead */
 #table_stocks  thead {
@@ -58,6 +59,9 @@ label{
 }
 #childTable thead{
   color: #8F8A8C;
+}
+#table_stocks tr td:nth-child(1){
+  color: #1188FF;
 }
 .displayTable{
   padding: 0% 3.6%;
@@ -73,15 +77,37 @@ label{
   margin-top: 1%;
     margin-left: 69%;
 }
-#saveparts{
+/* #saveparts{
   background-color:#326c96 ;
   color: #ffffff;
-}
+  padding:7% 20%;
+} */
 
 table.dataTable td.dt-control:before {
   background-color: white !important;
-  color: #212529 !important;
+  color: #326C96 !important;
+  border: 1px solid #326C96 !important;
+  
 }
+table.dataTable td.dt-control:before {
+  height: 1em;
+  width: 1em;
+  margin-right: 3%;
+  margin-top: -9px;
+  display: inline-block;
+  color: white;
+  border: 0.15em solid #1188FF;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em #444;
+  box-sizing: content-box;
+  text-align: center;
+  text-indent: 0 !important;
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1em;
+  content: "+";
+  background-color: #31b131;
+}
+
 td{
   background-color: #ffffff !important;
 }
@@ -95,10 +121,18 @@ td{
   /* padding: 0% 10%; */
   border-radius: 10px;
 }
-#childTable{
+#childTable th{
+  color: #8F8A8C;
+}
+#childTable tr{
   border-radius: 6px;
+  color: black;
   
 }
+#childTable tr td:nth-child(1){
+  color: #000000;
+}
+
 
 /* Move Sorting Option */
 /* table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:after {
@@ -109,7 +143,7 @@ table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.
   position: absolute;
   display: block;
   opacity: 0.125;
-  right: 30% !important;
+  right: 40% !important;
   line-height: 9px;
   font-size: 0.8em;
 }

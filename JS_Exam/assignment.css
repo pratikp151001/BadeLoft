@@ -17,3 +17,25 @@ label {
 #CloseModal {
   border: none;
 }
+
+/* Table */
+
+#table_assignment thead{
+  background-color: #000000;
+}
+#table_assignment th{
+color: white;
+}
+.displayTable{
+  margin-left: 2.6%;
+  margin-right: 3%;
+}
+#table_assignment_length,#table_assignment_filter{
+  display: none;
+}
+#table_assignment_info{
+  margin-left: 69%;
+}
+input[type=text]{
+  width: 82%;
+}

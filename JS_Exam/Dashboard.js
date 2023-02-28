@@ -54,18 +54,29 @@ $(document).ready(function () {
         "10/08/2021",
       ],
     ];
-    //PopOver
+    var StockLocation = $.fn.dataTable.absoluteOrder( [
+      { value: 'Stock Location', position: 'top' },
+      { value: 'ETA Date', position: 'top' }
+    ] );
     $("#table_div").DataTable({
       data: dataSet,
+
       language: {
         paginate: {
           next: '<i class="bi bi-chevron-right"></i>',
           previous: '<i class="bi bi-chevron-left"></i>' 
         }
       },
-      topSplit:2,
+      // topSplit:2,
       // "ordering": false,
+      // columnDefs:[
+      //   {
+      //     targets:0,type:StockLocation
+      //   }
+      // ],
       columnDefs: [
+        { targets: 0, type: StockLocation },
+        // { "targets": -1, "type": ETADATE,"orderable": true },
         { orderable: true, className: "reorder", targets: 0 },
         { orderable: false, targets: "_all" },
         {

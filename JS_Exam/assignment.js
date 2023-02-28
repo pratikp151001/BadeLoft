@@ -6,7 +6,7 @@ $(document).ready(function () {
       // `d` is the original data object for the row
       
     }
-    datasets=[['scas','scasc','scsac','scasc','scsdc','dcdsc']]
+    datasets=[['scas','scasc','scsac','scasc','scsdc','dcdsc','sacdvf']]
    
     StockDetails = localStorage.getItem("stock");
 
@@ -53,8 +53,7 @@ $(document).ready(function () {
   
 
     $("#newAssignment").click(function () {
-      debugger
-      alert("xh")
+     
       $("#assignmentModal").modal("show");
     });
 
