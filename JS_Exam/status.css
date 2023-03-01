@@ -31,7 +31,7 @@ td {
 }
 #table_status_info {
   margin-top: 1%;
-  margin-left: 69%;
+  margin-left: 72%;
 }
 #table_status td {
   padding: 13px;
@@ -83,6 +83,7 @@ table {
   /* font-size: small; */
   border-radius: 0.5em;
   overflow: hidden;
+  border: 1px gray solid;
 }
 .current {
   background-color: #212529 !important;
@@ -96,4 +97,10 @@ table {
 }
 .dataTables_wrapper .dataTables_paginate {
   padding-top: 0% !important;
+}
+
+
+#table_div_paginate a.paginate_button.current {
+  color: white !important;
+  background-color: black !important;
 }

@@ -3,13 +3,12 @@ $(document).ready(function () {
     
     //Display name in Navbar
     $("#navigation").load("Navbar.html");
-
     var dataSet = [
       [
         "ZK-08-X2P",
         "1",
         "0",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>1</a>",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>1</a>",
         "0",
         "0",
       ],
@@ -17,7 +16,7 @@ $(document).ready(function () {
         "BW-01-Q-M",
         "2",
         "0",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>3</a>",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>3</a>",
         "0",
         "1",
       ],
@@ -25,7 +24,7 @@ $(document).ready(function () {
         "BW-01-XL-G",
         "1",
         "1",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>2</a>",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>2</a>",
         "2",
         "1",
       ],
@@ -33,7 +32,71 @@ $(document).ready(function () {
         "BW-01-S-M",
         "1",
         "0",
-        "<a href='#' data-toggle='popover' title='Assigned to' data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>0</a>",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>0</a>",
+        "0",
+        "0",
+      ],
+      [
+        "ZK-08-X2P",
+        "1",
+        "0",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>1</a>",
+        "0",
+        "0",
+      ],
+      [
+        "BW-01-Q-M",
+        "2",
+        "0",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>3</a>",
+        "0",
+        "1",
+      ],
+      [
+        "BW-01-XL-G",
+        "1",
+        "1",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>2</a>",
+        "2",
+        "1",
+      ],
+      [
+        "BW-01-S-M",
+        "1",
+        "0",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>0</a>",
+        "0",
+        "0",
+      ],
+      [
+        "ZK-08-X2P",
+        "1",
+        "0",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>1</a>",
+        "0",
+        "0",
+      ],
+      [
+        "BW-01-Q-M",
+        "2",
+        "0",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>3</a>",
+        "0",
+        "1",
+      ],
+      [
+        "BW-01-XL-G",
+        "1",
+        "1",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>2</a>",
+        "2",
+        "1",
+      ],
+      [
+        "BW-01-S-M",
+        "1",
+        "0",
+        "<a href='#' data-toggle='popover'  data-content='Some content inside the popover' style='text-decoration: none; color:#3399FF'>0</a>",
         "0",
         "0",
       ],
@@ -115,7 +178,16 @@ $(document).ready(function () {
         return $("#popover-content").html();
       },
     });
+    // $(document).on('click','.paginate_button',function(){
+    //   if($(this).hasClass('current')){
+    //     $(this).css('color','white');
+    //   }
+    // });
+    $("ClosePopover").click(function(){
+      $("#popover-content").hide();
+    })
   } else {
     window.location.href = "index.html";
   }
 });
+

@@ -109,14 +109,15 @@ $(document).ready(function () {
       }
     });
     $("#table_stocks tbody").on("click", "td.editStock", function () {
-      debugger;
-      console.log("A");
+      // debugger;
+      // console.log("A");
       // console.log(table.row(this).data())
       let SelectedData = table.row(this).data();
-
+      let index=table.row(this).index()
+      // alert(index)
       // // document.getElementsByName("status").values=SelectedData.status;
       // console.log(table.row(this).data().parts)
-      EditStock(SelectedData);
+      EditStock(SelectedData,index);
     });
 
     //DateRange Picker
@@ -396,20 +397,28 @@ $(document).ready(function () {
       //   alert(inde)
       //  })
     });
-    function EditStock(SelectedData) {
+    function EditStock(SelectedData,index) {
       $("#addStockModal").modal("show");
       $(".error").html("");
       $(".save").attr("id", "editstock");
       $("#stockName").val(SelectedData.stockname);
       $("#etaDate").val(SelectedData.Etadate);
-      $("#hidden").val(SelectedData.stockname);
+      $("#hidden").val(index);
       PARTS = SelectedData.parts;
       // $("#stockName").attr("disabled", "disabled");
       PartsTableDIsplay();
     }
     $(document).on("click", "#editstock", function () {
-      let oldStockName = $("#hidden").val();
-      alert(oldStockName);
+      let EditStockResult = form1.valid();
+
+      // console.log(PARTS.length);
+
+      // debugger;
+      if (EditStockResult == true) {
+        if (PARTS.length != 0) {
+
+      let Index = $("#hidden").val();
+      alert(Index);
       var StockName = $("#stockName").val();
       var ETADate = $("#etaDate").val();
       let ele = document.getElementsByName("status");
@@ -434,14 +443,30 @@ $(document).ready(function () {
         createdDate: created_date,
         parts: PARTS,
       };
-      debugger;
-      for (let i = 0; i < StockDetails.length; i++) {
-        if (oldStockName == StockDetails[i].stockname) {
-          StockDetails[i] = newObj;
+      console.log(newObj)
+      debugger
+     StockDetails[Index]=newObj
+    //  table.row.add({ foo: 1 }).draw();
+      // debugger;
 
-          // table.row.add(newObj).draw();
-        }
-      }
+
+      //   let check=true
+      //  for(let j=0;j<StockDetails.length;j++){
+      //   if(StockName==StockDetails[j].stockname){
+      //     check==false
+      //   }
+      //  }
+    //    if(check==true){
+    //   for (let i = 0; i < StockDetails.length; i++) {
+    //     if (oldStockName == StockDetails[i].stockname) {
+    //       StockDetails[i] = newObj;
+
+    //       // table.row.add(newObj).draw();
+    //     }
+    //   }
+    // }else{
+    // alert("Stock name is already present")
+    // }
       $(".save").attr("id", "savestock");
       // $("#stockName").removeAttr("disabled");
 
@@ -452,6 +477,11 @@ $(document).ready(function () {
       // $("#table_stocks").dataTable().fnDestroy()
       // console.log(StockDetails)
       // table.draw(true)
+  }
+else{
+  Swal.fire("Please enter at least 1 part")
+}}
+
     });
   } else {
     window.location.href = "index.html";

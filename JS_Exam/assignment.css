@@ -8,8 +8,13 @@
   margin-left: 70%;
 }
 
-#addbtn {
+#CloseAssignmentModal{
+  border: none;
+  background-color: white;
+}
+#addbutton {
   background-color: #326c96;
+  color: white;
 }
 label {
   color: #8f8a8c;

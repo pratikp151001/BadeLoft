@@ -57,7 +57,7 @@ $(document).ready(function () {
       $("#assignmentModal").modal("show");
     });
 
-    $("#CloseModal").click(function () {
+    $("#CloseAssignmentModal").click(function () {
       $("#assignmentModal").modal("hide");
     });
   } else {

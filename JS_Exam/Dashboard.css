@@ -31,7 +31,7 @@
 }
 #table_div_info {
   margin-top: 1%;
-  margin-left: 69%;
+  margin-left: 70%;
 }
 @media only screen and (max-width: 800px) {
   #table_div_info {
@@ -52,6 +52,7 @@ table {
   /* font-size: small; */
   border-radius: 0.5em;
   overflow: hidden;
+  border: 1px gray solid;
 }
 
 /* Move sorting option */
@@ -84,16 +85,38 @@ table.dataTable thead > tr > td.sorting_desc_disabled:after {
   font-size: 0.8em;
 }
 /* PAGINATION */
-.current {
+.current{
   background-color: #212529 !important;
+  /* color: #ffffff !important; */
 }
-
 #table_div_paginate {
   border: 1px rgb(220, 218, 218) solid;
   border-radius: 3px;
   margin-top: 1%;
-  color: #ffffff;
 }
 .dataTables_wrapper .dataTables_paginate {
   padding-top: 0% !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  cursor: pointer;
+  
+}
+
+
+/* PopOver */
+#PopoverOrdered{
+  color: green;
+}
+#PopoverAssigned{
+  color: red;
+}
+#ClosePopover{
+  float: right;
+}
+
+#table_div_paginate a.paginate_button.current {
+  color: white !important;
+  background-color: black !important;
 }
