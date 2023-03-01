@@ -62,6 +62,7 @@ $(document).ready(function () {
       data: dataSet,
 
       language: {
+        "info": "Items _START_ to _END_ of _TOTAL_ total",
         paginate: {
           next: '<i class="bi bi-chevron-right"></i>',
           previous: '<i class="bi bi-chevron-left"></i>' 

@@ -31,7 +31,7 @@
             <b><span id="stock" class="m-lg-5"> Stock</span></b>
           </div>
           <div class="col-lg-2 offset-lg-4 p-3">
-            <button type="button" class="btn" id="addStock"><b>+New</b></button>
+            <button type="button" class="btn" id="addStock"><b>+</b>&nbsp;<b>New</b></button>
           </div>
           <div class="col-lg-3 p-3">
             <div class="form-group has-search me-5 pe-1">
@@ -78,12 +78,12 @@
                         name="stockName"
                         placeholder="Enter Stock Name"
                       />
-                      <!-- <input
+                      <input
                         type="hidden"
                         class="form-control"
                         id="hidden"
                         name="hidden"
-                      /> -->
+                      />
                     </div>
                   </div>
                   <div class="col-lg-6">
@@ -95,6 +95,7 @@
                 </div>
                 <div class="row mb-3">
                 <div class="col-lg-4">
+                  <label for="Status" class="mb-2">Status</label>
                   <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="status" id="btnradio1" autocomplete="off" value="On Production" checked>
                     <label class="btn btn-outline-primary" for="btnradio1">On Production</label>
@@ -114,7 +115,7 @@
                     </div>
                     <div class="container-fluid">
                       <div class="displayTable table-responsive">
-                        <table id="PartsTable" class="table table-hover border border-dark rounded">                          
+                        <table id="PartsTable" class="table table-hover">                          
                         </table>
                     </div>
                </div>
@@ -126,7 +127,7 @@
                         
                           </div>
                           <div class="col-lg-4">
-                            <button type="button" class="btn btn-outline-secondary closemodalStock">
+                            <button type="button" class="btn btn-outline-secondary closemodalStock" id="CancelbtnLowwerAddStock">
                               Cancel
                             </button>
                           </div>
@@ -215,7 +216,7 @@
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <button type="button" class="btn btn-secondary closemodalParts">
+                      <button type="button" class="btn btn-outline-secondary closemodalParts">
                         Cancel
                       </button>
                     </div>
@@ -231,7 +232,7 @@
         <!-- Table -->
         <div class="container-fluid">
           <div class="displayTable table-responsive">
-           <table id="table_stocks" class="table table-responsive table-display table-hover  table-sm border border-dark rounded " style="width:100%">
+           <table id="table_stocks" class="table table-hover  table-sm " style="width:100%">
    
          <!-- <table id="table_div" class="table  .table-responsive-lg"> -->
            <thead class="thead-dark rounded"> 

@@ -73,6 +73,17 @@ table.dataTable td.dt-control:before {
 input[type=text]{
     width: 80%;
 }
+thead {
+  background-color: black;
+  border-radius: 1em;
+  /* font-family: 'Source Sans Pro', sans-serif; */
+}
+
+table {
+  /* font-size: small; */
+  border-radius: 0.5em;
+  overflow: hidden;
+}
 .current {
   background-color: #212529 !important;
 }

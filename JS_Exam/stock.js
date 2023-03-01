@@ -12,7 +12,7 @@ $(document).ready(function () {
       let list = "";
       if (d.parts && d.parts.length > 0) {
         list +=
-          '<table id="childTable" class="bordered" cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
+          '<table id="childTable" cellpadding="5" cellspacing="0" border="0">';
         list +=
           "<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th><th>Action</th></tr></thead>";
         list += "<tbody>";
@@ -47,6 +47,7 @@ $(document).ready(function () {
       order: [],
       deferRender: true,
       language: {
+        info: "Items _START_ to _END_ of _TOTAL_ total",
         paginate: {
           next: '<i class="bi bi-chevron-right"></i>',
           previous: '<i class="bi bi-chevron-left"></i>',
@@ -73,6 +74,7 @@ $(document).ready(function () {
           data: "stockname",
           title: "Stock Name",
           className: "dt-control",
+          orderable: false,
         },
         { data: "Etadate", title: "ETA Date", orderable: false },
         { data: "status", title: "Stock Location", orderable: false },
@@ -139,7 +141,9 @@ $(document).ready(function () {
       PARTS = [];
       document.getElementById("addStocks").reset();
       $(".save").attr("id", "savestock");
-      $("#stockName").removeAttr("disabled");
+      // $("#stockName").removeAttr("disabled");
+
+      $(".error").html("");
 
       $("#addStockModal").modal("hide");
     });
@@ -163,9 +167,6 @@ $(document).ready(function () {
         Ordered: {
           required: true,
           Numbers: true,
-        },
-        Notes: {
-          required: true,
         },
       },
       messages: {
@@ -258,7 +259,7 @@ $(document).ready(function () {
 
       console.log(PARTS.length);
 
-      debugger;
+      // debugger;
       if (AddStockResult == true) {
         if (PARTS.length != 0) {
           var StockName = $("#stockName").val();
@@ -280,7 +281,7 @@ $(document).ready(function () {
           date = d.getDate();
           month = d.getMonth() + 1;
           year = d.getFullYear();
-          var created_date = date + "/" + month + "/" + year;
+          var created_date = month + "/" + date + "/" + year;
           console.log(created_date);
           StockDetails = JSON.parse(localStorage.getItem("stock"));
 
@@ -329,7 +330,8 @@ $(document).ready(function () {
 
           PARTS = [];
           $("#addStockModal").modal("hide");
-          debugger;
+
+          // debugger;
         } else {
           Swal.fire("Please Enter At Least 1 Part");
         }
@@ -348,7 +350,7 @@ $(document).ready(function () {
       for (let i = 0; i < PARTS.length; i++) {
         if (i == 0) {
           list =
-            "<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";
+            "<thead class='thead-dark'><tr><th>Part Number</th><th>Invoice #</th><th>Ordered</th><th>Notes</th><th></th></tr></thead><tbody>";
         }
         list +=
           "<tr id=" +
@@ -396,15 +398,18 @@ $(document).ready(function () {
     });
     function EditStock(SelectedData) {
       $("#addStockModal").modal("show");
+      $(".error").html("");
       $(".save").attr("id", "editstock");
       $("#stockName").val(SelectedData.stockname);
       $("#etaDate").val(SelectedData.Etadate);
-      // $("#hidden").val(SelectedData);
+      $("#hidden").val(SelectedData.stockname);
       PARTS = SelectedData.parts;
-      $("#stockName").attr("disabled", "disabled");
+      // $("#stockName").attr("disabled", "disabled");
       PartsTableDIsplay();
     }
     $(document).on("click", "#editstock", function () {
+      let oldStockName = $("#hidden").val();
+      alert(oldStockName);
       var StockName = $("#stockName").val();
       var ETADate = $("#etaDate").val();
       let ele = document.getElementsByName("status");
@@ -418,7 +423,7 @@ $(document).ready(function () {
       date = d.getDate();
       month = d.getMonth() + 1;
       year = d.getFullYear();
-      var created_date = date + "/" + month + "/" + year;
+      var created_date = month + "/" + date + "/" + year;
       console.log(created_date);
       StockDetails = JSON.parse(localStorage.getItem("stock"));
       var newObj = {
@@ -429,16 +434,17 @@ $(document).ready(function () {
         createdDate: created_date,
         parts: PARTS,
       };
-
+      debugger;
       for (let i = 0; i < StockDetails.length; i++) {
-        if (StockDetails[i].stockname == StockName) {
+        if (oldStockName == StockDetails[i].stockname) {
           StockDetails[i] = newObj;
 
           // table.row.add(newObj).draw();
         }
       }
       $(".save").attr("id", "savestock");
-      $("#stockName").removeAttr("disabled");
+      // $("#stockName").removeAttr("disabled");
+
       // console.log(StockDetails)
       localStorage.setItem("stock", JSON.stringify(StockDetails));
       location.reload(true);

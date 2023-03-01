@@ -64,10 +64,12 @@ $(document).ready(function () {
 
         var logInUser = new Array();
         // debugger;
+        let checkValidation=true
         for (let i = 0; i < users.length; i++) {
           // alert(users[i][0])
           if (email.toLowerCase() === users[i][0].toLowerCase() && password === users[i][1]) {
             // alert("inside if")
+            checkValidation=false
             logInUser.push({
               Name: users[i][2],
               Email: users[i][0],
@@ -80,11 +82,15 @@ $(document).ready(function () {
         }
         document.getElementById("form").reset();
         localStorage.setItem("LogedinUser", JSON.stringify(logInUser));
+        if(checkValidation==true)
+        {
         Swal.fire({
           icon: "error",
           title: "Oops...",
           text: "User is not Registered!",
+
         });
+      }
       }
     });
   }
