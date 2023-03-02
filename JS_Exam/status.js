@@ -111,7 +111,7 @@ $(document).ready(function () {
       ],
     ];
 
-    var table = $("#table_status").DataTable({
+    var table = $("#tableStatus").DataTable({
       data: datasets,
       language: {
         "info": "Items _START_ to _END_ of _TOTAL_ total",
@@ -137,7 +137,7 @@ $(document).ready(function () {
       columns: [
         {
           className: "dt-control",
-          title: "QB Invoice",
+          title: "QB Invoice #",
         },
         { title: "Name", orderable: true },
         { title: "QB Ship date", orderable: true },
@@ -151,7 +151,7 @@ $(document).ready(function () {
     });
 
     // Add event listener for opening and closing details
-    $("#table_status tbody").on("click", "td", function () {
+    $("#tableStatus tbody").on("click", "td", function () {
       var tr = $(this).closest("tr");
       var row = table.row(tr);
 
@@ -166,7 +166,7 @@ $(document).ready(function () {
       }
     });
 
-    var Status_table = $("#table_status").DataTable();
+    var Status_table = $("#tableStatus").DataTable();
 
     // #myInput is a <input type="text"> element
     $("#searchStatusTable").on("keyup", function () {

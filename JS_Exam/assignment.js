@@ -89,33 +89,34 @@ $(document).ready(function () {
       });
     });
 
-    $('.js-example-basic-multiple').select2();
+    // $('.js-example-basic-multiple').select2();
 
     var StockOptions = "";
-    debugger;
+    // debugger;
     for (let i = 0; i < StockDetails.length; i++) {
       StockOptions+="<option value='"+StockDetails[i].stockname+"'>"+StockDetails[i].stockname+"</option>"
     }
     $("#Selectstock").append(StockOptions);
-    $("#Selectstock").change(function(){
-      var SelectedStock=$(this).find('option:Selected').val()
-      alert(SelectedStock)
+    // $("#Selectstock").change(function(){
+    //   var SelectedStock=$(this).find('option:Selected').val()
+    //   alert(SelectedStock)
 
       
-      let option="<option selected  >Choose Parts</option>"
-      for(let i=0;i<StockDetails.length;i++){
-        debugger
-        if(StockDetails[i].stockname==SelectedStock){
-          console.log(StockDetails[i].parts)
-          for(let j=0;j<StockDetails[i].parts.length;j++){
-            option+="<option>'"+StockDetails[i].parts[j].partsnumber+"'</option>"
-          }
-        }
-      }
-      $("#SelectParts").html(option);
-      // $("#SelectParts").append(option);
-    })
+    //   let option="<option selected  >Choose Parts</option>"
+    //   for(let i=0;i<StockDetails.length;i++){
+    //     // debugger
+    //     if(StockDetails[i].stockname==SelectedStock){
+    //       console.log(StockDetails[i].parts)
+    //       for(let j=0;j<StockDetails[i].parts.length;j++){
+    //         option+="<option>'"+StockDetails[i].parts[j].partsnumber+"'</option>"
+    //       }
+    //     }
+    //   }
+    //   $("#SelectParts").html(option);
+    //   // $("#SelectParts").append(option);
+    // })
 
+  
     $("#newAssignment").click(function () {
       $("#assignmentModal").modal("show");
     });
@@ -123,27 +124,24 @@ $(document).ready(function () {
     $("#CloseAssignmentModal").click(function () {
       $("#assignmentModal").modal("hide");
     });
+
+//     var myData = ['New York','Los Angeles','Chicago' ]
+//     $(function() {
+ 
+//    var instance = $('#SelectParts').magicSuggest({
+ 
+//      data: myData
+ 
+//    });
+ 
+//  });
   } else {
     window.location.href = "index.html";
   }
 });
 
-// var selectOptions = '';
-// for (i = 0; i < stockData.length; i++) {
 
-//          selectOptions += '<option value="' + stockData[i].StockName + '">' + stockData[i].StockName + '</option>';
-//     }
-// $("#stockname").append(selectOptions).on('change',function () {
-//     debugger
-//     var selected = $(this).find('option:selected').val();
-
-//     $("#parts").html("<option selected disabled>Choose parts</option>");
-//     const parts = stockData.filter(m => m.StockName == selected);
-//     console.log(parts)
-//     parts.forEach(element => {
-//         debugger;
-//         const option = "<option val='" + element.Parts[0].partnumber + "'>" + element.Parts[0].partnumber + "</option>";
-//         $("#parts").append(option);
-//     });
-//     //$('.js-example-basic-multiple').select2();
-// });
+// $(document).on("click","#SelectParts",function(){
+//   debugger
+//   $("#SelectParts").css("z-index","-1")
+// })

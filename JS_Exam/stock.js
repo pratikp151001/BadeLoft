@@ -14,7 +14,7 @@ $(document).ready(function () {
         list +=
           '<table id="childTable" cellpadding="5" cellspacing="0" border="0">';
         list +=
-          "<thead><tr><th>#</th><th>Part Number</th><thOrdered</th><th>Assigned</th><th>Notes</th><th>Action</th></tr></thead>";
+          "<thead><tr><th>#</th><th>Part Number</th><th>Ordered</th><th>Assigned</th><th>Action</th></tr></thead>";
         list += "<tbody>";
         d.parts.forEach((partdetail, index) => {
           list +=
@@ -43,7 +43,7 @@ $(document).ready(function () {
     var STOCKS = JSON.parse(localStorage.getItem("stock"));
 
     // console.log(StockDetails[1].stockname)
-    table = $("#table_stocks").DataTable({
+    table = $("#tableStocks").DataTable({
       order: [],
       deferRender: true,
       language: {
@@ -55,8 +55,8 @@ $(document).ready(function () {
       },
       // "dom": 'rtip',
       columnDefs: [
-        { className: "dt-left", targets: [0] },
-        { className: "dt-center", targets: [1, 2, 3, 4, 5, 6] },
+        { className: "dt-left", targets: [0,6] },
+        { className: "dt-center", targets: [1, 2, 3, 4, 6] },
         // { width: "10px", targets: [0] },
         { width: "15%", targets: [0] },
         { width: "25%", targets: [5] },
@@ -94,7 +94,7 @@ $(document).ready(function () {
     });
 
     // Add event listener for opening and closing details
-    $("#table_stocks tbody").on("click", "td", function () {
+    $("#tableStocks tbody").on("click", "td", function () {
       var tr = $(this).closest("tr");
       var row = table.row(tr);
 
@@ -108,7 +108,7 @@ $(document).ready(function () {
         tr.addClass("shown");
       }
     });
-    $("#table_stocks tbody").on("click", "td.editStock", function () {
+    $("#tableStocks tbody").on("click", "td.editStock", function () {
       // //debugger;
       // console.log("A");
       // console.log(table.row(this).data())
@@ -199,12 +199,7 @@ $(document).ready(function () {
         let Ordered = $("#Ordered").val();
         let Notes = $("#Notes").val();
         let d = new Date();
-        let Invoice =
-          "" +
-          d.getDate() +
-          d.getHours() +
-          d.getMinutes() +
-          d.getMilliseconds();
+        let Invoice ="" +d.getDate() +d.getHours() +d.getMinutes() +d.getMilliseconds();
 
         // // ////alert("all"+Invoice)
         // console.log(PARTS);
@@ -279,12 +274,12 @@ $(document).ready(function () {
           // var CreatedDate=new Date()
           // ////alert(CreatedDate)
           // console.log(CreatedDate)
-          const d = new Date();
-          date = d.getDate();
-          month = d.getMonth() + 1;
-          year = d.getFullYear();
-          var created_date = month + "/" + date + "/" + year;
-          console.log(created_date);
+          // const d = new Date();
+          // date = d.getDate();
+          // month = d.getMonth() + 1;
+          // year = d.getFullYear();
+          var created_date =createDate()
+
           StockDetails = JSON.parse(localStorage.getItem("stock"));
 
           if (StockDetails == null) {
@@ -386,17 +381,17 @@ $(document).ready(function () {
     });
 
     //Search Table
-    table = $("#table_stocks").DataTable();
+    table = $("#tableStocks").DataTable();
     $("#search").on("keyup", function () {
       table.search(this.value).draw();
 
       // Delete Parts From Stocks Table
 
-      //  $(document).on('click','.deleteparts',function(){
-      //   //debugger
-      //   let index=$(this).attr('data-val')
-      //   //alert(inde)
-      //  })
+       $(document).on('click','.deleteparts',function(){
+       
+        let index=$(this).attr('data-val')
+        //alert(inde)
+       })
     });
     function EditStock(SelectedData, index) {
       $("#addStockModal").modal("show");
@@ -428,11 +423,7 @@ $(document).ready(function () {
               Status = ele[i].value;
             }
           }
-          const d = new Date();
-          date = d.getDate();
-          month = d.getMonth() + 1;
-          year = d.getFullYear();
-          var created_date = month + "/" + date + "/" + year;
+          var created_date =createDate()
           console.log(created_date);
           StockDetails = JSON.parse(localStorage.getItem("stock"));
           var newObj = {
@@ -472,8 +463,8 @@ $(document).ready(function () {
           // console.log(StockDetails)
           localStorage.setItem("stock", JSON.stringify(StockDetails));
           location.reload(true);
-          // $("#table_stocks").dataTable().clear().draw();
-          // $("#table_stocks").dataTable().fnDestroy()
+          // $("#tableStocks").dataTable().clear().draw();
+          // $("#tableStocks").dataTable().fnDestroy()
           // console.log(StockDetails)
           // table.draw(true)
         } else {
@@ -481,6 +472,15 @@ $(document).ready(function () {
         }
       }
     });
+    function createDate(){
+      const d = new Date();
+          date = d.getDate();
+          month = d.getMonth() + 1;
+          year = d.getFullYear();
+
+          return month + "/" + date + "/" + year
+
+    }
   } else {
     window.location.href = "index.html";
   }

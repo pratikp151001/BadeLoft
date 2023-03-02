@@ -121,7 +121,7 @@ $(document).ready(function () {
       { value: 'Stock Location', position: 'top' },
       { value: 'ETA Date', position: 'top' }
     ] );
-    $("#table_div").DataTable({
+    $("#tableDashboard").DataTable({
       data: dataSet,
 
       language: {
@@ -165,7 +165,7 @@ $(document).ready(function () {
         { title: "C102" },
       ],
     });
-    var table = $("#table_div").DataTable();
+    var table = $("#tableDashboard").DataTable();
 
     // #myInput is a <input type="text"> element
     $("#searchDashbord").on("keyup", function () {
@@ -183,7 +183,7 @@ $(document).ready(function () {
     //     $(this).css('color','white');
     //   }
     // });
-    $("ClosePopover").click(function(){
+   $(document).on('clicked','#ClosePopover',function(){
       alert("CLicked")
       $("#popover-content").hide();
     })
