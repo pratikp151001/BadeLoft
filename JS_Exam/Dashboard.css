@@ -103,6 +103,12 @@ table.dataTable thead > tr > td.sorting_desc_disabled:after {
   cursor: pointer;
   
 }
+.AssignedName{
+  color: gray;
+}
+.user{
+  color: red;
+}
 
 
 /* PopOver */
@@ -112,9 +118,9 @@ table.dataTable thead > tr > td.sorting_desc_disabled:after {
 #PopoverAssigned{
   color: red;
 }
-#ClosePopover{
+/* #ClosePopover{
   float: right;
-}
+} */
 
 #table_div_paginate a.paginate_button.current {
   color: white !important;

@@ -184,6 +184,7 @@ $(document).ready(function () {
     //   }
     // });
     $("ClosePopover").click(function(){
+      alert("CLicked")
       $("#popover-content").hide();
     })
   } else {

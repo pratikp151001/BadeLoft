@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
   </head>
   <body>
@@ -53,6 +54,10 @@
                       <label for="Choose Cutomer" class="mb-2">Choose Customer</label>
                       <select name="customer" id="customer" class="form-select">
                       <option value="0" selected disabled>Choose Customer</option>
+                      <option value="Keneth">Keneth Woodard</option>
+                                    <option value="Kelly">Kelly McCrory</option>
+                                    <option value="John">John Doe</option>
+                                    <option value="Frances">Frances Badger</option>
                     </select>
                     </div>
                   </div>
@@ -73,22 +78,27 @@
                     <div class="col-lg-5">
                       <div class="form-group">
                         <label for="Choose Stock" class="mb-2">Choose Stock</label>
-                        <select name="atock" id="stock" class="form-select">
+                        <select name="atock" id="Selectstock" class="form-select">
                         <option value="0" selected disabled>Choose Stock</option>
                       </select>
                       </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                       <div class="form-group">
                           <label for="Choose Parts" class="mb-2">Choose Parts</label>
-                          <select name="QuickBooksInvoice" id="QuickBooksInvoice" class="form-select">
-                          <option value="0" selected disabled>Choose Invoice</option>
-                        </select>
+                          <select class="js-example-basic-multiple form-control" name="SelectParts" id="SelectParts" multiple="multiple">
+                            <!-- <option value="AL"  selected>Choose Parts</option> -->
+                            <!-- <option value="WY">Wyoming</option>
+                            <option value="AL">Alabama</option>
+                            <option value="WY" >Wyoming</option>
+                            <option value="AL">Alabama</option>
+                            <option value="WY">Wyoming</option> -->
+                          </select>
                       </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <div class="form-group pt-4 mt-2">
-                            <button type="button" class="btn" id="addbutton">Primary</button>
+                            <button type="button" class="btn" id="addbutton">Add</button>
                         </div>
                       </div>
                   </div>
@@ -100,7 +110,7 @@
         <!-- Table -->
         <div class="container-fluid">
             <div class="displayTable table-responsive">
-             <table id="table_assignment" class="table table-responsive table-display table-hover  table-sm border border-dark rounded " style="width:100%">
+             <table id="table_assignment" class="table table-hover  table-sm" style="width:100%">
              <thead class="thead-dark rounded"> 
            </table>
           </div>
@@ -114,6 +124,7 @@
     <!-- <script src="./js/bootstrap.min.js"></script> -->
       <script src="./js/bootstrap.bundle.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
     <!-- <script
@@ -127,5 +138,4 @@
    
   </body>
 </html>
-
 

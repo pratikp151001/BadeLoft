@@ -118,6 +118,9 @@ table.dataTable td.dt-control:before {
   content: "+";
   background-color: #31b131;
 }
+#PartsTable{
+  border: 1px gray solid;
+}
 
 td{
   background-color: #ffffff !important;
@@ -183,4 +186,10 @@ table {
 }
 .dataTables_wrapper .dataTables_paginate {
   padding-top: 0% !important;
+}
+
+/* calendar */
+
+table.table-condensed thead {
+  background-color: white;
 }

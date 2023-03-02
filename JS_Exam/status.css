@@ -88,6 +88,35 @@ table {
 .current {
   background-color: #212529 !important;
 }
+#table_status tr td:nth-child(1){
+  color: #1188FF;
+}
+
+
+table.dataTable td.dt-control:before {
+  background-color: white !important;
+  color: #326C96 !important;
+  border: 1px solid #326C96 !important;
+  
+}
+table.dataTable td.dt-control:before {
+  height: 1em;
+  width: 1em;
+  margin-right: 3%;
+  margin-top: -9px;
+  display: inline-block;
+  color: white;
+  border: 0.15em solid #1188FF;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em #444;
+  box-sizing: content-box;
+  text-align: center;
+  text-indent: 0 !important;
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1em;
+  content: "+";
+  background-color: #31b131;
+}
 
 #table_status_paginate {
   border: 1px rgb(220, 218, 218) solid;
