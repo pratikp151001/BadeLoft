@@ -7,12 +7,14 @@
   color: white;
   margin-left: 70%;
 }
-
+input[type=search]{
+  width: 83%;
+}
 #CloseAssignmentModal{
   border: none;
   background-color: white;
 }
-#addbutton {
+#addSelectedParts {
   background-color: #326c96;
   color: white;
 }

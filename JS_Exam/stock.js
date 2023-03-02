@@ -28,10 +28,8 @@ $(document).ready(function () {
             partdetail.Order +
             "</td><td>" +
             partdetail.notes +
-            "</td><td class='deleteparts'>" +
-            "<i data-val=" +
-            [index + 1] +
-            " class='bi bi-x-lg'></i> " +
+            "</td><td class='deleteparts' data-val="+ [index + 1]+" >" +
+             "<i class='bi bi-x-lg'></i> " +
             "</td>" +
             "</tr>";
         });
@@ -73,14 +71,14 @@ $(document).ready(function () {
         {
           data: "stockname",
           title: "Stock Name",
-          className: "dt-control",
+          className: "dt-control ShowChildrow",
           orderable: false,
         },
-        { data: "Etadate", title: "ETA Date", orderable: false },
-        { data: "status", title: "Stock Location", orderable: false },
-        { data: "createdBy", title: "Created By", orderable: false },
-        { data: "createdDate", title: "Created Date", orderable: false },
-        { data: "parts[0].notes", title: "Notes", orderable: false },
+        { data: "Etadate", title: "ETA Date", orderable: false,className: "ShowChildrow", },
+        { data: "status", title: "Stock Location", orderable: false,className: "ShowChildrow", },
+        { data: "createdBy", title: "Created By", orderable: false,className: "ShowChildrow", },
+        { data: "createdDate", title: "Created Date", orderable: false,className: "ShowChildrow", },
+        { data: "parts[0].notes", title: "Notes", orderable: false,className: "ShowChildrow", },
 
         {
           data: "null",
@@ -94,7 +92,7 @@ $(document).ready(function () {
     });
 
     // Add event listener for opening and closing details
-    $("#tableStocks tbody").on("click", "td", function () {
+    $("#tableStocks tbody").on("click", "td.ShowChildrow", function () {
       var tr = $(this).closest("tr");
       var row = table.row(tr);
 
@@ -437,6 +435,7 @@ $(document).ready(function () {
           console.log(newObj);
           //debugger
           StockDetails[Index] = newObj;
+          
           //  table.row.add({ foo: 1 }).draw();
           // //debugger;
 
@@ -462,7 +461,10 @@ $(document).ready(function () {
 
           // console.log(StockDetails)
           localStorage.setItem("stock", JSON.stringify(StockDetails));
-          location.reload(true);
+          //  delete  newObj.parts
+            table.row(Index).data(newObj).draw()
+            $("#addStockModal").modal("hide");
+          // location.reload(true);
           // $("#tableStocks").dataTable().clear().draw();
           // $("#tableStocks").dataTable().fnDestroy()
           // console.log(StockDetails)
@@ -481,6 +483,20 @@ $(document).ready(function () {
           return month + "/" + date + "/" + year
 
     }
+
+    $(document).on("click",".deleteparts",function(){
+      
+      // let indexofRow= table.row( parentRow ).data()
+      // alert(indexofRow)
+      let indexofChildRow=$(this).data("val")
+      alert(indexofChildRow)
+    })
+
+    const input = document.querySelector('input[type="search"]');
+    input.addEventListener("search", () => {
+        table.search(input.value).draw(); 
+     
+    })
   } else {
     window.location.href = "index.html";
   }

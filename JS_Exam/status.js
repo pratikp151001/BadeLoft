@@ -4,6 +4,11 @@ $(document).ready(function () {
     //Display name in Navbar
     var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
 
+    const input = document.querySelector('input[type="search"]');
+    input.addEventListener("search", () => {
+        table.search(input.value).draw(); 
+     
+    })
     function format(d) {
       // `d` is the original data object for the row
       return (
@@ -125,11 +130,11 @@ $(document).ready(function () {
         "targets": "_all"},
         {
             className: "dt-center",
-            targets: [1, 2, 3, 4, 5,6,7],
+            targets: [],
           },
           {
             className: "dt-left",
-            targets: [0],
+            targets: [0,1, 2, 3, 4, 5,6,7],
           },
 
         

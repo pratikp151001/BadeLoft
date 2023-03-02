@@ -3,6 +3,11 @@ $(document).ready(function () {
     
     //Display name in Navbar
     $("#navigation").load("Navbar.html");
+    const input = document.querySelector('input[type="search"]');
+    input.addEventListener("search", () => {
+        table.search(input.value).draw(); 
+     
+    })
     var dataSet = [
       [
         "ZK-08-X2P",
@@ -183,10 +188,10 @@ $(document).ready(function () {
     //     $(this).css('color','white');
     //   }
     // });
-   $(document).on('clicked','#ClosePopover',function(){
-      alert("CLicked")
-      $("#popover-content").hide();
-    })
+  //  $(document).on('clicked','#ClosePopover',function(){
+  //     alert("CLicked")
+  //     $("#popover-content").hide();
+  //   })
   } else {
     window.location.href = "index.html";
   }

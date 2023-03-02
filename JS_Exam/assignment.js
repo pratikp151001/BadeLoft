@@ -1,7 +1,14 @@
 $(document).ready(function () {
   if (localStorage.getItem("LogedinUser") !== null) {
     $("#navigation").load("Navbar.html");
+    const input = document.querySelector('input[type="search"]');
+    input.addEventListener("search", () => {
+        table.search(input.value).draw(); 
+     
+    })
 
+     //Search Table
+     
     function format(d) {
       // `d` is the original data object for the row
     }
@@ -81,13 +88,16 @@ $(document).ready(function () {
       );
       invoice.forEach((element) => {
         const option =
-          "<option val='" +element.invoiceNumber +
-          "'>" +
+          "<option val='" +element.invoiceNumber +"'>" +
           element.invoiceNumber +
           "</option>";
         $("#QuickBooksInvoice").append(option);
       });
     });
+    table = $("#table_assignment").DataTable();
+     $("#search").on("keyup", function () {
+       table.search(this.value).draw();
+     })
 
     // $('.js-example-basic-multiple').select2();
 
@@ -97,25 +107,81 @@ $(document).ready(function () {
       StockOptions+="<option value='"+StockDetails[i].stockname+"'>"+StockDetails[i].stockname+"</option>"
     }
     $("#Selectstock").append(StockOptions);
-    // $("#Selectstock").change(function(){
-    //   var SelectedStock=$(this).find('option:Selected').val()
-    //   alert(SelectedStock)
+    $("#Selectstock").change(function(){
+      var SelectedStock=$(this).find('option:Selected').val()
+      alert(SelectedStock)
 
       
-    //   let option="<option selected  >Choose Parts</option>"
-    //   for(let i=0;i<StockDetails.length;i++){
-    //     // debugger
-    //     if(StockDetails[i].stockname==SelectedStock){
-    //       console.log(StockDetails[i].parts)
-    //       for(let j=0;j<StockDetails[i].parts.length;j++){
-    //         option+="<option>'"+StockDetails[i].parts[j].partsnumber+"'</option>"
-    //       }
-    //     }
-    //   }
-    //   $("#SelectParts").html(option);
-    //   // $("#SelectParts").append(option);
-    // })
+      let option="<option selected disabled >Choose Parts</option>"
+      for(let i=0;i<StockDetails.length;i++){
+        // debugger
+        if(StockDetails[i].stockname==SelectedStock){
+          console.log(StockDetails[i].parts)
+          for(let j=0;j<StockDetails[i].parts.length;j++){
+            option+="<option>"+StockDetails[i].parts[j].partsnumber+"</option>"
+          }
+        }
+      }
+      $("#SelectParts").html(option);
+      // $("#SelectParts").append(option);
+    })
+     var SelectedPartsStock= new Array()
+   $(addSelectedParts).click(function(){
+    
+   
+   let SelectedParts=  $("#SelectParts").val()
+    let SelectedStock=$("#Selectstock").val()
 
+    let AddToModalTable={
+      selectedStock:SelectedStock,
+      selectedparts:SelectedParts
+    }
+    SelectedPartsStock.push(AddToModalTable)
+    displaySelectedStockParts()
+   
+
+//    list = "";
+//    //   "<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";
+//    for (let i = 0; i < PARTS.length; i++) {
+//      if (i == 0) {
+//        list =
+//          "<thead class='thead-dark'><tr><th>Part Number</th><th>Invoice #</th><th>Ordered</th><th>Notes</th><th></th></tr></thead><tbody>";
+//      }
+//      list +=
+//        "<tr id=" +
+//        [i + 1] +
+//        "><td>" +
+//        PARTS[i].partsnumber +
+//        "</td><td>" +
+//        PARTS[i].Invoice +
+//        "</td><td>" +
+//        PARTS[i].Order +
+//        "</td><td>" +
+//        PARTS[i].notes +
+//        "</td><td><button type='button' data-val=" +
+//        [i + 1] +
+//        " class='cancel  btn'><i class='bi bi-x-lg'></button></td></tr>";
+//      if (i == PARTS.length - 1) {
+//        list += "</tbody>";
+//      }
+//    }
+
+//    $("#PartsTable").html(list);
+
+
+
+    });
+    function displaySelectedStockParts(){
+      list=""
+      for(let i=0;i<SelectedPartsStock.length;i++){
+        if(i==0){
+          list +="<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";  
+        }
+        
+      }
+      $("#AssignedPartTable").html(list);
+
+    }
   
     $("#newAssignment").click(function () {
       $("#assignmentModal").modal("show");
@@ -125,16 +191,18 @@ $(document).ready(function () {
       $("#assignmentModal").modal("hide");
     });
 
-//     var myData = ['New York','Los Angeles','Chicago' ]
-//     $(function() {
+  //   var myData = ['New York','Los Angeles','Chicago' ]
+  //   $(function() {
  
-//    var instance = $('#SelectParts').magicSuggest({
+  //  var instance = $('#SelectParts').magicSuggest({
  
-//      data: myData
+  //    data: myData
  
-//    });
+  //  });
  
 //  });
+
+
   } else {
     window.location.href = "index.html";
   }

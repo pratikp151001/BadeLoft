@@ -39,13 +39,13 @@ $(document).ready(function () {
       },
       messages: {
         email: {
-          required: "Enter your Email",
-          email:"Please Enter valid email",
+          required: "Enter your email",
+          email:"Please enter valid email",
           Emailcheck: "Please enter valid email",
         },
         password: {
           required: "Enter your Password",
-          password: "Please Enter Proper Password",
+          password: "Please Enter valid Password",
         },
       },
       submitHandler: function (form) {
