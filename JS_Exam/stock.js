@@ -127,6 +127,7 @@ $(document).ready(function () {
         showDropdowns: true,
         minYear: 2023,
         maxYear: 2030,
+        placeholder:"MM/DD/YYYY"
       },
       function (start, end, label) {
         var years = moment().diff(start, "years");

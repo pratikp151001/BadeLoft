@@ -76,5 +76,6 @@ input[type=text]{
   
 }
 #SelectParts{
-  width: 500px !important;
+  width: 200px;
+  height: 40px;
 }

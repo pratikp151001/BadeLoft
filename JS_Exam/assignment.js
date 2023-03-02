@@ -98,12 +98,22 @@ $(document).ready(function () {
     }
     $("#Selectstock").append(StockOptions);
     $("#Selectstock").change(function(){
+      var SelectedStock=$(this).find('option:Selected').val()
+      alert(SelectedStock)
 
-      $("#SelectParts").html(
-        "<option  >Choose Parts</option>"+
-        "<option  >Edit Parts</option>"
-      );
-      $("#SelectParts").append(option);
+      
+      let option="<option selected  >Choose Parts</option>"
+      for(let i=0;i<StockDetails.length;i++){
+        debugger
+        if(StockDetails[i].stockname==SelectedStock){
+          console.log(StockDetails[i].parts)
+          for(let j=0;j<StockDetails[i].parts.length;j++){
+            option+="<option>'"+StockDetails[i].parts[j].partsnumber+"'</option>"
+          }
+        }
+      }
+      $("#SelectParts").html(option);
+      // $("#SelectParts").append(option);
     })
 
     $("#newAssignment").click(function () {
