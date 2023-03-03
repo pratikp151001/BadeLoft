@@ -1,11 +1,16 @@
 $(document).ready(function () {
   if (localStorage.getItem("LogedinUser") !== null) {
     $("#navigation").load("Navbar.html");
+    var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
     const input = document.querySelector('input[type="search"]');
     input.addEventListener("search", () => {
         table.search(input.value).draw(); 
      
     })
+//     $('#assignmentModal').modal({
+//       backdrop: 'static',
+//       keyboard: false
+// })
 
      //Search Table
      
@@ -110,10 +115,10 @@ $(document).ready(function () {
     $("#Selectstock").append(StockOptions);
     $("#Selectstock").change(function(){
       var SelectedStock=$(this).find('option:Selected').val()
-      alert(SelectedStock)
+      // alert(SelectedStock)
 
       
-      let option="<option selected disabled >Choose Parts</option>"
+      let option="<option selected disabled value='0'>Choose Parts</option>"
       for(let i=0;i<StockDetails.length;i++){
         // debugger
         if(StockDetails[i].stockname==SelectedStock){
@@ -129,68 +134,77 @@ $(document).ready(function () {
      var SelectedPartsStock= new Array()
    $(addSelectedParts).click(function(){
     
-   
+    
    let SelectedParts=  $("#SelectParts").val()
     let SelectedStock=$("#Selectstock").val()
+   
 
     let AddToModalTable={
       selectedStock:SelectedStock,
-      selectedparts:SelectedParts
+      selectedparts:SelectedParts,
+     
     }
+    console.log(AddToModalTable)
     SelectedPartsStock.push(AddToModalTable)
     displaySelectedStockParts()
-   
-
-//    list = "";
-//    //   "<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";
-//    for (let i = 0; i < PARTS.length; i++) {
-//      if (i == 0) {
-//        list =
-//          "<thead class='thead-dark'><tr><th>Part Number</th><th>Invoice #</th><th>Ordered</th><th>Notes</th><th></th></tr></thead><tbody>";
-//      }
-//      list +=
-//        "<tr id=" +
-//        [i + 1] +
-//        "><td>" +
-//        PARTS[i].partsnumber +
-//        "</td><td>" +
-//        PARTS[i].Invoice +
-//        "</td><td>" +
-//        PARTS[i].Order +
-//        "</td><td>" +
-//        PARTS[i].notes +
-//        "</td><td><button type='button' data-val=" +
-//        [i + 1] +
-//        " class='cancel  btn'><i class='bi bi-x-lg'></button></td></tr>";
-//      if (i == PARTS.length - 1) {
-//        list += "</tbody>";
-//      }
-//    }
-
-//    $("#PartsTable").html(list);
-
-
+    document.getElementById("assignmentform").reset()
 
     });
     function displaySelectedStockParts(){
       list=""
       for(let i=0;i<SelectedPartsStock.length;i++){
         if(i==0){
-          list +="<thead class='thead-dark rounded'><tr><th>Part Number</th><th>Invoice #</th><th>Orered</th><th>Notes</th><th></th></tr></thead><tbody>";  
+          list +="<thead class='thead-dark rounded'><tr><th>#</th><th>Stock</th><th>Part</th><th>Action</th></tr></thead><tbody>";  
         }
-        
+        list +=
+          "<tr id=" +
+          [i + 1] +
+          "><td>" +
+          [i+1] +
+          "</td><td>" +
+          SelectedPartsStock[i].selectedStock +
+          "</td><td>" +
+          SelectedPartsStock[i].selectedparts +
+          "</td><td><button type='button' data-val=" +
+          [i + 1] +
+          " class='cancel  btn'><i class='bi bi-x-lg'></button></td></tr>";
+          " class='cancel  btn'><i class='bi bi-x-lg'></button></td></tr>";
+          if (i == SelectedPartsStock.length - 1) {
+            list += "</tbody>";
+          }
       }
       $("#AssignedPartTable").html(list);
 
     }
+    //Delete Parts in Modal
+    $(document).on("click", ".cancel", function () {
+      let index = parseInt($(this).data("val"));
+      // var index=parseInt( $(this).data('val'))-1
+      ////alert(index)
+      SelectedPartsStock.splice(index - 1, 1);
+      displaySelectedStockParts();
+    });    
   
     $("#newAssignment").click(function () {
       $("#assignmentModal").modal("show");
     });
 
-    $("#CloseAssignmentModal").click(function () {
+    $(".closemodal").click(function () {
       $("#assignmentModal").modal("hide");
     });
+    $("#saveAssigment").click(function () {
+      let Customer=$("#customer").val()
+      let QuickBooksInvoice=$("#QuickBooksInvoice").val()
+      var newObj={
+        customer:Customer,
+        quickbooksinvoice:QuickBooksInvoice,
+        AssignedParts:SelectedPartsStock,
+        createdby:logedinUser[0].Name
+        
+      }
+      console.log(newObj)
+    });
+
 
   //   var myData = ['New York','Los Angeles','Chicago' ]
   //   $(function() {
@@ -208,9 +222,3 @@ $(document).ready(function () {
     window.location.href = "index.html";
   }
 });
-
-
-// $(document).on("click","#SelectParts",function(){
-//   debugger
-//   $("#SelectParts").css("z-index","-1")
-// })

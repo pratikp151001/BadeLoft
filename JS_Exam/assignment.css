@@ -49,6 +49,10 @@ color: white;
   margin-left: 2.6%;
   margin-right: 3%;
 }
+#saveAssigment{
+  background-color: #326c96;
+  color: white;
+}
 #table_assignment_length,#table_assignment_filter{
   display: none;
 }
@@ -82,13 +86,6 @@ input[type=text]{
   height: 40px;
 }
 
-/* .select2-selection--multiple{
-  z-index: 1000;
-}
-
-.select2-selection__choice__display{
-  z-index: 10000 !important;
-} */
-.select2-search__field{
-  z-index: 10000 !important;
+#AssignedPartTable th{
+ color: white;
 }

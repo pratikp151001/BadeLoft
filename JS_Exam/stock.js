@@ -6,8 +6,9 @@ $(document).ready(function () {
     //Display name in Navbar
     var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
     var table;
-    function format(d) {
+    function format(d,ParentRowid) {
       //debugger;
+      alert(ParentRowid)
       console.log(d.parts);
       let list = "";
       if (d.parts && d.parts.length > 0) {
@@ -28,7 +29,7 @@ $(document).ready(function () {
             partdetail.Order +
             "</td><td>" +
             partdetail.notes +
-            "</td><td class='deleteparts' data-val="+ [index + 1]+" >" +
+            "</td><td class='deleteparts' data-val="+ [index + 1]+" data-parentrowid="+[ParentRowid]+">" +
              "<i class='bi bi-x-lg'></i> " +
             "</td>" +
             "</tr>";
@@ -39,7 +40,7 @@ $(document).ready(function () {
     }
 
     var STOCKS = JSON.parse(localStorage.getItem("stock"));
-
+    debugger
     // console.log(StockDetails[1].stockname)
     table = $("#tableStocks").DataTable({
       order: [],
@@ -102,7 +103,7 @@ $(document).ready(function () {
         tr.removeClass("shown");
       } else {
         // Open this row
-        row.child(format(row.data())).show();
+        row.child(format(row.data(),table.row(this).index())).show();
         tr.addClass("shown");
       }
     });
@@ -485,11 +486,54 @@ $(document).ready(function () {
     }
 
     $(document).on("click",".deleteparts",function(){
+      let indexofChildRow=$(this).data("val")
+      // alert(indexofChildRow)
+      let indexofParent=$(this).data("parentrowid")
+      if(STOCKS[indexofParent].parts.length==1){
+        Swal.fire("Atleast 1 Part Required")
+      }else{
+      // alert(indexofParent)
+      Swal.fire({
+        title: 'Do you want to save the changes?',
+        showDenyButton: true,
+        // showCancelButton: true,
+        confirmButtonText: 'Delete',
+        denyButtonText: `Cancel`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+       
       
       // let indexofRow= table.row( parentRow ).data()
       // alert(indexofRow)
-      let indexofChildRow=$(this).data("val")
-      alert(indexofChildRow)
+      
+
+      for(let i=0;i<STOCKS.length;i++){
+        
+        for(let j=0;j<STOCKS[i].parts.length;j++)
+        {
+          if(STOCKS[i].parts.length==1){
+            // Swal.fire("Atleast 1 part required")
+            break
+          }
+          if(j==indexofChildRow-1 && i==indexofParent)
+          
+          {
+            STOCKS[i].parts.splice(indexofChildRow-1,1)
+            table.row(indexofParent).data(STOCKS[i]).draw()
+          }
+        }
+      }
+      localStorage.setItem("stock", JSON.stringify(STOCKS));
+
+      // console.log(STOCKS)
+    } 
+    
+    // else if (result.isDenied) {
+    //   Swal.fire('Changes are not saved', '', 'info')
+    // }
+  })
+}
     })
 
     const input = document.querySelector('input[type="search"]');

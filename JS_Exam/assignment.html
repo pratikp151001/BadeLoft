@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- <link rel="stylesheet" href="./Multiple-Select/filter-multi-select-main/dist/filter_multi_select.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
     <!-- <link rel="stylesheet" href="./mutiple-Select/Multi-Select-Plugin-jQuery-MagicSuggest/magicsuggest.css"> -->
 
   </head>
@@ -43,7 +43,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" id="CloseAssignmentModal" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close closemodal" id="CloseAssignmentModal" data-dismiss="modal" aria-label="Close">
             <!-- <span aria-hidden="true">&times;</span> -->
             <b><i class="bi bi-x-lg"></i></i></b> 
           </button>
@@ -106,13 +106,27 @@
                         </div>
                       </div>
                   </div>
+                  <div class="container-fluid">
+                    <div class="displayTable table-responsive">
+                      <table id="AssignedPartTable" class="table table-hover">                          
+                      </table>
+                  </div>
+             </div>
+                  <div class="row mb-1">
+                    <div class="col-lg-2 ">
+                      <button type="button" class="btn save" id="saveAssigment">
+                        Save 
+                      </button>
+                      
+                        </div>
+                        <div class="col-lg-2 ps-0">
+                          <button type="button" class="btn btn-outline-secondary closemodal" id="CancelbtnLowwerAddAssigment">
+                            Cancel
+                          </button>
+                        </div>
+                            </div>
             </form>
-            <div class="container-fluid">
-              <div class="displayTable table-responsive">
-                <table id="AssignedPartTable" class="table table-hover">                          
-                </table>
-            </div>
-       </div>
+           
         </div>
       </div>
     </div>
@@ -131,7 +145,7 @@
 
       <script src="jquery/jquery.js"></script>
       <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
-      <script src="./Multiple-Select/filter-multi-select-main/dist/filter-multi-select-bundle.min.js"></script>
+      <!-- <script src="./Multiple-Select/filter-multi-select-main/dist/filter-multi-select-bundle.min.js"></script> -->
       <!-- <script src="./mutiple-Select/Multi-Select-Plugin-jQuery-MagicSuggest/magicsuggest.js"></script> -->
     <script src="assignment.js"></script>
 
