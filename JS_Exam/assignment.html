@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment</title>
     <link rel="stylesheet" href="assignment.css" />
-    <!-- <script src="https://jsuites.net/v4/jsuites.js"></script> -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <!-- <link rel="stylesheet" href="./Multiple-Select/filter-multi-select-main/dist/filter_multi_select.css"> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
-    <!-- <link rel="stylesheet" href="./mutiple-Select/Multi-Select-Plugin-jQuery-MagicSuggest/magicsuggest.css"> -->
-
-  </head>
+    <link rel="stylesheet" type="text/css"
+      href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+      href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.css">
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet" /> 
+    
+    </head>
   <body>
     <!--------------- NAVBAR -------------->
     <div id="navigation"></div>
@@ -26,7 +26,7 @@
     <div class="mainbody ">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-3  p-3">
+          <div class="col-lg-3 p-3">
             <b><span id="Assignment" class="m-lg-5"> Assignment</span></b>
           </div>
           <div class="col-lg-2 offset-lg-4 p-3">
@@ -34,129 +34,134 @@
           </div>
           <div class="col-lg-3 p-3">
             <div class="form-group has-search">
-              <input type="search" class="form-control" id="search" placeholder="Search" />
+              <input type="search" class="form-control" id="search"
+                placeholder="Search" />
             </div>
           </div>
         </div>
-<div class="modal" id="assignmentModal" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close closemodal" id="CloseAssignmentModal" data-dismiss="modal" aria-label="Close">
-            <!-- <span aria-hidden="true">&times;</span> -->
-            <b><i class="bi bi-x-lg"></i></i></b> 
-          </button>
-        </div>
-        <div class="modal-body">
-            <form id="assignmentform">
+        <div class="modal" id="assignmentModal" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close closemodal"
+                  id="CloseAssignmentModal" data-dismiss="modal"
+                  aria-label="Close">
+                  <!-- <span aria-hidden="true">&times;</span> -->
+                  <b><i class="bi bi-x-lg"></i></i></b>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="assignmentform">
                 <div class="row mb-3">
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="Choose Cutomer" class="mb-2">Choose Customer</label>
                       <select name="customer" id="customer" class="form-select">
-                      <option value="0" selected disabled>Choose Customer</option>
-                      <option value="Keneth">Keneth Woodard</option>
-                                    <option value="Kelly">Kelly McCrory</option>
-                                    <option value="John">John Doe</option>
-                                    <option value="Frances">Frances Badger</option>
-                    </select>
+                        <option value="0" selected disabled>Choose Customer</option>
+                        <option value="Keneth">Keneth Woodard</option>
+                        <option value="Kelly">Kelly McCrory</option>
+                        <option value="John">John Doe</option>
+                        <option value="Frances">Frances Badger</option>
+                      </select>
                     </div>
                   </div>
-            
+
                   <div class="col-lg-6">
                     <div class="form-group">
-                        <label for="Choose Invoice" class="mb-2">Choose Invoice</label>
-                        <select class="form-select" id="QuickBooksInvoice" name="customer">
-                            <option value="0" selected disabled>Choose Customer</option>
-                          </select>
+                      <label for="Choose Invoice" class="mb-2">Choose Invoice</label>
+                      <select class="form-select" id="QuickBooksInvoice"
+                        name="customer">
+                        <option value="0" selected disabled>Choose Customer</option>
+                      </select>
                     </div>
                   </div>
                 </div>
                 <div class="row mb-3">
-                <span><b> Add Stock</b></span>
-            </div>
+                  <span><b> Add Stock</b></span>
+                </div>
                 <div class="row mb-3">
-                    <div class="col-lg-5">
-                      <div class="form-group">
-                        <label for="Choose Stock" class="mb-2">Choose Stock</label>
-                        <select name="atock" id="Selectstock" class="form-select">
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label for="Choose Stock" class="mb-2">Choose Stock</label>
+                      <select name="atock" id="Selectstock" class="form-select">
                         <option value="0" selected disabled>Choose Stock</option>
                       </select>
-                      </div>
                     </div>
-                    <div class="col-lg-5">
-                      <div class="form-group">
-                         <label for="Choose Parts" class="mb-2">Choose Parts</label>
-                         <select multiple name="SelectParts" id="SelectParts">
-                           <!-- <option value="js">JavaScript</option>
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="form-group">
+                      <label for="Choose Parts" class="mb-2">Choose Parts</label>
+                      <select multiple class="js-example-basic-multiple" name="SelectParts[]" id="SelectParts">
+                        <!-- <option value="js">JavaScript</option>
                            <option value="html">HTML</option>
                            <option value="css">CSS</option> -->
-                         </select>
-                         
-                            <!-- <div class="form-group">
+                      </select>
+
+                      <!-- <div class="form-group">
                               <div id="SelectParts" class="form-control"></div>
                             </div>
                           </div> -->
-                      </div>
                     </div>
-                    <div class="col-lg-2">
-                        <div class="form-group pt-4 mt-2 ps-0">
-                            <button type="button" class="btn" id="addSelectedParts">Add</button>
-                        </div>
-                      </div>
                   </div>
-                  <div class="container-fluid">
-                    <div class="displayTable table-responsive">
-                      <table id="AssignedPartTable" class="table table-hover">                          
-                      </table>
+                  <div class="col-lg-2">
+                    <div class="form-group pt-4 mt-2 ps-0">
+                      <button type="button" class="btn" id="addSelectedParts">Add</button>
+                    </div>
                   </div>
-             </div>
-                  <div class="row mb-1">
-                    <div class="col-lg-2 ">
-                      <button type="button" class="btn save" id="saveAssigment">
-                        Save 
-                      </button>
-                      
-                        </div>
-                        <div class="col-lg-2 ps-0">
-                          <button type="button" class="btn btn-outline-secondary closemodal" id="CancelbtnLowwerAddAssigment">
-                            Cancel
-                          </button>
-                        </div>
-                            </div>
-            </form>
-           
+                </div>
+                <div class="container-fluid">
+                  <div class="displayTable table-responsive">
+                    <table id="AssignedPartTable" class="table table-hover">
+                    </table>
+                  </div>
+                </div>
+                <div class="row mb-1">
+                  <div class="col-lg-2 ">
+                    <button type="button" class="btn save" id="saveAssigment">
+                      Save
+                    </button>
+
+                  </div>
+                  <div class="col-lg-2 ps-0">
+                    <button type="button" class="btn btn-outline-secondary
+                      closemodal" id="CancelbtnLowwerAddAssigment">
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Table -->
+      <div class="container-fluid">
+        <div class="displayTable table-responsive">
+          <table id="table_assignment" class="table table-hover table-sm"
+            style="width:100%">
+            <thead class="thead-dark rounded">
+            </table>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
-        <!-- Table -->
-        <div class="container-fluid">
-            <div class="displayTable table-responsive">
-             <table id="table_assignment" class="table table-hover  table-sm" style="width:100%">
-             <thead class="thead-dark rounded"> 
-           </table>
-          </div>
-         
-     </div>
-        </div>
-      </div>
 
-      <script src="jquery/jquery.js"></script>
-      <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
-      <!-- <script src="./Multiple-Select/filter-multi-select-main/dist/filter-multi-select-bundle.min.js"></script> -->
-      <!-- <script src="./mutiple-Select/Multi-Select-Plugin-jQuery-MagicSuggest/magicsuggest.js"></script> -->
+    <script src="jquery/jquery.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script> -->
+    <!-- <script src="./Multiple-Select/filter-multi-select-main/dist/filter-multi-select-bundle.min.js"></script> -->
+    <!-- <script src="./mutiple-Select/Multi-Select-Plugin-jQuery-MagicSuggest/magicsuggest.js"></script> -->
     <script src="assignment.js"></script>
 
     <!-- <script src="./js/bootstrap.min.js"></script> -->
-      <!-- <script src="./js/bootstrap.bundle.js"></script> -->
-      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
-
-  
-   
+    <script src="./js/bootstrap.bundle.js"></script>
+    <script type="text/javascript" charset="utf8"
+      src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
-
-

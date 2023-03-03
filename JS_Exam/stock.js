@@ -8,7 +8,7 @@ $(document).ready(function () {
     var table;
     function format(d,ParentRowid) {
       //debugger;
-      alert(ParentRowid)
+      // alert(ParentRowid)
       console.log(d.parts);
       let list = "";
       if (d.parts && d.parts.length > 0) {
@@ -76,7 +76,13 @@ $(document).ready(function () {
           orderable: false,
         },
         { data: "Etadate", title: "ETA Date", orderable: false,className: "ShowChildrow", },
-        { data: "status", title: "Stock Location", orderable: false,className: "ShowChildrow", },
+        { data: "status", title: "Stock Location", orderable: false,
+        // render: function (data, type, row, meta){
+
+        //   let display="<td></td>"
+        // }
+      
+      },
         { data: "createdBy", title: "Created By", orderable: false,className: "ShowChildrow", },
         { data: "createdDate", title: "Created Date", orderable: false,className: "ShowChildrow", },
         { data: "parts[0].notes", title: "Notes", orderable: false,className: "ShowChildrow", },
@@ -90,6 +96,12 @@ $(document).ready(function () {
             "<i class='bi bi-pencil-fill '>&nbsp&nbsp</i><i class='bi bi-clock-history .historyStock'></i>",
         },
       ],
+    //   "columnDefs": [ {
+    //     "targets": 2  ,
+    //     "render": function (data, type, row, meta){
+    //      return "<select class='pilihan form-control' id='pilihan'><option value='0'>--Pilihan--</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option</select>";
+    //  }
+    // } ]
     });
 
     // Add event listener for opening and closing details
@@ -494,7 +506,7 @@ $(document).ready(function () {
       }else{
       // alert(indexofParent)
       Swal.fire({
-        title: 'Do you want to save the changes?',
+        title: 'Do you want to Delete the Part?',
         showDenyButton: true,
         // showCancelButton: true,
         confirmButtonText: 'Delete',

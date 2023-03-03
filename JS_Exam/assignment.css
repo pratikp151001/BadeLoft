@@ -36,6 +36,35 @@ label {
 #CloseModal {
   border: none;
 }
+#childTableofAssigned{
+  width: 100%;
+}
+#childTableofAssigned thead{
+  background-color: #CFD3D8 !important;
+}
+#childTableofAssigned td{
+  color: black !important;
+}
+table.dataTable td.dt-control:before {
+  height: 1em;
+  width: 1em;
+  margin-top: -9px;
+  display: inline-block;
+  color: #326c96 !important;
+  border: 0.15em solid #326c96 !important;
+  border-radius: 1em;
+  box-shadow: 0 0 0.2em #444;
+  box-sizing: content-box;
+  text-align: center;
+  text-indent: 0 !important;
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1em;
+  content: "+";
+  background-color: #ebf1eb !important;
+}
+#table_assignment tr td:nth-child(1){
+  color: #1188FF;
+}
 
 /* Table */
 
@@ -86,6 +115,10 @@ input[type=text]{
   height: 40px;
 }
 
+/* Select2 */
+.select2-dropdown{
+  z-index: 1100 !important;
+}
 #AssignedPartTable th{
  color: white;
 }
