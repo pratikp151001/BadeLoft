@@ -40,7 +40,7 @@ $(document).ready(function () {
       messages: {
         email: {
           required: "Enter your email",
-          email:"Please enter valid email",
+          email: "Please enter valid email",
           Emailcheck: "Please enter valid email",
         },
         password: {
@@ -64,12 +64,15 @@ $(document).ready(function () {
 
         var logInUser = new Array();
         // debugger;
-        let checkValidation=true
+        let checkValidation = true;
         for (let i = 0; i < users.length; i++) {
           // alert(users[i][0])
-          if (email.toLowerCase() === users[i][0].toLowerCase() && password === users[i][1]) {
+          if (
+            email.toLowerCase() === users[i][0].toLowerCase() &&
+            password === users[i][1]
+          ) {
             // alert("inside if")
-            checkValidation=false
+            checkValidation = false;
             logInUser.push({
               Name: users[i][2],
               Email: users[i][0],
@@ -82,15 +85,13 @@ $(document).ready(function () {
         }
         document.getElementById("form").reset();
         localStorage.setItem("LogedinUser", JSON.stringify(logInUser));
-        if(checkValidation==true)
-        {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "User is not Registered!",
-
-        });
-      }
+        if (checkValidation == true) {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "User is not Registered!",
+          });
+        }
       }
     });
   }

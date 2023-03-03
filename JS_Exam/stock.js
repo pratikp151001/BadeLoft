@@ -6,7 +6,7 @@ $(document).ready(function () {
     //Display name in Navbar
     var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
     var table;
-    function format(d,ParentRowid) {
+    function format(d, ParentRowid) {
       //debugger;
       // alert(ParentRowid)
       console.log(d.parts);
@@ -29,8 +29,12 @@ $(document).ready(function () {
             partdetail.Order +
             "</td><td>" +
             partdetail.notes +
-            "</td><td class='deleteparts' data-val="+ [index + 1]+" data-parentrowid="+[ParentRowid]+">" +
-             "<i class='bi bi-x-lg'></i> " +
+            "</td><td class='deleteparts' data-val=" +
+            [index + 1] +
+            " data-parentrowid=" +
+            [ParentRowid] +
+            ">" +
+            "<i class='bi bi-x-lg'></i> " +
             "</td>" +
             "</tr>";
         });
@@ -40,7 +44,7 @@ $(document).ready(function () {
     }
 
     var STOCKS = JSON.parse(localStorage.getItem("stock"));
-    debugger
+    debugger;
     // console.log(StockDetails[1].stockname)
     table = $("#tableStocks").DataTable({
       order: [],
@@ -54,7 +58,7 @@ $(document).ready(function () {
       },
       // "dom": 'rtip',
       columnDefs: [
-        { className: "dt-left", targets: [0,6] },
+        { className: "dt-left", targets: [0, 6] },
         { className: "dt-center", targets: [1, 2, 3, 4, 6] },
         // { width: "10px", targets: [0] },
         { width: "15%", targets: [0] },
@@ -75,17 +79,39 @@ $(document).ready(function () {
           className: "dt-control ShowChildrow",
           orderable: false,
         },
-        { data: "Etadate", title: "ETA Date", orderable: false,className: "ShowChildrow", },
-        { data: "status", title: "Stock Location", orderable: false,
-        // render: function (data, type, row, meta){
+        {
+          data: "Etadate",
+          title: "ETA Date",
+          orderable: false,
+          className: "ShowChildrow",
+        },
+        {
+          data: "status",
+          title: "Stock Location",
+          orderable: false,
+          // render: function (data, type, row, meta){
 
-        //   let display="<td></td>"
-        // }
-      
-      },
-        { data: "createdBy", title: "Created By", orderable: false,className: "ShowChildrow", },
-        { data: "createdDate", title: "Created Date", orderable: false,className: "ShowChildrow", },
-        { data: "parts[0].notes", title: "Notes", orderable: false,className: "ShowChildrow", },
+          //   let display="<td></td>"
+          // }
+        },
+        {
+          data: "createdBy",
+          title: "Created By",
+          orderable: false,
+          className: "ShowChildrow",
+        },
+        {
+          data: "createdDate",
+          title: "Created Date",
+          orderable: false,
+          className: "ShowChildrow",
+        },
+        {
+          data: "parts[0].notes",
+          title: "Notes",
+          orderable: false,
+          className: "ShowChildrow",
+        },
 
         {
           data: "null",
@@ -96,12 +122,12 @@ $(document).ready(function () {
             "<i class='bi bi-pencil-fill '>&nbsp&nbsp</i><i class='bi bi-clock-history .historyStock'></i>",
         },
       ],
-    //   "columnDefs": [ {
-    //     "targets": 2  ,
-    //     "render": function (data, type, row, meta){
-    //      return "<select class='pilihan form-control' id='pilihan'><option value='0'>--Pilihan--</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option</select>";
-    //  }
-    // } ]
+      //   "columnDefs": [ {
+      //     "targets": 2  ,
+      //     "render": function (data, type, row, meta){
+      //      return "<select class='pilihan form-control' id='pilihan'><option value='0'>--Pilihan--</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option</select>";
+      //  }
+      // } ]
     });
 
     // Add event listener for opening and closing details
@@ -115,7 +141,7 @@ $(document).ready(function () {
         tr.removeClass("shown");
       } else {
         // Open this row
-        row.child(format(row.data(),table.row(this).index())).show();
+        row.child(format(row.data(), table.row(this).index())).show();
         tr.addClass("shown");
       }
     });
@@ -138,7 +164,7 @@ $(document).ready(function () {
         showDropdowns: true,
         minYear: 2023,
         maxYear: 2030,
-        placeholder:"MM/DD/YYYY"
+        placeholder: "MM/DD/YYYY",
       },
       function (start, end, label) {
         var years = moment().diff(start, "years");
@@ -210,7 +236,12 @@ $(document).ready(function () {
         let Ordered = $("#Ordered").val();
         let Notes = $("#Notes").val();
         let d = new Date();
-        let Invoice ="" +d.getDate() +d.getHours() +d.getMinutes() +d.getMilliseconds();
+        let Invoice =
+          "" +
+          d.getDate() +
+          d.getHours() +
+          d.getMinutes() +
+          d.getMilliseconds();
 
         // // ////alert("all"+Invoice)
         // console.log(PARTS);
@@ -289,7 +320,7 @@ $(document).ready(function () {
           // date = d.getDate();
           // month = d.getMonth() + 1;
           // year = d.getFullYear();
-          var created_date =createDate()
+          var created_date = createDate();
 
           StockDetails = JSON.parse(localStorage.getItem("stock"));
 
@@ -398,11 +429,10 @@ $(document).ready(function () {
 
       // Delete Parts From Stocks Table
 
-       $(document).on('click','.deleteparts',function(){
-       
-        let index=$(this).attr('data-val')
+      $(document).on("click", ".deleteparts", function () {
+        let index = $(this).attr("data-val");
         //alert(inde)
-       })
+      });
     });
     function EditStock(SelectedData, index) {
       $("#addStockModal").modal("show");
@@ -434,7 +464,7 @@ $(document).ready(function () {
               Status = ele[i].value;
             }
           }
-          var created_date =createDate()
+          var created_date = createDate();
           console.log(created_date);
           StockDetails = JSON.parse(localStorage.getItem("stock"));
           var newObj = {
@@ -448,7 +478,7 @@ $(document).ready(function () {
           console.log(newObj);
           //debugger
           StockDetails[Index] = newObj;
-          
+
           //  table.row.add({ foo: 1 }).draw();
           // //debugger;
 
@@ -475,8 +505,8 @@ $(document).ready(function () {
           // console.log(StockDetails)
           localStorage.setItem("stock", JSON.stringify(StockDetails));
           //  delete  newObj.parts
-            table.row(Index).data(newObj).draw()
-            $("#addStockModal").modal("hide");
+          table.row(Index).data(newObj).draw();
+          $("#addStockModal").modal("hide");
           // location.reload(true);
           // $("#tableStocks").dataTable().clear().draw();
           // $("#tableStocks").dataTable().fnDestroy()
@@ -487,72 +517,63 @@ $(document).ready(function () {
         }
       }
     });
-    function createDate(){
+    function createDate() {
       const d = new Date();
-          date = d.getDate();
-          month = d.getMonth() + 1;
-          year = d.getFullYear();
+      date = d.getDate();
+      month = d.getMonth() + 1;
+      year = d.getFullYear();
 
-          return month + "/" + date + "/" + year
-
+      return month + "/" + date + "/" + year;
     }
 
-    $(document).on("click",".deleteparts",function(){
-      let indexofChildRow=$(this).data("val")
+    $(document).on("click", ".deleteparts", function () {
+      let indexofChildRow = $(this).data("val");
       // alert(indexofChildRow)
-      let indexofParent=$(this).data("parentrowid")
-      if(STOCKS[indexofParent].parts.length==1){
-        Swal.fire("Atleast 1 Part Required")
-      }else{
-      // alert(indexofParent)
-      Swal.fire({
-        title: 'Do you want to Delete the Part?',
-        showDenyButton: true,
-        // showCancelButton: true,
-        confirmButtonText: 'Delete',
-        denyButtonText: `Cancel`,
-      }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-       
-      
-      // let indexofRow= table.row( parentRow ).data()
-      // alert(indexofRow)
-      
+      let indexofParent = $(this).data("parentrowid");
+      if (STOCKS[indexofParent].parts.length == 1) {
+        Swal.fire("Atleast 1 Part Required");
+      } else {
+        // alert(indexofParent)
+        Swal.fire({
+          title: "Do you want to Delete the Part?",
+          showDenyButton: true,
+          // showCancelButton: true,
+          confirmButtonText: "Delete",
+          denyButtonText: `Cancel`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            // let indexofRow= table.row( parentRow ).data()
+            // alert(indexofRow)
 
-      for(let i=0;i<STOCKS.length;i++){
-        
-        for(let j=0;j<STOCKS[i].parts.length;j++)
-        {
-          if(STOCKS[i].parts.length==1){
-            // Swal.fire("Atleast 1 part required")
-            break
+            for (let i = 0; i < STOCKS.length; i++) {
+              for (let j = 0; j < STOCKS[i].parts.length; j++) {
+                if (STOCKS[i].parts.length == 1) {
+                  // Swal.fire("Atleast 1 part required")
+                  break;
+                }
+                if (j == indexofChildRow - 1 && i == indexofParent) {
+                  STOCKS[i].parts.splice(indexofChildRow - 1, 1);
+                  table.row(indexofParent).data(STOCKS[i]).draw();
+                }
+              }
+            }
+            localStorage.setItem("stock", JSON.stringify(STOCKS));
+
+            // console.log(STOCKS)
           }
-          if(j==indexofChildRow-1 && i==indexofParent)
-          
-          {
-            STOCKS[i].parts.splice(indexofChildRow-1,1)
-            table.row(indexofParent).data(STOCKS[i]).draw()
-          }
-        }
+
+          // else if (result.isDenied) {
+          //   Swal.fire('Changes are not saved', '', 'info')
+          // }
+        });
       }
-      localStorage.setItem("stock", JSON.stringify(STOCKS));
-
-      // console.log(STOCKS)
-    } 
-    
-    // else if (result.isDenied) {
-    //   Swal.fire('Changes are not saved', '', 'info')
-    // }
-  })
-}
-    })
+    });
 
     const input = document.querySelector('input[type="search"]');
     input.addEventListener("search", () => {
-        table.search(input.value).draw(); 
-     
-    })
+      table.search(input.value).draw();
+    });
   } else {
     window.location.href = "index.html";
   }

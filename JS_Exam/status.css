@@ -1,26 +1,33 @@
 body {
   overflow-x: hidden;
 }
-.mainbody{
+
+.mainbody {
   background-color: #F7F8FA;
 }
+
 #status {
   font-size: 2rem;
   color: black;
 }
+
 #tableStatus thead {
   color: #ffffff;
   background-color: #212529;
 }
+
 #tableStatus th {
   font-weight: normal;
 }
+
 .displayTable {
   padding: 0% 3.3%;
 }
+
 .alert {
   padding: 8px 8px !important;
 }
+
 td {
   background-color: #ffffff !important;
 }
@@ -29,29 +36,36 @@ td {
 #tableStatus_length {
   display: none;
 }
+
 #tableStatus_info {
   margin-top: 1%;
   margin-left: 72%;
 }
+
 #tableStatus td {
   padding: 13px;
 }
+
 input[type="checkbox"]:checked {
   background-color: #1bab55;
   color: #ffffff;
   border: none;
 }
+
 #StatusChildTable thead {
   background-color: #cfd3d8;
   color: #8f8a8c;
 }
+
 #StatusChildTable td {
   padding: 10px;
 }
+
 table.dataTable td.dt-control:before {
   background-color: white !important;
   color: #212529 !important;
 }
+
 table.dataTable td.dt-control:before {
   height: 1em;
   width: 1em;
@@ -70,9 +84,11 @@ table.dataTable td.dt-control:before {
   content: "+";
   background-color: #31b131;
 }
-input[type=search]{
-    width: 80%;
+
+input[type=search] {
+  width: 80%;
 }
+
 thead {
   background-color: black;
   border-radius: 1em;
@@ -85,10 +101,12 @@ table {
   overflow: hidden;
   border: 1px gray solid;
 }
+
 .current {
   background-color: #212529 !important;
 }
-#tableStatus tr td:nth-child(1){
+
+#tableStatus tr td:nth-child(1) {
   color: #1188FF;
 }
 
@@ -97,8 +115,9 @@ table.dataTable td.dt-control:before {
   background-color: white !important;
   color: #326C96 !important;
   border: 1px solid #326C96 !important;
-  
+
 }
+
 table.dataTable td.dt-control:before {
   height: 1em;
   width: 1em;
@@ -124,6 +143,7 @@ table.dataTable td.dt-control:before {
   margin-top: 1%;
   color: #ffffff;
 }
+
 .dataTables_wrapper .dataTables_paginate {
   padding-top: 0% !important;
 }
@@ -134,7 +154,26 @@ table.dataTable td.dt-control:before {
   background-color: black !important;
 }
 
-table.dataTable thead > tr > th.sorting:before, table.dataTable thead > tr > th.sorting:after, table.dataTable thead > tr > th.sorting_asc:before, table.dataTable thead > tr > th.sorting_asc:after, table.dataTable thead > tr > th.sorting_desc:before, table.dataTable thead > tr > th.sorting_desc:after, table.dataTable thead > tr > th.sorting_asc_disabled:before, table.dataTable thead > tr > th.sorting_asc_disabled:after, table.dataTable thead > tr > th.sorting_desc_disabled:before, table.dataTable thead > tr > th.sorting_desc_disabled:after, table.dataTable thead > tr > td.sorting:before, table.dataTable thead > tr > td.sorting:after, table.dataTable thead > tr > td.sorting_asc:before, table.dataTable thead > tr > td.sorting_asc:after, table.dataTable thead > tr > td.sorting_desc:before, table.dataTable thead > tr > td.sorting_desc:after, table.dataTable thead > tr > td.sorting_asc_disabled:before, table.dataTable thead > tr > td.sorting_asc_disabled:after, table.dataTable thead > tr > td.sorting_desc_disabled:before, table.dataTable thead > tr > td.sorting_desc_disabled:after {
+table.dataTable thead>tr>th.sorting:before,
+table.dataTable thead>tr>th.sorting:after,
+table.dataTable thead>tr>th.sorting_asc:before,
+table.dataTable thead>tr>th.sorting_asc:after,
+table.dataTable thead>tr>th.sorting_desc:before,
+table.dataTable thead>tr>th.sorting_desc:after,
+table.dataTable thead>tr>th.sorting_asc_disabled:before,
+table.dataTable thead>tr>th.sorting_asc_disabled:after,
+table.dataTable thead>tr>th.sorting_desc_disabled:before,
+table.dataTable thead>tr>th.sorting_desc_disabled:after,
+table.dataTable thead>tr>td.sorting:before,
+table.dataTable thead>tr>td.sorting:after,
+table.dataTable thead>tr>td.sorting_asc:before,
+table.dataTable thead>tr>td.sorting_asc:after,
+table.dataTable thead>tr>td.sorting_desc:before,
+table.dataTable thead>tr>td.sorting_desc:after,
+table.dataTable thead>tr>td.sorting_asc_disabled:before,
+table.dataTable thead>tr>td.sorting_asc_disabled:after,
+table.dataTable thead>tr>td.sorting_desc_disabled:before,
+table.dataTable thead>tr>td.sorting_desc_disabled:after {
   position: absolute;
   display: block;
   opacity: 0.125;

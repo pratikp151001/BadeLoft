@@ -1,13 +1,11 @@
 $(document).ready(function () {
   if (localStorage.getItem("LogedinUser") !== null) {
-    
     //Display name in Navbar
     $("#navigation").load("Navbar.html");
     const input = document.querySelector('input[type="search"]');
     input.addEventListener("search", () => {
-        table.search(input.value).draw(); 
-     
-    })
+      table.search(input.value).draw();
+    });
     var dataSet = [
       [
         "ZK-08-X2P",
@@ -105,36 +103,22 @@ $(document).ready(function () {
         "0",
         "0",
       ],
-      [
-        "Stock Location",
-        "",
-        "",
-        "On Water",
-        "On Water",
-        "In Production",
-      ],
-      [
-        "ETA Date",
-        "",
-        "",
-        "10/08/2021",
-        "10/08/2021",
-        "10/08/2021",
-      ],
+      ["Stock Location", "", "", "On Water", "On Water", "In Production"],
+      ["ETA Date", "", "", "10/08/2021", "10/08/2021", "10/08/2021"],
     ];
-    var StockLocation = $.fn.dataTable.absoluteOrder( [
-      { value: 'Stock Location', position: 'top' },
-      { value: 'ETA Date', position: 'top' }
-    ] );
+    var StockLocation = $.fn.dataTable.absoluteOrder([
+      { value: "Stock Location", position: "top" },
+      { value: "ETA Date", position: "top" },
+    ]);
     $("#tableDashboard").DataTable({
       data: dataSet,
 
       language: {
-        "info": "Items _START_ to _END_ of _TOTAL_ total",
+        info: "Items _START_ to _END_ of _TOTAL_ total",
         paginate: {
           next: '<i class="bi bi-chevron-right"></i>',
-          previous: '<i class="bi bi-chevron-left"></i>' 
-        }
+          previous: '<i class="bi bi-chevron-left"></i>',
+        },
       },
       // topSplit:2,
       // "ordering": false,
@@ -188,12 +172,11 @@ $(document).ready(function () {
     //     $(this).css('color','white');
     //   }
     // });
-  //  $(document).on('clicked','#ClosePopover',function(){
-  //     alert("CLicked")
-  //     $("#popover-content").hide();
-  //   })
+    //  $(document).on('clicked','#ClosePopover',function(){
+    //     alert("CLicked")
+    //     $("#popover-content").hide();
+    //   })
   } else {
     window.location.href = "index.html";
   }
 });
-

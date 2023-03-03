@@ -6,9 +6,8 @@ $(document).ready(function () {
 
     const input = document.querySelector('input[type="search"]');
     input.addEventListener("search", () => {
-        table.search(input.value).draw(); 
-     
-    })
+      table.search(input.value).draw();
+    });
     function format(d) {
       // `d` is the original data object for the row
       return (
@@ -119,25 +118,25 @@ $(document).ready(function () {
     var table = $("#tableStatus").DataTable({
       data: datasets,
       language: {
-        "info": "Items _START_ to _END_ of _TOTAL_ total",
+        info: "Items _START_ to _END_ of _TOTAL_ total",
         paginate: {
           next: '<i class="bi bi-chevron-right"></i>',
-          previous: '<i class="bi bi-chevron-left"></i>' 
-        }
+          previous: '<i class="bi bi-chevron-left"></i>',
+        },
       },
-      columnDefs: [{
-        "defaultContent": "-",
-        "targets": "_all"},
+      columnDefs: [
         {
-            className: "dt-center",
-            targets: [],
-          },
-          {
-            className: "dt-left",
-            targets: [0,1, 2, 3, 4, 5,6,7],
-          },
-
-        
+          defaultContent: "-",
+          targets: "_all",
+        },
+        {
+          className: "dt-center",
+          targets: [],
+        },
+        {
+          className: "dt-left",
+          targets: [0, 1, 2, 3, 4, 5, 6, 7],
+        },
       ],
       columns: [
         {
