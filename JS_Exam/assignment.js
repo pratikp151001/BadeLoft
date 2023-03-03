@@ -94,12 +94,13 @@ $(document).ready(function () {
         $("#QuickBooksInvoice").append(option);
       });
     });
+   
     table = $("#table_assignment").DataTable();
      $("#search").on("keyup", function () {
        table.search(this.value).draw();
      })
 
-    // $('.js-example-basic-multiple').select2();
+    $('.js-example-basic-multiple').select2();
 
     var StockOptions = "";
     // debugger;
