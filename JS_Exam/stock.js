@@ -8,8 +8,8 @@ $(document).ready(function () {
     var table;
     function format(d, ParentRowid) {
       //debugger;
-      // alert(ParentRowid)
-      console.log(d.parts);
+      // //alert(ParentRowid)
+      //console.log(d.parts);
       let list = "";
       if (d.parts && d.parts.length > 0) {
         list +=
@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     var STOCKS = JSON.parse(localStorage.getItem("stock"));
     debugger;
-    // console.log(StockDetails[1].stockname)
+    // //console.log(StockDetails[1].stockname)
     table = $("#tableStocks").DataTable({
       order: [],
       deferRender: true,
@@ -58,11 +58,12 @@ $(document).ready(function () {
       },
       // "dom": 'rtip',
       columnDefs: [
-        { className: "dt-left", targets: [0, 6] },
-        { className: "dt-center", targets: [1, 2, 3, 4, 6] },
+        { className: "dt-left", targets: [0,2, 6] },
+        { className: "dt-center", targets: [1, 3, 4, 6] },
         // { width: "10px", targets: [0] },
-        { width: "15%", targets: [0] },
-        { width: "25%", targets: [5] },
+        { width: "10%", targets: [0] },
+        { width: "20%", targets: [5] },
+        { width: "20%", targets: [2] },
       ],
       data: STOCKS,
       bInfo: true,
@@ -89,10 +90,45 @@ $(document).ready(function () {
           data: "status",
           title: "Stock Location",
           orderable: false,
-          // render: function (data, type, row, meta){
-
-          //   let display="<td></td>"
-          // }
+          render: function (data, type, row) {
+            if (type === "display") {
+              let changebtn = `
+                <td>
+                <div class="row">
+                <div class="col-md-4 ">
+                      <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" role="button" id="Stock_loc${row.stockname}" data-bs-toggle="dropdown" aria-expanded="false">
+                        change
+                         </a>
+          
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li class="dropdown-item">
+                          <input type="radio" class="from-check-input Stock_location" name="Stock-Location${row.stockname}" value="On Warehouse">
+                          <label for="Stock-Location${row.stockname}">OnWareHouse</label>
+                        </li>
+                        <li class="dropdown-item">
+                          <input type="radio" class="from-check-input Stock_location" name="Stock-Location${row.stockname}" value="On Water" checked  >
+                          <label for="Stock-Location${row.stockname}">OnWater</label>
+                        </li>
+                        <li class="dropdown-item">
+                          <input type="radio" class="from-check-input Stock_location" name="Stock-Location${row.stockname}" value="On Production">
+                          <label for="Stock-Location${row.stockname}">OnProduction</label>
+                        </li>
+                           
+                       </ul>
+                       
+                       </div>
+                  </div>
+                  <div class="col-md-6 ">
+                  <div id="status">
+                    ${data}
+                  </div>
+                </div>
+                </td>`;
+              return changebtn;
+            }
+            return data;
+          },
         },
         {
           data: "createdBy",
@@ -117,17 +153,11 @@ $(document).ready(function () {
           data: "null",
           title: "Action",
           orderable: false,
-          className: "editStock",
+          // className: "editStock",
           defaultContent:
-            "<i class='bi bi-pencil-fill '>&nbsp&nbsp</i><i class='bi bi-clock-history .historyStock'></i>",
+          "<button type='button' class='btn EditStock'><i class='bi bi-pencil-fill  '>&nbsp&nbsp</i></button><button type='button' class='btn Delete'><i class='bi bi-clock-history .historyStock'></i></button>",
         },
       ],
-      //   "columnDefs": [ {
-      //     "targets": 2  ,
-      //     "render": function (data, type, row, meta){
-      //      return "<select class='pilihan form-control' id='pilihan'><option value='0'>--Pilihan--</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option</select>";
-      //  }
-      // } ]
     });
 
     // Add event listener for opening and closing details
@@ -145,17 +175,17 @@ $(document).ready(function () {
         tr.addClass("shown");
       }
     });
-    $("#tableStocks tbody").on("click", "td.editStock", function () {
-      // //debugger;
-      // console.log("A");
-      // console.log(table.row(this).data())
-      let SelectedData = table.row(this).data();
-      let index = table.row(this).index();
-      // //alert(index)
-      // // document.getElementsByName("status").values=SelectedData.status;
-      // console.log(table.row(this).data().parts)
-      EditStock(SelectedData, index);
-    });
+    // $("#tableStocks tbody").on("click", "td.editStock", function () {
+    //   // //debugger;
+    //   // //console.log("A");
+    //   // //console.log(table.row(this).data())
+    //   let SelectedData = table.row(this).data();
+    //   let index = table.row(this).index();
+    //   // ////alert(index)
+    //   // // document.getElementsByName("status").values=SelectedData.status;
+    //   // //console.log(table.row(this).data().parts)
+    //   EditStock(SelectedData, index);
+    // });
 
     //DateRange Picker
     $("#etaDate").daterangepicker(
@@ -168,7 +198,7 @@ $(document).ready(function () {
       },
       function (start, end, label) {
         var years = moment().diff(start, "years");
-        // ////alert("You are " + years + " years old!");
+        // //////alert("You are " + years + " years old!");
       }
     );
 
@@ -189,7 +219,7 @@ $(document).ready(function () {
 
     //Open AddParts Modal
     $(document).on("click", "#addParts", function () {
-      // console.log(StockDetails)
+      // //console.log(StockDetails)
 
       // localStorage.setItem("stocks",JSON.stringify(StockDetails))
       $("#addPartsModal").modal("show");
@@ -243,8 +273,8 @@ $(document).ready(function () {
           d.getMinutes() +
           d.getMilliseconds();
 
-        // // ////alert("all"+Invoice)
-        // console.log(PARTS);
+        // // //////alert("all"+Invoice)
+        // //console.log(PARTS);
         var check = true;
         for (let i = 0; i < PARTS.length; i++) {
           if (PARTS[i].partsnumber == PartNumber) {
@@ -262,7 +292,7 @@ $(document).ready(function () {
         }
 
         PARTS.push(obj);
-        console.log(PARTS);
+        //console.log(PARTS);
         $("#addPartsModal").modal("hide");
         document.getElementById("AddParts").reset();
         PartsTableDIsplay();
@@ -296,7 +326,7 @@ $(document).ready(function () {
     $(document).on("click", "#savestock", function () {
       let AddStockResult = form1.valid();
 
-      console.log(PARTS.length);
+      //console.log(PARTS.length);
 
       // //debugger;
       if (AddStockResult == true) {
@@ -305,8 +335,8 @@ $(document).ready(function () {
           var ETADate = $("#etaDate").val();
           let ele = document.getElementsByName("status");
           var Status = "";
-          // ////alert(StockName)
-          // ////alert(ETADate)
+          // //////alert(StockName)
+          // //////alert(ETADate)
 
           for (i = 0; i < ele.length; i++) {
             if (ele[i].checked) {
@@ -314,13 +344,14 @@ $(document).ready(function () {
             }
           }
           // var CreatedDate=new Date()
-          // ////alert(CreatedDate)
-          // console.log(CreatedDate)
+          // //////alert(CreatedDate)
+          // //console.log(CreatedDate)
           // const d = new Date();
           // date = d.getDate();
           // month = d.getMonth() + 1;
           // year = d.getFullYear();
-          var created_date = createDate();
+          createddate=new Date()
+          createddate=createddate.toLocaleDateString()
 
           StockDetails = JSON.parse(localStorage.getItem("stock"));
 
@@ -331,7 +362,7 @@ $(document).ready(function () {
               Etadate: ETADate,
               status: Status,
               createdBy: logedinUser[0].Name,
-              createdDate: created_date,
+              createdDate: createddate,
               parts: PARTS,
             };
             // StockDetails.push({
@@ -356,11 +387,11 @@ $(document).ready(function () {
                 Etadate: ETADate,
                 status: Status,
                 createdBy: logedinUser[0].Name,
-                createdDate: created_date,
+                createdDate: createddate,
                 parts: PARTS,
               };
             }
-            // console.log(StockDetails)
+            // //console.log(StockDetails)
           }
           StockDetails.push(newObj);
           table.row.add(newObj).draw();
@@ -417,7 +448,7 @@ $(document).ready(function () {
     $(document).on("click", ".cancel", function () {
       let index = parseInt($(this).data("val"));
       // var index=parseInt( $(this).data('val'))-1
-      ////alert(index)
+      //////alert(index)
       PARTS.splice(index - 1, 1);
       PartsTableDIsplay();
     });
@@ -431,30 +462,37 @@ $(document).ready(function () {
 
       $(document).on("click", ".deleteparts", function () {
         let index = $(this).attr("data-val");
-        //alert(inde)
+        ////alert(inde)
       });
     });
-    function EditStock(SelectedData, index) {
+    // function EditStock(SelectedData, index) {
+      
+    // }
+    $(document).on('click','.EditStock',function(){
+      let Index=table.row($(this).parents('tr')).index();
+      //alert(Index)
+      let SelectedRowData=table.row(Index).data()
+      //console.log(SelectedRowData)
       $("#addStockModal").modal("show");
       $(".error").html("");
       $(".save").attr("id", "editstock");
-      $("#stockName").val(SelectedData.stockname);
-      $("#etaDate").val(SelectedData.Etadate);
-      $("#hidden").val(index);
-      PARTS = SelectedData.parts;
+      $("#stockName").val(SelectedRowData.stockname);
+      $("#etaDate").val(SelectedRowData.Etadate);
+      $("#hidden").val(Index);
+      PARTS = SelectedRowData.parts;
       // $("#stockName").attr("disabled", "disabled");
       PartsTableDIsplay();
-    }
+    })
     $(document).on("click", "#editstock", function () {
       let EditStockResult = form1.valid();
 
-      // console.log(PARTS.length);
+      // //console.log(PARTS.length);
 
       // //debugger;
       if (EditStockResult == true) {
         if (PARTS.length != 0) {
           let Index = $("#hidden").val();
-          //alert(Index);
+          ////alert(Index);
           var StockName = $("#stockName").val();
           var ETADate = $("#etaDate").val();
           let ele = document.getElementsByName("status");
@@ -464,45 +502,27 @@ $(document).ready(function () {
               Status = ele[i].value;
             }
           }
-          var created_date = createDate();
-          console.log(created_date);
+          createddate=new Date()
+          createddate=createddate.toLocaleDateString()
+
+          // //console.log(created_date);
           StockDetails = JSON.parse(localStorage.getItem("stock"));
           var newObj = {
             stockname: StockName,
             Etadate: ETADate,
             status: Status,
             createdBy: logedinUser[0].Name,
-            createdDate: created_date,
+            createdDate: createddate,
             parts: PARTS,
           };
-          console.log(newObj);
+          //console.log(newObj);
           //debugger
           StockDetails[Index] = newObj;
 
-          //  table.row.add({ foo: 1 }).draw();
-          // //debugger;
-
-          //   let check=true
-          //  for(let j=0;j<StockDetails.length;j++){
-          //   if(StockName==StockDetails[j].stockname){
-          //     check==false
-          //   }
-          //  }
-          //    if(check==true){
-          //   for (let i = 0; i < StockDetails.length; i++) {
-          //     if (oldStockName == StockDetails[i].stockname) {
-          //       StockDetails[i] = newObj;
-
-          //       // table.row.add(newObj).draw();
-          //     }
-          //   }
-          // }else{
-          // //alert("Stock name is already present")
-          // }
           $(".save").attr("id", "savestock");
           // $("#stockName").removeAttr("disabled");
 
-          // console.log(StockDetails)
+          // //console.log(StockDetails)
           localStorage.setItem("stock", JSON.stringify(StockDetails));
           //  delete  newObj.parts
           table.row(Index).data(newObj).draw();
@@ -510,30 +530,21 @@ $(document).ready(function () {
           // location.reload(true);
           // $("#tableStocks").dataTable().clear().draw();
           // $("#tableStocks").dataTable().fnDestroy()
-          // console.log(StockDetails)
+          // //console.log(StockDetails)
           // table.draw(true)
         } else {
           Swal.fire("Please enter at least 1 part");
         }
       }
     });
-    function createDate() {
-      const d = new Date();
-      date = d.getDate();
-      month = d.getMonth() + 1;
-      year = d.getFullYear();
-
-      return month + "/" + date + "/" + year;
-    }
-
     $(document).on("click", ".deleteparts", function () {
       let indexofChildRow = $(this).data("val");
-      // alert(indexofChildRow)
+      // //alert(indexofChildRow)
       let indexofParent = $(this).data("parentrowid");
       if (STOCKS[indexofParent].parts.length == 1) {
         Swal.fire("Atleast 1 Part Required");
       } else {
-        // alert(indexofParent)
+        // //alert(indexofParent)
         Swal.fire({
           title: "Do you want to Delete the Part?",
           showDenyButton: true,
@@ -544,7 +555,7 @@ $(document).ready(function () {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
             // let indexofRow= table.row( parentRow ).data()
-            // alert(indexofRow)
+            // //alert(indexofRow)
 
             for (let i = 0; i < STOCKS.length; i++) {
               for (let j = 0; j < STOCKS[i].parts.length; j++) {
@@ -554,13 +565,15 @@ $(document).ready(function () {
                 }
                 if (j == indexofChildRow - 1 && i == indexofParent) {
                   STOCKS[i].parts.splice(indexofChildRow - 1, 1);
+                  var tr = $(this).closest("tr");
+                  tr.remove();
                   table.row(indexofParent).data(STOCKS[i]).draw();
                 }
               }
             }
             localStorage.setItem("stock", JSON.stringify(STOCKS));
 
-            // console.log(STOCKS)
+            // //console.log(STOCKS)
           }
 
           // else if (result.isDenied) {

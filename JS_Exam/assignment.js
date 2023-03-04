@@ -36,12 +36,9 @@ $(document).ready(function () {
             element.selectedStock +
             "</td><td>" +
             element.selectedparts +
-            "</td><td class='deleteparts' data-val=" +
-            [index + 1] +
-            " data-parentrowid=" +
-            [ParentRowid] +
-            ">" +
-            "<i class='bi bi-x-lg'></i> " +
+            "</td><td>" +"<button type='button' data-val=" +
+            [index + 1] +" data-parentrowid=" +
+            [ParentRowid] + " class='btn DeleteChildrow'><i class='bi bi-x-lg'></i></button>"+
             "</td>" +
             "</tr>";
         });
@@ -90,7 +87,7 @@ $(document).ready(function () {
           orderable: false,
           className: "editStock",
           defaultContent:
-            "<button type='button' class='btn'><i class='bi bi-pencil-fill Edit '>&nbsp&nbsp</i></button><button type='button' class='btn'><i class='bi bi-trash3-fill'></i></button>",
+            "<button type='button' class='btn Edit'><i class='bi bi-pencil-fill  '>&nbsp&nbsp</i></button><button type='button' class='btn Delete'><i class='bi bi-trash3-fill'></i></button>",
         },
       ],
       order: [[1, "asc"]],
@@ -148,7 +145,9 @@ $(document).ready(function () {
       table.search(this.value).draw();
     });
 
-    $(".js-example-basic-multiple").select2();
+    $(".js-example-basic-multiple").select2({
+      placeholder: "Select a Part",
+    });
 
     var StockOptions = "";
     // debugger;
@@ -235,6 +234,9 @@ $(document).ready(function () {
         let Customer = $("#customer").val();
         alert(Customer);
         let QuickBooksInvoice = $("#QuickBooksInvoice").val();
+         
+        createddate=new Date()
+        createddate=createddate.toLocaleDateString()+" at "+ createddate.toLocaleTimeString();
 
         if (Data == null) {
           Data = [];
@@ -243,7 +245,7 @@ $(document).ready(function () {
             quickbooksinvoice: QuickBooksInvoice,
             AssignedParts: SelectedPartsStock,
             createdby: logedinUser[0].Name,
-            createdDate: new Date(),
+            createdDate: createddate
           };
         } else {
           var newObj = {
@@ -251,7 +253,7 @@ $(document).ready(function () {
             quickbooksinvoice: QuickBooksInvoice,
             AssignedParts: SelectedPartsStock,
             createdby: logedinUser[0].Name,
-            createdDate: new Date(),
+            createdDate: createddate,
           };
         }
         Data.push(newObj);
@@ -261,6 +263,7 @@ $(document).ready(function () {
         SelectedPartsStock = [];
         displaySelectedStockParts();
         document.getElementById("assignmentform").reset();
+        // $("#SelectParts option:selected").removeAttr("selected");
         $("#assignmentModal").modal("hide");
         //  $("#SelectParts").val()=""
         // console.log(newObj)
@@ -285,8 +288,60 @@ $(document).ready(function () {
     });
     $(document).on("click", ".Edit", function () {
       alert("d");
-      alert(table.row(this).parent().index());
+      alert(table.row($(this).parents('tr')).index());
     });
+
+    $(document).on("click", ".Delete", function () {
+      var AssignedData= JSON.parse(localStorage.getItem("Assigned"));
+      alert(table.row($(this).parents('tr')).index())
+      let Index=table.row($(this).parents('tr')).index();
+      table.row(Index).remove().draw()
+      AssignedData.splice(Index,1)
+      localStorage.setItem("Assigned", JSON.stringify(AssignedData));
+      
+    });
+
+    $(document).on("click", ".DeleteChildrow", function () {
+      let indexofChildRow = $(this).data("val");
+      // alert(indexofChildRow)
+      let indexofParentrow= $(this).data("parentrowid")
+      // alert(indexofParentrow)
+      var AssignedData= JSON.parse(localStorage.getItem("Assigned"));
+      if(AssignedData[indexofParentrow].AssignedParts.length==1){
+        Swal.fire("Atleast 1 part is required")
+      }
+      else{
+        Swal.fire({
+          title: "Do you want to Delete the Part?",
+          showDenyButton: true,
+          // showCancelButton: true,
+          confirmButtonText: "Delete",
+          denyButtonText: `Cancel`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            for (let i = 0; i < AssignedData.length; i++) {
+              for (let j = 0; j < AssignedData[i].AssignedParts.length; j++) {
+                if (AssignedData[i].AssignedParts == 1) {
+                  // Swal.fire("Atleast 1 part required")
+                  break;
+                }
+                if (j == indexofChildRow - 1 && i == indexofParentrow) {
+                  AssignedData[i].AssignedParts.splice(indexofChildRow - 1, 1);
+                  var tr = $(this).closest("tr");
+                  tr.remove();
+                  table.row(indexofParentrow).data(AssignedData[i]).draw();
+                }
+              }
+            }
+            localStorage.setItem("Assigned", JSON.stringify(AssignedData));
+
+          }
+
+        })
+      }
+    });
+
 
     //   var myData = ['New York','Los Angeles','Chicago' ]
     //   $(function() {

@@ -24,6 +24,11 @@ thead {
   /* font-family: 'Source Sans Pro', sans-serif; */
 }
 
+.select2{
+  width: 100% !important;
+  padding-top: 5px;
+  height: 50px;
+}
 table {
   /* font-size: small; */
   border-radius: 0.5em;
@@ -121,4 +126,7 @@ input[type=text]{
 }
 #AssignedPartTable th{
  color: white;
+}
+.DeleteChildrow{
+  border: none;
 }

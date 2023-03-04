@@ -40,10 +40,10 @@
           </div>
         </div>
         <div class="modal" id="assignmentModal" role="dialog">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">New Assigment</h5>
                 <button type="button" class="close closemodal"
                   id="CloseAssignmentModal" data-dismiss="modal"
                   aria-label="Close">
@@ -92,6 +92,7 @@
                   <div class="col-lg-5">
                     <div class="form-group">
                       <label for="Choose Parts" class="mb-2">Choose Parts</label>
+                      <br>
                       <select multiple class="js-example-basic-multiple"
                         name="SelectParts[]" id="SelectParts">
                         <!-- <option value="js">JavaScript</option>
@@ -118,18 +119,17 @@
                   </div>
                 </div>
                 <div class="row mb-1">
-                  <div class="col-lg-2 ">
+                  <div class="col-lg-4 ps-3  ">
                     <button type="button" class="btn save" id="saveAssigment">
                       Save
                     </button>
-
-                  </div>
-                  <div class="col-lg-2 ps-0">
                     <button type="button" class="btn btn-outline-secondary
-                      closemodal" id="CancelbtnLowwerAddAssigment">
+                      closemodal ms-3" id="CancelbtnLowwerAddAssigment">
                       Cancel
                     </button>
+
                   </div>
+                  
                 </div>
               </form>
 
@@ -166,3 +166,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
+
+
+
