@@ -83,7 +83,7 @@ color: white;
   margin-left: 2.6%;
   margin-right: 3%;
 }
-#saveAssigment{
+#saveAssigment,#editAssignment{
   background-color: #326c96;
   color: white;
 }

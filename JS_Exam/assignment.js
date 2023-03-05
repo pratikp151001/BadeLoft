@@ -226,13 +226,17 @@ $(document).ready(function () {
       $("#AssignedPartTable").html(list);
     }
     $("#saveAssigment").click(function () {
+      // debugger
+      if($(".save").attr('id')!='editAssignment'){
+      
+     
       // alert($("#QuickBooksInvoice").val())
       if ($("#QuickBooksInvoice").val() == null) {
         Swal.fire("Please selecet customer and Invoice");
       } else {
         var Data = JSON.parse(localStorage.getItem("Assigned"));
         let Customer = $("#customer").val();
-        alert(Customer);
+        // alert(Customer);
         let QuickBooksInvoice = $("#QuickBooksInvoice").val();
          
         createddate=new Date()
@@ -268,6 +272,7 @@ $(document).ready(function () {
         //  $("#SelectParts").val()=""
         // console.log(newObj)
       }
+    }
     });
     //Delete Parts in Modal
     $(document).on("click", ".cancel", function () {
@@ -284,12 +289,56 @@ $(document).ready(function () {
 
     $(".closemodal").click(function () {
       $("#assignmentModal").modal("hide");
+      $(".save").attr("id", "saveAssigment");
       document.getElementById("assignmentform").reset();
     });
     $(document).on("click", ".Edit", function () {
-      alert("d");
-      alert(table.row($(this).parents('tr')).index());
+      debugger
+    
+     let Index=table.row($(this).parents('tr')).index();
+      SelectedRowData=table.row($(this).parents('tr')).data()
+      $("#assignmentModal").modal("show");
+
+      $(".save").attr("id", "editAssignment");
+      $("#customer").val(SelectedRowData.customer);
+      $("#QuickBooksInvoice").val(SelectedRowData.quickbooksinvoice);
+      $("#hidden").val(Index);
+     
+      SelectedPartsStock = SelectedRowData.AssignedParts;
+      // $("#stockName").attr("disabled", "disabled");
+      displaySelectedStockParts();
     });
+    $(document).on("click", "#editAssignment", function () {
+      debugger
+      var AssignedDataParts= JSON.parse(localStorage.getItem("Assigned"));
+      let Customer = $("#customer").val();
+      let Index = $("#hidden").val();
+      // alert(Index)
+        // alert(Customer);
+        let QuickBooksInvoice = $("#QuickBooksInvoice").val();
+         
+        createddate=new Date()
+        createddate=createddate.toLocaleDateString()+" at "+ createddate.toLocaleTimeString();
+
+        var newObj = {
+          customer: Customer,
+          quickbooksinvoice: QuickBooksInvoice,
+          AssignedParts: SelectedPartsStock,
+          createdby: logedinUser[0].Name,
+          createdDate: createddate,
+        };
+        AssignedDataParts[Index]=newObj
+
+
+     
+      localStorage.setItem("Assigned", JSON.stringify(AssignedDataParts));
+      //  delete  newObj.parts
+      table.row(Index).data(newObj).draw();
+      $("#assignmentModal").modal("hide");
+      $(".save").attr("id", "saveAssigment");
+      document.getElementById("assignmentform").reset();
+    })
+
 
     $(document).on("click", ".Delete", function () {
       var AssignedData= JSON.parse(localStorage.getItem("Assigned"));
