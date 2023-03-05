@@ -36,13 +36,14 @@ $(document).ready(function () {
             element.selectedStock +
             "</td><td>" +
             element.selectedparts +
-            "</td><td>" +"<button type='button' data-val=" +
-            [index + 1] +" data-parentrowid=" +
-            [ParentRowid] + " class='btn DeleteChildrow'><i class='bi bi-x-lg'></i></button>"+
+            `</td><td><i  class= 'bi bi-x-lg delete'  style='cursor:pointer' data-stock-id='${d.id}' onclick='deleteMainTableRow(this)'  data-part-index='${index}' ></i>` +
+
             "</td>" +
             "</tr>";
         });
       }
+      // <i class="bi bi-x-lg"></i>
+
       return list;
 
       // `d` is the original data object for the row
@@ -249,7 +250,8 @@ $(document).ready(function () {
             quickbooksinvoice: QuickBooksInvoice,
             AssignedParts: SelectedPartsStock,
             createdby: logedinUser[0].Name,
-            createdDate: createddate
+            createdDate: createddate,
+            id: Date.now(),
           };
         } else {
           var newObj = {
@@ -258,6 +260,7 @@ $(document).ready(function () {
             AssignedParts: SelectedPartsStock,
             createdby: logedinUser[0].Name,
             createdDate: createddate,
+            id: Date.now(),
           };
         }
         Data.push(newObj);
@@ -326,6 +329,7 @@ $(document).ready(function () {
           AssignedParts: SelectedPartsStock,
           createdby: logedinUser[0].Name,
           createdDate: createddate,
+           id: Date.now(),
         };
         AssignedDataParts[Index]=newObj
 
@@ -350,46 +354,46 @@ $(document).ready(function () {
       
     });
 
-    $(document).on("click", ".DeleteChildrow", function () {
-      let indexofChildRow = $(this).data("val");
-      // alert(indexofChildRow)
-      let indexofParentrow= $(this).data("parentrowid")
-      // alert(indexofParentrow)
-      var AssignedData= JSON.parse(localStorage.getItem("Assigned"));
-      if(AssignedData[indexofParentrow].AssignedParts.length==1){
-        Swal.fire("Atleast 1 part is required")
-      }
-      else{
-        Swal.fire({
-          title: "Do you want to Delete the Part?",
-          showDenyButton: true,
-          // showCancelButton: true,
-          confirmButtonText: "Delete",
-          denyButtonText: `Cancel`,
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            for (let i = 0; i < AssignedData.length; i++) {
-              for (let j = 0; j < AssignedData[i].AssignedParts.length; j++) {
-                if (AssignedData[i].AssignedParts == 1) {
-                  // Swal.fire("Atleast 1 part required")
-                  break;
-                }
-                if (j == indexofChildRow - 1 && i == indexofParentrow) {
-                  AssignedData[i].AssignedParts.splice(indexofChildRow - 1, 1);
-                  var tr = $(this).closest("tr");
-                  tr.remove();
-                  table.row(indexofParentrow).data(AssignedData[i]).draw();
-                }
-              }
-            }
-            localStorage.setItem("Assigned", JSON.stringify(AssignedData));
+    // $(document).on("click", ".DeleteChildrow", function () {
+    //   let indexofChildRow = $(this).data("val");
+    //   // alert(indexofChildRow)
+    //   let indexofParentrow= $(this).data("parentrowid")
+    //   // alert(indexofParentrow)
+    //   var AssignedData= JSON.parse(localStorage.getItem("Assigned"));
+    //   if(AssignedData[indexofParentrow].AssignedParts.length==1){
+    //     Swal.fire("Atleast 1 part is required")
+    //   }
+    //   else{
+    //     Swal.fire({
+    //       title: "Do you want to Delete the Part?",
+    //       showDenyButton: true,
+    //       // showCancelButton: true,
+    //       confirmButtonText: "Delete",
+    //       denyButtonText: `Cancel`,
+    //     }).then((result) => {
+    //       /* Read more about isConfirmed, isDenied below */
+    //       if (result.isConfirmed) {
+    //         for (let i = 0; i < AssignedData.length; i++) {
+    //           for (let j = 0; j < AssignedData[i].AssignedParts.length; j++) {
+    //             if (AssignedData[i].AssignedParts == 1) {
+    //               // Swal.fire("Atleast 1 part required")
+    //               break;
+    //             }
+    //             if (j == indexofChildRow - 1 && i == indexofParentrow) {
+    //               AssignedData[i].AssignedParts.splice(indexofChildRow - 1, 1);
+    //               var tr = $(this).closest("tr");
+    //               tr.remove();
+    //               table.row(indexofParentrow).data(AssignedData[i]).draw();
+    //             }
+    //           }
+    //         }
+    //         localStorage.setItem("Assigned", JSON.stringify(AssignedData));
 
-          }
+    //       }
 
-        })
-      }
-    });
+    //     })
+    //   }
+    // });
 
 
     //   var myData = ['New York','Los Angeles','Chicago' ]
@@ -406,3 +410,20 @@ $(document).ready(function () {
     window.location.href = "index.html";
   }
 });
+
+function deleteMainTableRow(element) {
+  var Assigned = JSON.parse(localStorage.getItem("Assigned"));
+
+  var stockID = $(element).attr('data-stock-id');
+  var StockIndex = Assigned.findIndex(x => x.id == stockID);
+  var PartIndex = $(element).attr('data-part-index');
+  console.log("Part index", PartIndex);
+
+  console.log("Stock index", StockIndex);
+  Assigned[StockIndex].AssignedParts.splice(PartIndex, 1);
+  localStorage.setItem("Assigned", JSON.stringify(Assigned));
+
+  var tr = $(element).closest("tr")
+  tr.remove()
+
+}

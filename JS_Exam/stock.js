@@ -6,7 +6,7 @@ $(document).ready(function () {
     //Display name in Navbar
     var logedinUser = JSON.parse(localStorage.getItem("LogedinUser"));
     var table;
-    function format(d, ParentRowid) {
+    function format(d) {
       //debugger;
       // //alert(ParentRowid)
       //console.log(d.parts);
@@ -29,14 +29,9 @@ $(document).ready(function () {
             partdetail.Order +
             "</td><td>" +
             partdetail.notes +
-            "</td><td class='deleteparts' data-val=" +
-            [index + 1] +
-            " data-parentrowid=" +
-            [ParentRowid] +
-            ">" +
-            "<i class='bi bi-x-lg'></i> " +
-            "</td>" +
-            "</tr>";
+            `</td>
+            <td><i  class= 'fa-solid fa-x delete' data-stock-id='${d.stockname}' onclick='deleteMainTableRow(this)'  data-part-index='${index}' ></i>` +
+            "<td></tr>";
         });
         list += "</tbody></table>";
       }
@@ -529,51 +524,55 @@ $(document).ready(function () {
         }
       }
     });
-    $(document).on("click", ".deleteparts", function () {
-      let indexofChildRow = $(this).data("val");
-      // //alert(indexofChildRow)
-      let indexofParent = $(this).data("parentrowid");
-      if (STOCKS[indexofParent].parts.length == 1) {
-        Swal.fire("Atleast 1 Part Required");
-      } else {
-        // //alert(indexofParent)
-        Swal.fire({
-          title: "Do you want to Delete the Part?",
-          showDenyButton: true,
-          // showCancelButton: true,
-          confirmButtonText: "Delete",
-          denyButtonText: `Cancel`,
-        }).then((result) => {
-          /* Read more about isConfirmed, isDenied below */
-          if (result.isConfirmed) {
-            // let indexofRow= table.row( parentRow ).data()
-            // //alert(indexofRow)
+    // $(document).on("click", ".deleteparts", function () {
+    //   // let indexofChildRow = $(this).data("val");
+    //   // //alert(indexofChildRow)
+    //   let indexofParent = $(this).data("parentrowid");
+    //   if (STOCKS[indexofParent].parts.length == 1) {
+    //     Swal.fire("Atleast 1 Part Required");
+    //   } else {
+    //     // //alert(indexofParent)
+    //     Swal.fire({
+    //       title: "Do you want to Delete the Part?",
+    //       showDenyButton: true,
+    //       // showCancelButton: true,
+    //       confirmButtonText: "Delete",
+    //       denyButtonText: `Cancel`,
+    //     }).then((result) => {
+    //       /* Read more about isConfirmed, isDenied below */
+    //       if (result.isConfirmed) {
+    //         // let indexofRow= table.row( parentRow ).data()
+    //         // //alert(indexofRow)
 
-            for (let i = 0; i < STOCKS.length; i++) {
-              for (let j = 0; j < STOCKS[i].parts.length; j++) {
-                if (STOCKS[i].parts.length == 1) {
-                  // Swal.fire("Atleast 1 part required")
-                  break;
-                }
-                if (j == indexofChildRow - 1 && i == indexofParent) {
-                  STOCKS[i].parts.splice(indexofChildRow - 1, 1);
-                  var tr = $(this).closest("tr");
-                  tr.remove();
-                  table.row(indexofParent).data(STOCKS[i]).draw();
-                }
-              }
-            }
-            localStorage.setItem("stock", JSON.stringify(STOCKS));
+    //         for (let i = 0; i < STOCKS.length; i++) {
+    //           for (let j = 0; j < STOCKS[i].parts.length; j++) {
+    //             let indexofChildRow = $(this).data("val");
+    //             if (STOCKS[i].parts.length == 1) {
+    //               // Swal.fire("Atleast 1 part required")
+    //               break;
+    //             }
+    //             if (j == indexofChildRow - 1 && i == indexofParent) {
+    //               STOCKS[i].parts.splice(indexofChildRow - 1, 1);
+    //               localStorage.setItem("stock", JSON.stringify(STOCKS));
+    //               var tr = $(this).closest("tr");
+    //               tr.remove();
+    //               table.row(indexofParent).data(STOCKS[i]).draw();
+    //             }
+    //           }
+    //         }
+            
 
-            // //console.log(STOCKS)
-          }
+    //         // //console.log(STOCKS)
+    //       }
 
-          // else if (result.isDenied) {
-          //   Swal.fire('Changes are not saved', '', 'info')
-          // }
-        });
-      }
-    });
+    //       // else if (result.isDenied) {
+    //       //   Swal.fire('Changes are not saved', '', 'info')
+    //       // }
+    //     });
+    //   }
+    // });
+  
+    
 
     $(document).on('click','.Audit',function(){
       $("#AuditModal").modal("show")
@@ -587,3 +586,31 @@ $(document).ready(function () {
     window.location.href = "index.html";
   }
 });
+
+function deleteMainTableRow(element) {
+  var newStockModal = JSON.parse(localStorage.getItem("stock"));
+  console.log(newStockModal);
+  var stockID = $(element).attr('data-stock-id');
+  var StockIndex = newStockModal.findIndex(x => x.stockname == stockID);
+  var PartIndex = $(element).attr('data-part-index');
+  console.log("Part index", PartIndex);
+
+  // var partLength = newStockModal[PartIndex].Part.length ;
+  // console.log("length",newStockModal[PartIndex].Part.length)
+  console.log("Stock index", StockIndex);
+
+  // if( partLength <= 0 ){
+
+  // }
+
+
+  newStockModal[StockIndex].parts.splice(PartIndex, 1);
+
+  console.log(newStockModal);
+
+  localStorage.setItem("stock", JSON.stringify(newStockModal));
+
+  var tr = $(element).closest("tr")
+  tr.remove()
+
+}
